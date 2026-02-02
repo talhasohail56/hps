@@ -153,39 +153,6 @@ export function Navbar() {
       transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] as const }}
       className="fixed inset-x-0 top-0 z-50 border-b"
     >
-      {/* ---- top utility bar (visible when not scrolled) ---- */}
-      <AnimatePresence>
-        {!isScrolled && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden border-b border-border-light/40 bg-navy/95 text-white"
-          >
-            <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1.5 text-xs sm:px-6 lg:px-8">
-              <span className="hidden text-white/70 sm:inline">
-                {siteConfig.tagline}
-              </span>
-              <div className="flex items-center gap-4 text-white/80">
-                <a
-                  href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`}
-                  className="flex items-center gap-1.5 transition-colors hover:text-hydra-400"
-                  aria-label={`Call us at ${siteConfig.phone}`}
-                >
-                  <Phone className="h-3 w-3" />
-                  <span>{siteConfig.phone}</span>
-                </a>
-                <span className="hidden text-white/40 sm:inline">|</span>
-                <span className="hidden text-white/60 sm:inline">
-                  {siteConfig.hours}
-                </span>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* ---- main navbar row ---- */}
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
@@ -194,17 +161,33 @@ export function Navbar() {
         {/* ---- logo / brand ---- */}
         <Link
           href="/"
-          className="group flex items-center"
+          className="group relative flex items-center"
           aria-label={`${siteConfig.name} - Home`}
           onClick={closeMobile}
         >
+          {/* Dark logo — visible when scrolled (white bg) */}
           <Image
-            src="/logo-light.png"
+            src="/logo.png"
             alt={siteConfig.name}
             width={220}
             height={56}
-            className="h-11 w-auto sm:h-12"
+            className={cn(
+              "h-11 w-auto transition-opacity duration-300 sm:h-12",
+              isScrolled ? "opacity-100" : "opacity-0"
+            )}
             priority
+          />
+          {/* Light logo — visible at top (over dark hero) */}
+          <Image
+            src="/logo-light.png"
+            alt=""
+            width={220}
+            height={56}
+            aria-hidden
+            className={cn(
+              "absolute inset-0 h-11 w-auto transition-opacity duration-300 sm:h-12",
+              isScrolled ? "opacity-0" : "opacity-100"
+            )}
           />
         </Link>
 
