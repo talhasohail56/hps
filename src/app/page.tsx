@@ -160,6 +160,39 @@ export default function HomePage() {
       <Hero />
 
       {/* ============================================================ */}
+      {/* GOOGLE RATING BADGE                                            */}
+      {/* ============================================================ */}
+      <section className="bg-white py-6 border-t border-border-light">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            variants={sectionFade}
+            className="flex items-center justify-center"
+          >
+            <div className="flex items-center gap-2.5 rounded-full border border-border-light bg-white px-5 py-2.5 shadow-sm">
+              <img
+                src="https://www.google.com/favicon.ico"
+                alt="Google"
+                className="h-5 w-5"
+              />
+              <span className="text-lg font-bold text-navy">4.9</span>
+              <div className="flex gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                  />
+                ))}
+              </div>
+              <span className="text-sm text-slate-light">on Google</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* GET A QUOTE                                                    */}
       {/* ============================================================ */}
       <section
@@ -331,7 +364,7 @@ export default function HomePage() {
                 icon={service.icon}
                 bullets={service.bullets}
                 index={i}
-                href={`/services#${service.id}`}
+                href={`/services/${service.id}`}
               />
             ))}
           </div>

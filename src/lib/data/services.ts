@@ -84,7 +84,7 @@ export const services: Service[] = [
       "Check pressure gauge readings",
       "Log filter condition in report",
     ],
-    frequency: "Monthly or as needed",
+    frequency: "Every 4–6 months",
     bestFor:
       "Pool owners who want optimal filtration and longer equipment life.",
   },
@@ -92,22 +92,22 @@ export const services: Service[] = [
     id: "repairs-equipment",
     title: "Repairs & Equipment Help",
     shortDescription:
-      "Troubleshooting and repair support for pumps, heaters, cleaners, and more.",
+      "Full repairs and installations for pumps, heaters, cleaners, and more — all done in-house.",
     description:
-      "From a noisy pump to a tripped breaker, we diagnose and help resolve common pool equipment issues. For larger repairs, we coordinate with trusted local specialists and keep you informed every step of the way.",
+      "From a noisy pump to a full equipment replacement, we handle all repairs and installations ourselves. For specialized work outside our scope — like replastering, leak detection, or pool rebuilds — we refer you to trusted local partners.",
     icon: "Wrench",
     bullets: [
-      "Pump, heater, and cleaner diagnostics",
-      "Minor repair and adjustment support",
-      "Coordination with trusted specialists",
+      "Pump, heater, and cleaner repairs & installs",
+      "All work performed in-house by our team",
+      "Referrals for replastering, leak detection, and rebuilds",
     ],
     checklist: [
       "Assess and diagnose equipment issue",
-      "Perform minor adjustments or repairs",
+      "Perform full repair or installation",
       "Test equipment after servicing",
       "Provide detailed report and photos",
-      "Coordinate specialist referral if needed",
-      "Follow up on repair completion",
+      "Refer to trusted partners for replastering, leak detection, or rebuilds",
+      "Follow up on completion",
     ],
     frequency: "As needed",
     bestFor:

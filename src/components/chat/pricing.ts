@@ -12,7 +12,7 @@ const PRICES: Record<Schedule, Record<PoolSize, number>> = {
   },
   weekly: {
     "10k-20k": 179,
-    "20k-30k": 180,
+    "20k-30k": 189,
     "30k+": 199,
   },
 };

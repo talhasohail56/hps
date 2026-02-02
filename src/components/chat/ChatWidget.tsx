@@ -59,14 +59,7 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
   }, [state.step]);
 
   /* ---------- handlers ---------- */
-
-  const handlePhoto = useCallback((base64: string) => {
-    dispatch({ type: "SET_PHOTO", photo: base64 });
-  }, []);
-
-  const handleSkipPhoto = useCallback(() => {
-    dispatch({ type: "SET_STEP", step: "poolSize" });
-  }, []);
+  /* Flow: welcome → poolSize → schedule → details → photo (optional) → result */
 
   const handlePoolSize = useCallback((size: PoolSize) => {
     dispatch({ type: "SET_POOL_SIZE", poolSize: size });
@@ -76,18 +69,21 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
     dispatch({ type: "SET_SCHEDULE", schedule });
   }, []);
 
-  const handleDetails = useCallback(
-    async (details: ContactDetails) => {
-      dispatch({ type: "SET_DETAILS", details });
+  const handleDetails = useCallback((details: ContactDetails) => {
+    dispatch({ type: "SET_DETAILS", details });
+    // reducer moves to "photo" step
+  }, []);
 
-      const price = getMonthlyPrice(
-        state.schedule!,
-        state.poolSize!
-      );
+  const doSubmit = useCallback(
+    async (photo?: string) => {
+      dispatch({ type: "SET_STEP", step: "submitting" });
+
+      const price = getMonthlyPrice(state.schedule!, state.poolSize!);
       dispatch({ type: "SET_PRICE", price });
 
+      const details = state.details!;
       const result = await submitQuote({
-        photo: state.photo || undefined,
+        photo: photo || undefined,
         poolSize: state.poolSize!,
         schedule: state.schedule!,
         monthlyPrice: price,
@@ -103,8 +99,20 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
         dispatch({ type: "SET_ERROR", error: result.error });
       }
     },
-    [state.photo, state.poolSize, state.schedule]
+    [state.poolSize, state.schedule, state.details]
   );
+
+  const handlePhoto = useCallback(
+    (base64: string) => {
+      dispatch({ type: "SET_PHOTO", photo: base64 });
+      doSubmit(base64);
+    },
+    [doSubmit]
+  );
+
+  const handleSkipPhoto = useCallback(() => {
+    doSubmit();
+  }, [doSubmit]);
 
   const handleReset = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY);
@@ -123,39 +131,23 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
                 Welcome to Hydra Pool Services!
               </p>
               <p>
-                I&apos;ll help you get an instant quote for professional pool
-                cleaning. It only takes a minute — let&apos;s get started!
+                Get a free estimate in just 3 questions — takes under 30
+                seconds. Let&apos;s go!
               </p>
             </ChatMessage>
             <div className="flex justify-end mt-1">
               <button
-                onClick={() => dispatch({ type: "SET_STEP", step: "photo" })}
+                onClick={() => dispatch({ type: "SET_STEP", step: "poolSize" })}
                 className="rounded-full bg-hydra-600 px-5 py-2 text-xs font-semibold text-white transition-colors hover:bg-hydra-700"
               >
-                Let&apos;s Go
+                Get My Estimate
               </button>
             </div>
           </>
         );
 
-      case "photo":
-        return <PhotoStep onUpload={handlePhoto} onSkip={handleSkipPhoto} />;
-
       case "poolSize":
-        return (
-          <>
-            {state.photo && (
-              <ChatMessage from="user">
-                <img
-                  src={state.photo}
-                  alt="Pool photo"
-                  className="rounded-lg max-h-32 w-auto"
-                />
-              </ChatMessage>
-            )}
-            <PoolSizeStep onSelect={handlePoolSize} />
-          </>
-        );
+        return <PoolSizeStep onSelect={handlePoolSize} />;
 
       case "schedule":
         return (
@@ -186,9 +178,16 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
           </>
         );
 
+      case "photo":
+        return <PhotoStep onUpload={handlePhoto} onSkip={handleSkipPhoto} />;
+
       case "submitting":
         return (
-          <DetailsStep onSubmit={handleDetails} submitting />
+          <ChatMessage from="bot">
+            <p className="text-sm text-slate-light animate-pulse">
+              Generating your quote…
+            </p>
+          </ChatMessage>
         );
 
       case "result":

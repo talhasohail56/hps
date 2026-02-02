@@ -108,8 +108,26 @@ export function Hero() {
               your pool stays swim-ready every day.
             </motion.p>
 
+            {/* Free trial offer */}
+            <motion.div
+              variants={fadeUp}
+              className="mt-8 inline-flex items-center gap-3 rounded-xl border border-hydra-200 bg-hydra-50/60 px-5 py-3"
+            >
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-hydra-500 text-xs font-bold text-white">
+                14
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-navy">
+                  First 2 weeks on us &mdash; completely free
+                </p>
+                <p className="text-xs text-slate-light">
+                  Cancel anytime. No payment on file required.
+                </p>
+              </div>
+            </motion.div>
+
             {/* CTAs */}
-            <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-4">
+            <motion.div variants={fadeUp} className="mt-5 flex flex-wrap gap-4">
               {/* Primary — Get a Quote */}
               <Link
                 href="/#get-quote"

@@ -213,7 +213,7 @@ export default function ServicesPage() {
                   {/* CTA */}
                   <div className="mt-8">
                     <Link
-                      href="/contact"
+                      href={`/services/${service.id}`}
                       className={cn(
                         "inline-flex items-center justify-center rounded-xl bg-hydra-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-hydra-500/25",
                         "transition-all duration-200 ease-out",
@@ -222,7 +222,7 @@ export default function ServicesPage() {
                         "focus-visible:ring-2 focus-visible:ring-hydra-500 focus-visible:ring-offset-2"
                       )}
                     >
-                      Get a Quote for {service.title}
+                      Learn More
                     </Link>
                   </div>
                 </motion.div>

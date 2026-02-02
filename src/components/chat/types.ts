@@ -54,16 +54,17 @@ export const initialChatState: ChatState = {
   error: null,
 };
 
+/* Flow: welcome → poolSize → schedule → details → photo (optional) → result */
 export function chatReducer(state: ChatState, action: ChatAction): ChatState {
   switch (action.type) {
-    case "SET_PHOTO":
-      return { ...state, photo: action.photo, step: "poolSize" };
     case "SET_POOL_SIZE":
       return { ...state, poolSize: action.poolSize, step: "schedule" };
     case "SET_SCHEDULE":
       return { ...state, schedule: action.schedule, step: "details" };
     case "SET_DETAILS":
-      return { ...state, details: action.details, step: "submitting" };
+      return { ...state, details: action.details, step: "photo" };
+    case "SET_PHOTO":
+      return { ...state, photo: action.photo, step: "submitting" };
     case "SET_PRICE":
       return { ...state, monthlyPrice: action.price };
     case "SET_QUOTE_ID":
