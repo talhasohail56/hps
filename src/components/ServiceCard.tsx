@@ -1,0 +1,97 @@
+"use client";
+
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import * as Icons from "lucide-react";
+import type { LucideProps } from "lucide-react";
+import type { ComponentType } from "react";
+
+interface ServiceCardProps {
+  title: string;
+  description: string;
+  icon: string;
+  bullets: string[];
+  index: number;
+}
+
+export function ServiceCard({
+  title,
+  description,
+  icon,
+  bullets,
+  index,
+}: ServiceCardProps) {
+  /* ── Dynamically resolve the lucide icon by name ── */
+  const LucideIcon = (Icons as unknown as Record<string, ComponentType<LucideProps>>)[
+    icon
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.1,
+        ease: [0.25, 0.1, 0.25, 1] as const,
+      }}
+      className={cn(
+        "group relative flex flex-col rounded-2xl border border-border-light bg-white p-6",
+        "transition-all duration-300",
+        "hover:border-hydra-300 hover:shadow-lg hover:shadow-hydra-100/40"
+      )}
+    >
+      {/* Subtle gradient wash on hover */}
+      <div
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute inset-0 rounded-2xl",
+          "bg-gradient-to-br from-hydra-50/0 via-hydra-50/0 to-hydra-100/0",
+          "transition-all duration-300",
+          "group-hover:from-hydra-50/60 group-hover:via-hydra-50/30 group-hover:to-hydra-100/20"
+        )}
+      />
+
+      {/* Content sits above the gradient wash */}
+      <div className="relative z-10 flex flex-col">
+        {/* Icon container */}
+        <div
+          className={cn(
+            "mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-hydra-50",
+            "transition-transform duration-300",
+            "group-hover:-translate-y-0.5"
+          )}
+        >
+          {LucideIcon ? (
+            <LucideIcon className="h-6 w-6 text-hydra-600" strokeWidth={1.75} />
+          ) : (
+            <Icons.HelpCircle
+              className="h-6 w-6 text-hydra-600"
+              strokeWidth={1.75}
+            />
+          )}
+        </div>
+
+        {/* Title */}
+        <h3 className="mb-2 text-lg font-semibold text-navy">{title}</h3>
+
+        {/* Description */}
+        <p className="mb-4 text-sm leading-relaxed text-slate">{description}</p>
+
+        {/* Bullet list */}
+        <ul className="mt-auto flex flex-col gap-2">
+          {bullets.map((bullet) => (
+            <li key={bullet} className="flex items-start gap-2 text-sm text-slate">
+              <Icons.Check
+                className="mt-0.5 h-4 w-4 shrink-0 text-hydra-500"
+                strokeWidth={2}
+              />
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  );
+}
