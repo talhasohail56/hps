@@ -8,10 +8,8 @@ import {
   Clock,
   MessageCircle,
   Droplets,
-  Users,
   Heart,
   ArrowRight,
-  Camera,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
@@ -96,10 +94,10 @@ const standards = [
 /*  Photo placeholder data                                             */
 /* ------------------------------------------------------------------ */
 
-const photoPlaceholders = [
-  "Our service vehicles — always stocked and ready",
-  "Detailed water testing at every visit",
-  "Clean, balanced, swim-ready results",
+const photoItems = [
+  { image: "/pool-5.jpg", caption: "Our service vehicles — always stocked and ready" },
+  { image: "/pool-3.jpg", caption: "Detailed water testing at every visit" },
+  { image: "/pool-6.jpg", caption: "Clean, balanced, swim-ready results" },
 ] as const;
 
 /* ------------------------------------------------------------------ */
@@ -209,12 +207,13 @@ export default function AboutPage() {
               }}
               className="flex items-center justify-center"
             >
-              <div
-                className={cn(
-                  "flex aspect-[4/3] w-full max-w-lg items-center justify-center rounded-2xl bg-hydra-50 border border-border-light"
-                )}
-              >
-                <Users className="h-20 w-20 text-hydra-300" strokeWidth={1.25} />
+              <div className="aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl border border-border-light">
+                <img
+                  src="/pool-2.jpg"
+                  alt="Hydra Pool Services team work — clean pool with spa"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
               </div>
             </motion.div>
           </div>
@@ -323,20 +322,18 @@ export default function AboutPage() {
             viewport={{ once: true, margin: "-60px" }}
             className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {photoPlaceholders.map((caption) => (
-              <motion.div key={caption} variants={cardFadeUp}>
-                <div
-                  className={cn(
-                    "flex aspect-video w-full items-center justify-center rounded-xl bg-hydra-50 border border-border-light"
-                  )}
-                >
-                  <Camera
-                    className="h-12 w-12 text-hydra-300"
-                    strokeWidth={1.25}
+            {photoItems.map((item) => (
+              <motion.div key={item.caption} variants={cardFadeUp}>
+                <div className="aspect-video w-full overflow-hidden rounded-xl border border-border-light">
+                  <img
+                    src={item.image}
+                    alt={item.caption}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <p className="mt-3 text-center text-sm font-medium text-slate">
-                  {caption}
+                  {item.caption}
                 </p>
               </motion.div>
             ))}

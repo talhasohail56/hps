@@ -10,7 +10,6 @@ import {
   ArrowRight,
   Phone,
   CheckCircle,
-  Camera,
   ChevronRight,
   ClipboardList,
   CalendarCheck,
@@ -86,12 +85,12 @@ const communityLogos = [
 /* ------------------------------------------------------------------ */
 
 const showcaseItems = [
-  { caption: "Weekly cleaning — Phillips Creek Ranch" },
-  { caption: "Green pool recovery — Richwoods" },
-  { caption: "Filter clean & chemical balance — Starwood" },
-  { caption: "Post-storm cleanup — Craig Ranch" },
-  { caption: "Tile scrubbing & wall brushing — Plantation" },
-  { caption: "Equipment check & water test — Stonebridge" },
+  { image: "/pool-1.jpg", caption: "Weekly cleaning — Phillips Creek Ranch" },
+  { image: "/pool-2.jpg", caption: "Green pool recovery — Richwoods" },
+  { image: "/pool-3.jpg", caption: "Filter clean & chemical balance — Starwood" },
+  { image: "/pool-4.jpg", caption: "Post-storm cleanup — Craig Ranch" },
+  { image: "/pool-5.jpg", caption: "Tile scrubbing & wall brushing — Plantation" },
+  { image: "/pool-6.jpg", caption: "Equipment check & water test — Stonebridge" },
 ] as const;
 
 /* ------------------------------------------------------------------ */
@@ -542,15 +541,14 @@ export default function HomePage() {
                 variants={staggerItem}
                 className="group relative overflow-hidden rounded-2xl"
               >
-                {/* Placeholder image */}
-                <div className="relative aspect-video bg-hydra-50 transition-transform duration-500 group-hover:scale-[1.03]">
-                  {/* Camera icon placeholder */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                    <Camera className="h-10 w-10 text-hydra-200" />
-                    <span className="text-xs font-medium text-hydra-300">
-                      Photo coming soon
-                    </span>
-                  </div>
+                {/* Pool photo */}
+                <div className="relative aspect-video overflow-hidden bg-hydra-50">
+                  <img
+                    src={item.image}
+                    alt={item.caption}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
                 </div>
 
                 {/* Hover overlay with caption */}
