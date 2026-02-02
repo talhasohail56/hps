@@ -84,14 +84,6 @@ const communityLogos = [
 /*  Before & After showcase captions                                   */
 /* ------------------------------------------------------------------ */
 
-const showcaseItems = [
-  { image: "/pool-1.jpg", caption: "Weekly cleaning — Phillips Creek Ranch" },
-  { image: "/pool-2.jpg", caption: "Green pool recovery — Richwoods" },
-  { image: "/pool-3.jpg", caption: "Filter clean & chemical balance — Starwood" },
-  { image: "/pool-4.jpg", caption: "Post-storm cleanup — Craig Ranch" },
-  { image: "/pool-5.jpg", caption: "Tile scrubbing & wall brushing — Plantation" },
-  { image: "/pool-6.jpg", caption: "Equipment check & water test — Stonebridge" },
-] as const;
 
 /* ------------------------------------------------------------------ */
 /*  How It Works steps                                                 */
@@ -260,7 +252,7 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* 5.0 average rating */}
+            {/* 4.9 average rating */}
             <div className="flex items-center gap-2">
               <div className="flex gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -271,7 +263,7 @@ export default function HomePage() {
                 ))}
               </div>
               <span className="text-sm font-semibold text-navy">
-                5.0 average
+                4.9 average
               </span>
               <span className="text-sm text-slate-light">
                 from local homeowners
@@ -540,7 +532,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* 7. BEFORE & AFTER SHOWCASE                                    */}
+      {/* 7. BEFORE & AFTER                                              */}
       {/* ============================================================ */}
       <section className="relative bg-white py-20 md:py-28 border-t border-border-light">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -552,51 +544,54 @@ export default function HomePage() {
             variants={sectionFade}
             className="text-center"
           >
+            <p className="mb-3 text-sm font-semibold tracking-wider text-hydra-500 uppercase">
+              Real Results
+            </p>
             <h2 className="text-3xl font-bold text-navy md:text-4xl">
-              Real Results from Real Pools
+              See the Transformation
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-slate">
-              Photos from actual service visits.
+              Same pool, same backyard &mdash; just one service visit apart.
             </p>
           </motion.div>
 
-          {/* Image grid */}
+          {/* Before / After cards */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={staggerContainer}
-            className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-14 grid gap-8 sm:grid-cols-2"
           >
-            {showcaseItems.map((item, i) => (
-              <motion.div
-                key={i}
-                variants={staggerItem}
-                className="group relative overflow-hidden rounded-2xl"
-              >
-                {/* Pool photo */}
-                <div className="relative aspect-video overflow-hidden bg-hydra-50">
-                  <img
-                    src={item.image}
-                    alt={item.caption}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                    loading="lazy"
-                  />
-                </div>
+            {/* Before */}
+            <motion.div variants={staggerItem} className="group relative overflow-hidden rounded-2xl border border-border-light">
+              <div className="relative aspect-[4/3] overflow-hidden bg-hydra-50">
+                <img
+                  src="/pool-before.jpg"
+                  alt="Pool before cleaning — murky water and debris"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+                <span className="absolute left-4 top-4 rounded-full bg-red-500/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg">
+                  Before
+                </span>
+              </div>
+            </motion.div>
 
-                {/* Hover overlay with caption */}
-                <div
-                  className={cn(
-                    "absolute inset-0 flex items-end bg-gradient-to-t from-navy/80 via-navy/30 to-transparent p-5",
-                    "opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                  )}
-                >
-                  <p className="text-sm font-medium text-white">
-                    {item.caption}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+            {/* After */}
+            <motion.div variants={staggerItem} className="group relative overflow-hidden rounded-2xl border border-border-light">
+              <div className="relative aspect-[4/3] overflow-hidden bg-hydra-50">
+                <img
+                  src="/pool-after.jpg"
+                  alt="Pool after cleaning — crystal clear water"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+                <span className="absolute left-4 top-4 rounded-full bg-green-500/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg">
+                  After
+                </span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

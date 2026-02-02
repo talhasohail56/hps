@@ -169,10 +169,10 @@ export function Navbar() {
           <Image
             src="/logo.png"
             alt={siteConfig.name}
-            width={220}
-            height={56}
+            width={280}
+            height={72}
             className={cn(
-              "h-11 w-auto transition-opacity duration-300 sm:h-12",
+              "h-14 w-auto transition-opacity duration-300 sm:h-16",
               isScrolled ? "opacity-100" : "opacity-0"
             )}
             priority
@@ -181,11 +181,11 @@ export function Navbar() {
           <Image
             src="/logo-light.png"
             alt=""
-            width={220}
-            height={56}
+            width={280}
+            height={72}
             aria-hidden
             className={cn(
-              "absolute inset-0 h-11 w-auto transition-opacity duration-300 sm:h-12",
+              "absolute inset-0 h-14 w-auto transition-opacity duration-300 sm:h-16",
               isScrolled ? "opacity-0" : "opacity-100"
             )}
           />
