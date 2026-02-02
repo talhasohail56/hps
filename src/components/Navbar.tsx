@@ -2,13 +2,13 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
   X,
   Phone,
   ChevronRight,
-  Droplets,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/data/site";
@@ -31,6 +31,7 @@ const navLinks: NavLink[] = [
   { label: "Services", href: "/services" },
   { label: "Plans", href: "/plans" },
   { label: "Service Areas", href: "/areas" },
+  { label: "Blog", href: "/blogs" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -180,35 +181,18 @@ export function Navbar() {
         {/* ---- logo / brand ---- */}
         <Link
           href="/"
-          className="group flex items-center gap-2"
+          className="group flex items-center"
           aria-label={`${siteConfig.name} - Home`}
           onClick={closeMobile}
         >
-          <Droplets
-            className={cn(
-              "h-7 w-7 transition-colors duration-300",
-              isScrolled ? "text-hydra-500" : "text-hydra-400"
-            )}
-            strokeWidth={2.2}
+          <Image
+            src="/logo-light.png"
+            alt={siteConfig.name}
+            width={180}
+            height={48}
+            className="h-9 w-auto sm:h-10"
+            priority
           />
-          <span className="text-lg font-bold tracking-tight">
-            <span
-              className={cn(
-                "transition-colors duration-300",
-                isScrolled ? "text-hydra-600" : "text-hydra-500"
-              )}
-            >
-              Hydra
-            </span>{" "}
-            <span
-              className={cn(
-                "transition-colors duration-300",
-                isScrolled ? "text-navy" : "text-navy"
-              )}
-            >
-              Pool Services
-            </span>
-          </span>
         </Link>
 
         {/* ---- desktop links ---- */}
@@ -247,7 +231,7 @@ export function Navbar() {
           </a>
 
           <Link
-            href="/contact"
+            href="/#get-quote"
             className={cn(
               "inline-flex items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold shadow-sm transition-all duration-300",
               "bg-hydra-500 text-white hover:bg-hydra-600 hover:shadow-md",
@@ -362,7 +346,7 @@ export function Navbar() {
                 className="mt-2 px-4"
               >
                 <Link
-                  href="/contact"
+                  href="/#get-quote"
                   onClick={closeMobile}
                   className={cn(
                     "flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-base font-semibold shadow-sm transition-all duration-300",

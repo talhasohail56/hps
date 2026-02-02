@@ -1,0 +1,21 @@
+{
+  "posts": [
+    {
+      "id": "2fd6c664-0bdc-4b19-ae31-bf85bfe58085",
+      "title": "heloo this is first blog",
+      "slug": "heloo-this-is-first-blog",
+      "excerpt": "shdfhjhsduifhuisdhufihsduifhius",
+      "content": "sdfsdfsdfsdfsdf",
+      "coverImage": "",
+      "author": "Hydra Pool Services",
+      "published": true,
+      "seoTitle": "",
+      "seoDescription": "",
+      "tags": [],
+      "publishedAt": "2026-02-02T20:32:18.923Z",
+      "createdAt": "2026-02-02T20:32:18.923Z",
+      "updatedAt": "2026-02-02T20:32:18.923Z",
+      "readingTime": 1
+    }
+  ]
+}

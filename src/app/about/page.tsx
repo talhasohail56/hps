@@ -225,7 +225,7 @@ export default function AboutPage() {
       {/*  3. OUR STANDARDS                                             */}
       {/* ============================================================ */}
       <section
-        className="bg-surface py-20 md:py-28"
+        className="bg-white py-20 md:py-28 border-t border-border-light"
         aria-label="Our standards"
       >
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">

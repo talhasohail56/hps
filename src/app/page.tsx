@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import Script from "next/script";
 import { motion } from "framer-motion";
 import {
   Star,
@@ -21,18 +23,17 @@ import { cn } from "@/lib/utils";
 import { Hero } from "@/components/Hero";
 import { ServiceCard } from "@/components/ServiceCard";
 import { PlanCard } from "@/components/PlanCard";
-import { TestimonialCard } from "@/components/TestimonialCard";
 import { FAQ } from "@/components/FAQ";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
 import { NoiseOverlay } from "@/components/graphics/NoiseOverlay";
-import { WaveBackground } from "@/components/graphics/WaveBackground";
 import { RippleLines } from "@/components/graphics/RippleLines";
 import { GradientOrb } from "@/components/graphics/GradientOrb";
+import { GetQuoteForm } from "@/components/GetQuoteForm";
+import { AnimatedServiceMap } from "@/components/AnimatedServiceMap";
 
 /* ── Data imports ── */
 import { services } from "@/lib/data/services";
 import { plans } from "@/lib/data/plans";
-import { testimonials } from "@/lib/data/testimonials";
 import { faqs } from "@/lib/data/faqs";
 import { serviceAreas } from "@/lib/data/areas";
 import { siteConfig } from "@/lib/data/site";
@@ -141,6 +142,8 @@ const areaMapPositions: Record<string, { cx: number; cy: number }> = {
   mckinney: { cx: 370, cy: 150 },
   allen: { cx: 370, cy: 220 },
   plano: { cx: 310, cy: 280 },
+  murphy: { cx: 420, cy: 290 },
+  richardson: { cx: 310, cy: 320 },
 };
 
 /* ================================================================== */
@@ -148,6 +151,8 @@ const areaMapPositions: Record<string, { cx: number; cy: number }> = {
 /* ================================================================== */
 
 export default function HomePage() {
+  const [hoveredArea, setHoveredArea] = useState<string | null>(null);
+
   return (
     <>
       {/* ============================================================ */}
@@ -156,9 +161,45 @@ export default function HomePage() {
       <Hero />
 
       {/* ============================================================ */}
+      {/* GET A QUOTE                                                    */}
+      {/* ============================================================ */}
+      <section
+        id="get-quote"
+        className="relative bg-white py-16 md:py-24"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={sectionFade}
+            className="mx-auto max-w-2xl text-center"
+          >
+            <h2 className="text-3xl font-bold text-navy md:text-4xl">
+              Get a Free Quote
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-slate">
+              Tell us about your pool and we&apos;ll send you a clear,
+              no-obligation quote.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={sectionFade}
+            className="mx-auto mt-10 max-w-2xl"
+          >
+            <GetQuoteForm />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* 2. SOCIAL PROOF STRIP                                         */}
       {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-surface py-12 md:py-16">
+      <section className="relative overflow-hidden bg-white py-12 md:py-16 border-t border-border-light">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -211,7 +252,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 3. PLANS & PRICING PREVIEW                                    */}
       {/* ============================================================ */}
-      <section className="relative bg-white py-20 md:py-28">
+      <section className="relative bg-white py-20 md:py-28 border-t border-border-light">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <motion.div
@@ -262,7 +303,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 4. SERVICES OVERVIEW                                          */}
       {/* ============================================================ */}
-      <section className="relative bg-surface py-20 md:py-28">
+      <section className="relative bg-white py-20 md:py-28 border-t border-border-light">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <motion.div
@@ -291,6 +332,7 @@ export default function HomePage() {
                 icon={service.icon}
                 bullets={service.bullets}
                 index={i}
+                href={`/services#${service.id}`}
               />
             ))}
           </div>
@@ -300,9 +342,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 5. HOW IT WORKS                                               */}
       {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28">
-        {/* Wave at the top */}
-        <WaveBackground position="top" flip />
+      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-t border-border-light">
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}
@@ -372,7 +412,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 6. SERVICE AREAS                                              */}
       {/* ============================================================ */}
-      <section className="relative bg-surface py-20 md:py-28">
+      <section className="relative bg-white py-20 md:py-28 border-t border-border-light">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <motion.div
@@ -382,95 +422,32 @@ export default function HomePage() {
             variants={sectionFade}
             className="text-center"
           >
+            <p className="mb-3 text-sm font-semibold tracking-wider text-hydra-500 uppercase">
+              Service Coverage
+            </p>
             <h2 className="text-3xl font-bold text-navy md:text-4xl">
               Serving Frisco &amp; Nearby Communities
             </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-slate">
+              We proudly serve {serviceAreas.length} cities across the north DFW
+              metroplex.
+            </p>
           </motion.div>
 
-          {/* Abstract map graphic */}
+          {/* Animated map graphic */}
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={sectionFade}
-            className="mx-auto mt-14 flex justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const }}
+            className="mt-14"
           >
-            <svg
-              viewBox="0 0 500 340"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full max-w-lg"
-              aria-label="Service area map showing Frisco and nearby cities"
-              role="img"
-            >
-              {/* Connection lines between areas */}
-              {serviceAreas
-                .filter((a) => !a.primary)
-                .map((area) => {
-                  const pos = areaMapPositions[area.id];
-                  const friscoPos = areaMapPositions.frisco;
-                  if (!pos || !friscoPos) return null;
-                  return (
-                    <line
-                      key={`line-${area.id}`}
-                      x1={friscoPos.cx}
-                      y1={friscoPos.cy}
-                      x2={pos.cx}
-                      y2={pos.cy}
-                      stroke="#B8E8F8"
-                      strokeWidth="1"
-                      strokeDasharray="4 4"
-                    />
-                  );
-                })}
-
-              {/* Area dots */}
-              {serviceAreas.map((area) => {
-                const pos = areaMapPositions[area.id];
-                if (!pos) return null;
-                const isPrimary = area.primary;
-                return (
-                  <g key={area.id}>
-                    {/* Outer glow for Frisco */}
-                    {isPrimary && (
-                      <circle
-                        cx={pos.cx}
-                        cy={pos.cy}
-                        r="28"
-                        fill="#27B6E6"
-                        fillOpacity="0.1"
-                      />
-                    )}
-                    <circle
-                      cx={pos.cx}
-                      cy={pos.cy}
-                      r={isPrimary ? 16 : 8}
-                      fill={isPrimary ? "#27B6E6" : "#B8E8F8"}
-                      stroke={isPrimary ? "#1A9BC7" : "#8DD8F2"}
-                      strokeWidth={isPrimary ? 2 : 1}
-                    />
-                    <text
-                      x={pos.cx}
-                      y={pos.cy + (isPrimary ? 30 : 22)}
-                      textAnchor="middle"
-                      className={cn(
-                        "fill-current text-[11px]",
-                        isPrimary
-                          ? "font-semibold text-navy"
-                          : "font-medium text-slate-light"
-                      )}
-                      style={{
-                        fontSize: isPrimary ? 13 : 11,
-                        fontWeight: isPrimary ? 600 : 500,
-                        fill: isPrimary ? "#0C1D36" : "#6B7B8D",
-                      }}
-                    >
-                      {area.name}
-                    </text>
-                  </g>
-                );
-              })}
-            </svg>
+            <AnimatedServiceMap
+              areas={serviceAreas}
+              positions={areaMapPositions}
+              hoveredArea={hoveredArea}
+              onAreaHover={setHoveredArea}
+            />
           </motion.div>
 
           {/* Area name pills */}
@@ -481,21 +458,31 @@ export default function HomePage() {
             variants={staggerContainer}
             className="mt-10 flex flex-wrap justify-center gap-3"
           >
-            {serviceAreas.map((area) => (
-              <motion.span
-                key={area.id}
-                variants={staggerItem}
-                className={cn(
-                  "inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium",
-                  area.primary
-                    ? "bg-hydra-500 text-white shadow-md shadow-hydra-500/20"
-                    : "border border-border-light bg-white text-slate"
-                )}
-              >
-                <MapPin className={cn("h-3.5 w-3.5", area.primary ? "text-white" : "text-hydra-400")} />
-                {area.name}, {area.state}
-              </motion.span>
-            ))}
+            {serviceAreas.map((area) => {
+              const isHovered = hoveredArea === area.id;
+              return (
+                <motion.span
+                  key={area.id}
+                  variants={staggerItem}
+                  onMouseEnter={() => setHoveredArea(area.id)}
+                  onMouseLeave={() => setHoveredArea(null)}
+                  className={cn(
+                    "inline-flex cursor-pointer items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
+                    area.primary
+                      ? "bg-hydra-500 text-white shadow-md shadow-hydra-500/20"
+                      : isHovered
+                        ? "border border-hydra-400 bg-hydra-50 text-hydra-700 shadow-md shadow-hydra-200/30 -translate-y-0.5"
+                        : "border border-border-light bg-white text-slate hover:border-hydra-300"
+                  )}
+                >
+                  <MapPin className={cn(
+                    "h-3.5 w-3.5 transition-colors duration-200",
+                    area.primary ? "text-white" : isHovered ? "text-hydra-600" : "text-hydra-400"
+                  )} />
+                  {area.name}, {area.state}
+                </motion.span>
+              );
+            })}
           </motion.div>
 
           {/* CTA */}
@@ -523,7 +510,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 7. BEFORE & AFTER SHOWCASE                                    */}
       {/* ============================================================ */}
-      <section className="relative bg-white py-20 md:py-28">
+      <section className="relative bg-white py-20 md:py-28 border-t border-border-light">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <motion.div
@@ -584,9 +571,9 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* 8. TESTIMONIALS                                               */}
+      {/* 8. GOOGLE REVIEWS (Elfsight)                                    */}
       {/* ============================================================ */}
-      <section className="relative bg-surface py-20 md:py-28">
+      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-t border-border-light">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <motion.div
@@ -596,28 +583,41 @@ export default function HomePage() {
             variants={sectionFade}
             className="text-center"
           >
+            <p className="mb-3 text-sm font-semibold tracking-wider text-hydra-500 uppercase">
+              Testimonials
+            </p>
             <h2 className="text-3xl font-bold text-navy md:text-4xl">
               What Our Customers Say
             </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-slate">
+              Real reviews from homeowners we serve every week.
+            </p>
           </motion.div>
 
-          {/* Testimonial cards grid */}
-          <div className="mt-14 grid gap-6 md:grid-cols-3 md:gap-8">
-            {testimonials.map((testimonial, i) => (
-              <TestimonialCard
-                key={testimonial.id}
-                testimonial={testimonial}
-                index={i}
-              />
-            ))}
-          </div>
+          {/* Elfsight Google Reviews widget */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={sectionFade}
+            className="elfsight-theme-wrapper mt-14"
+          >
+            <Script
+              src="https://static.elfsight.com/platform/platform.js"
+              strategy="lazyOnload"
+            />
+            <div
+              className="elfsight-app-0118d724-61e6-4d56-9cf9-59424e50bd4f"
+              data-elfsight-app-lazy
+            />
+          </motion.div>
         </div>
       </section>
 
       {/* ============================================================ */}
       {/* 9. FAQ                                                        */}
       {/* ============================================================ */}
-      <section className="relative bg-white py-20 md:py-28">
+      <section className="relative bg-white py-20 md:py-28 border-t border-border-light">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <motion.div
@@ -648,7 +648,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* 10. FINAL CTA                                                 */}
       {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-white py-24 md:py-32">
+      <section className="relative overflow-hidden bg-white py-24 md:py-32 border-t border-border-light">
         {/* Background effects */}
         <AuroraBackground className="opacity-70" />
         <NoiseOverlay />
@@ -687,7 +687,7 @@ export default function HomePage() {
             >
               {/* Primary — Get a Quote */}
               <Link
-                href="/quote"
+                href="/#get-quote"
                 className={cn(
                   "inline-flex items-center justify-center gap-2 rounded-xl bg-hydra-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-hydra-500/25",
                   "transition-all duration-200 ease-out",

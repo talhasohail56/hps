@@ -14,12 +14,15 @@ import {
   HelpCircle,
   Clock,
   Users,
+  Sparkles,
+  DollarSign,
 } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import type { ComponentType } from "react";
 
 import { cn } from "@/lib/utils";
 import { services } from "@/lib/data/services";
+import { addOns } from "@/lib/data/plans";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
 import { NoiseOverlay } from "@/components/graphics/NoiseOverlay";
 import { GradientOrb } from "@/components/graphics/GradientOrb";
@@ -52,6 +55,15 @@ const staggerContainer = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+  },
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
   },
 };
 
@@ -125,9 +137,10 @@ export default function ServicesPage() {
         return (
           <section
             key={service.id}
+            id={service.id}
             className={cn(
               "relative overflow-hidden py-20 md:py-28",
-              isEven ? "bg-white" : "bg-surface"
+              "bg-white border-t border-border-light"
             )}
           >
             <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
@@ -225,7 +238,7 @@ export default function ServicesPage() {
                   <div
                     className={cn(
                       "rounded-2xl border border-border-light p-6 shadow-sm sm:p-8",
-                      isEven ? "bg-surface" : "bg-white"
+                      "bg-white"
                     )}
                   >
                     <h3 className="mb-5 text-lg font-semibold text-navy">
@@ -254,6 +267,83 @@ export default function ServicesPage() {
           </section>
         );
       })}
+
+      {/* ============================================================ */}
+      {/*  MAINTENANCE ADD-ONS                                         */}
+      {/* ============================================================ */}
+      <section
+        className="bg-white py-20 md:py-28 border-t border-border-light"
+        aria-label="Maintenance add-ons"
+      >
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          {/* Section heading */}
+          <motion.div
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="mx-auto max-w-2xl text-center"
+          >
+            <h2 className="text-balance text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
+              Maintenance Add-ons
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-slate-light">
+              One-time services available with any plan or as standalone.
+            </p>
+          </motion.div>
+
+          {/* Add-ons grid */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="mt-14 grid gap-6 sm:grid-cols-2"
+          >
+            {addOns.map((addOn) => (
+              <motion.div
+                key={addOn.id}
+                variants={staggerItem}
+                className={cn(
+                  "rounded-2xl border border-border-light bg-white p-6 shadow-sm",
+                  "transition-all duration-200 ease-out",
+                  "hover:-translate-y-0.5 hover:border-hydra-200 hover:shadow-md"
+                )}
+              >
+                {/* Icon + Name */}
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-hydra-50">
+                    <Sparkles
+                      className="h-5 w-5 text-hydra-600"
+                      strokeWidth={1.75}
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold text-navy">
+                    {addOn.name}
+                  </h3>
+                </div>
+
+                {/* Description */}
+                <p className="mt-3 text-sm leading-relaxed text-slate">
+                  {addOn.description}
+                </p>
+
+                {/* Price pill */}
+                <div className="mt-4">
+                  <span
+                    className={cn(
+                      "inline-flex items-center gap-1.5 rounded-full bg-hydra-50 px-3.5 py-1.5 text-sm font-semibold text-hydra-600"
+                    )}
+                  >
+                    <DollarSign className="h-4 w-4" strokeWidth={2} />
+                    {addOn.price}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* ============================================================ */}
       {/*  3. FINAL CTA SECTION                                        */}

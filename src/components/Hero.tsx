@@ -112,7 +112,7 @@ export function Hero() {
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-4">
               {/* Primary — Get a Quote */}
               <Link
-                href="/quote"
+                href="/#get-quote"
                 className={cn(
                   "inline-flex items-center justify-center rounded-xl bg-hydra-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-hydra-500/25",
                   "transition-all duration-200 ease-out",

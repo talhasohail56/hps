@@ -95,7 +95,7 @@ export default function PlansPage() {
       {/*  3. COMPARISON TABLE                                         */}
       {/* ============================================================ */}
       <section
-        className="bg-surface py-16 md:py-24"
+        className="bg-white py-16 md:py-24 border-t border-border-light"
         aria-label="Compare plans"
       >
         <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">

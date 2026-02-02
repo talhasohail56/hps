@@ -70,4 +70,20 @@ export const serviceAreas: ServiceArea[] = [
     description:
       "Growing Celina communities including Light Farms and surrounding developments.",
   },
+  {
+    id: "murphy",
+    name: "Murphy",
+    state: "TX",
+    primary: false,
+    description:
+      "Murphy neighborhoods and surrounding communities in eastern Collin County.",
+  },
+  {
+    id: "richardson",
+    name: "Richardson",
+    state: "TX",
+    primary: false,
+    description:
+      "North Richardson communities including Canyon Creek and surrounding areas.",
+  },
 ];

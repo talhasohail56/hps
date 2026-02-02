@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import * as Icons from "lucide-react";
@@ -12,6 +13,7 @@ interface ServiceCardProps {
   icon: string;
   bullets: string[];
   index: number;
+  href?: string;
 }
 
 export function ServiceCard({
@@ -20,6 +22,7 @@ export function ServiceCard({
   icon,
   bullets,
   index,
+  href,
 }: ServiceCardProps) {
   /* ── Dynamically resolve the lucide icon by name ── */
   const LucideIcon = (Icons as unknown as Record<string, ComponentType<LucideProps>>)[
@@ -80,7 +83,7 @@ export function ServiceCard({
         <p className="mb-4 text-sm leading-relaxed text-slate">{description}</p>
 
         {/* Bullet list */}
-        <ul className="mt-auto flex flex-col gap-2">
+        <ul className="flex flex-col gap-2">
           {bullets.map((bullet) => (
             <li key={bullet} className="flex items-start gap-2 text-sm text-slate">
               <Icons.Check
@@ -91,6 +94,20 @@ export function ServiceCard({
             </li>
           ))}
         </ul>
+
+        {/* See More link */}
+        {href && (
+          <Link
+            href={href}
+            className={cn(
+              "mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-hydra-600",
+              "transition-colors duration-200 hover:text-hydra-700"
+            )}
+          >
+            See More
+            <Icons.ArrowRight className="h-4 w-4" />
+          </Link>
+        )}
       </div>
     </motion.div>
   );

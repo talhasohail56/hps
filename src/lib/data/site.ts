@@ -1,10 +1,10 @@
 export const siteConfig = {
   name: "Hydra Pool Services",
   tagline: "Premium pool care in Frisco and nearby DFW areas",
-  phone: "(469) 555-0142",
+  phone: "(214) 233-6803",
   email: "info@hydrapoolservices.com",
   address: "Frisco, TX 75034",
-  hours: "Monday – Saturday, 7 AM – 6 PM",
+  hours: "All week service",
   socials: {
     facebook: "https://facebook.com/hydrapoolservices",
     instagram: "https://instagram.com/hydrapoolservices",
