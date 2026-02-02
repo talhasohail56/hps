@@ -54,25 +54,25 @@ async function notifyViaFormspree(record: QuoteRecord) {
   const formId = process.env.FORMSPREE_FORM_ID;
   if (!formId) return;
 
-  try {
-    await fetch(`https://formspree.io/f/${formId}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        _subject: `New Pool Quote — $${record.monthlyPrice}/mo (${record.name})`,
-        "Quote ID": record.id,
-        Name: record.name,
-        Email: record.email,
-        Phone: record.phone,
-        Address: record.address,
-        "Pool Size": record.poolSize,
-        Schedule: record.schedule,
-        "Monthly Price": `$${record.monthlyPrice}`,
-        "Submitted At": record.createdAt,
-      }),
-    });
-  } catch {
-    // Don't block the user if the email notification fails
+  const res = await fetch(`https://formspree.io/f/${formId}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      _subject: `New Pool Quote — $${record.monthlyPrice}/mo (${record.name})`,
+      "Quote ID": record.id,
+      Name: record.name,
+      Email: record.email,
+      Phone: record.phone,
+      Address: record.address,
+      "Pool Size": record.poolSize,
+      Schedule: record.schedule,
+      "Monthly Price": `$${record.monthlyPrice}`,
+      "Submitted At": record.createdAt,
+    }),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Formspree responded with ${res.status}`);
   }
 }
 
@@ -93,35 +93,39 @@ export async function submitQuote(
 
   const data = parsed.data;
 
-  return withLock(async () => {
+  try {
+    const id = `q_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
+    const record: QuoteRecord = {
+      id,
+      ...(data.photo ? { photo: data.photo } : {}),
+      poolSize: data.poolSize,
+      schedule: data.schedule,
+      monthlyPrice: data.monthlyPrice,
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      address: data.address,
+      createdAt: new Date().toISOString(),
+    };
+
+    // Send email notification (primary — must succeed)
+    await notifyViaFormspree(record);
+
+    // Try to persist locally (works in dev, fails silently on Vercel)
     try {
-      const raw = await fs.readFile(DB_PATH, "utf-8");
-      const db = JSON.parse(raw) as { quotes: QuoteRecord[] };
-
-      const id = `q_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-
-      const record: QuoteRecord = {
-        id,
-        ...(data.photo ? { photo: data.photo } : {}),
-        poolSize: data.poolSize,
-        schedule: data.schedule,
-        monthlyPrice: data.monthlyPrice,
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        address: data.address,
-        createdAt: new Date().toISOString(),
-      };
-
-      db.quotes.push(record);
-      await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2));
-
-      // Fire-and-forget email notification
-      notifyViaFormspree(record).catch(() => {});
-
-      return { success: true as const, quoteId: id };
+      await withLock(async () => {
+        const raw = await fs.readFile(DB_PATH, "utf-8");
+        const db = JSON.parse(raw) as { quotes: QuoteRecord[] };
+        db.quotes.push(record);
+        await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2));
+      });
     } catch {
-      return { success: false as const, error: "Failed to save quote. Please try again." };
+      // Read-only filesystem on Vercel — that's fine, email was already sent
     }
-  });
+
+    return { success: true as const, quoteId: id };
+  } catch {
+    return { success: false as const, error: "Failed to submit quote. Please try again." };
+  }
 }
