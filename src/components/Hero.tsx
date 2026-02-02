@@ -108,10 +108,11 @@ export function Hero() {
               your pool stays swim-ready every day.
             </motion.p>
 
-            {/* Free trial offer */}
-            <motion.div
+            {/* Free trial offer — opens chatbot on click */}
+            <motion.button
               variants={fadeUp}
-              className="mt-8 inline-flex items-center gap-3 rounded-xl border border-hydra-200 bg-hydra-50/60 px-5 py-3"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-chat"))}
+              className="mt-8 inline-flex items-center gap-3 rounded-xl border border-hydra-200 bg-hydra-50/60 px-5 py-3 text-left transition-all duration-200 hover:border-hydra-300 hover:shadow-md cursor-pointer"
             >
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-hydra-500 text-xs font-bold text-white">
                 14
@@ -124,13 +125,17 @@ export function Hero() {
                   Cancel anytime. No payment on file required.
                 </p>
               </div>
-            </motion.div>
+            </motion.button>
 
             {/* CTAs */}
             <motion.div variants={fadeUp} className="mt-5 flex flex-wrap gap-4">
               {/* Primary — Get a Quote */}
-              <Link
-                href="/#get-quote"
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("get-quote")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
                 className={cn(
                   "inline-flex items-center justify-center rounded-xl bg-hydra-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-hydra-500/25",
                   "transition-all duration-200 ease-out",
@@ -140,7 +145,7 @@ export function Hero() {
                 )}
               >
                 Get a Quote
-              </Link>
+              </button>
 
               {/* Secondary — View Plans */}
               <Link

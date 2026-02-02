@@ -45,12 +45,15 @@ export function QuoteResultStep({
           </div>
         </div>
 
-        <p className="text-xs text-slate-light">
-          Quote ID: <span className="font-mono">{quoteId}</span>
-        </p>
-        <p className="mt-2 text-sm">
-          We&apos;ll be in touch within 24 hours. You can also call us right
-          away to lock in this rate!
+        <div className="rounded-lg bg-hydra-50/60 px-3 py-2 mb-2">
+          <p className="text-xs text-slate-light">
+            Quote #{" "}
+            <span className="font-mono font-semibold text-navy">{quoteId}</span>
+          </p>
+        </div>
+        <p className="text-sm">
+          A confirmation has been sent to your email. We&apos;ll follow up
+          within 24 hours — or call us now to get started!
         </p>
       </ChatMessage>
 

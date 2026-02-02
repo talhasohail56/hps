@@ -59,6 +59,7 @@ async function notifyViaFormspree(record: QuoteRecord) {
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
       _subject: `New Pool Quote — $${record.monthlyPrice}/mo (${record.name})`,
+      _replyto: record.email,
       "Quote ID": record.id,
       Name: record.name,
       Email: record.email,

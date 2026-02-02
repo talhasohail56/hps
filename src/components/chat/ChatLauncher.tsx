@@ -21,6 +21,13 @@ export function ChatLauncher() {
     if (open) setShowTooltip(false);
   }, [open]);
 
+  // Listen for "open-chat" custom event (e.g. from Hero trial banner)
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener("open-chat", handler);
+    return () => window.removeEventListener("open-chat", handler);
+  }, []);
+
   return (
     <>
       <AnimatePresence>

@@ -717,8 +717,12 @@ export default function HomePage() {
               className="mt-10 flex flex-wrap justify-center gap-4"
             >
               {/* Primary — Get a Quote */}
-              <Link
-                href="/#get-quote"
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("get-quote")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
                 className={cn(
                   "inline-flex items-center justify-center gap-2 rounded-xl bg-hydra-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-hydra-500/25",
                   "transition-all duration-200 ease-out",
@@ -729,7 +733,7 @@ export default function HomePage() {
               >
                 Get a Quote
                 <ChevronRight className="h-4 w-4" />
-              </Link>
+              </button>
 
               {/* Secondary — Call Now */}
               <a

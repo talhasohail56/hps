@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Facebook, Instagram, MapPin, Phone, Mail, Clock, ExternalLink, ChevronRight } from "lucide-react";
+import { Facebook, Instagram, MapPin, Phone, Mail, Clock, ExternalLink, Home, ChevronRight } from "lucide-react";
 import { siteConfig } from "@/lib/data/site";
 import { serviceAreas } from "@/lib/data/areas";
 import { cn } from "@/lib/utils";
@@ -38,6 +41,11 @@ const socials = [
     href: siteConfig.socials.google,
     icon: ExternalLink,
   },
+  {
+    label: "Nextdoor",
+    href: siteConfig.socials.nextdoor,
+    icon: Home,
+  },
 ] as const;
 
 /* ------------------------------------------------------------------ */
@@ -45,7 +53,17 @@ const socials = [
 /* ------------------------------------------------------------------ */
 
 export function Footer({ className }: { className?: string }) {
+  const router = useRouter();
   const year = new Date().getFullYear();
+
+  const scrollToQuote = () => {
+    const el = document.getElementById("get-quote");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#get-quote");
+    }
+  };
 
   return (
     <footer
@@ -77,8 +95,8 @@ export function Footer({ className }: { className?: string }) {
               Get a free, no-obligation quote today.
             </p>
           </div>
-          <Link
-            href="/#get-quote"
+          <button
+            onClick={scrollToQuote}
             className={cn(
               "inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold",
               "bg-hydra-500 text-white shadow-lg shadow-hydra-500/25",
@@ -89,7 +107,7 @@ export function Footer({ className }: { className?: string }) {
           >
             Get a Quote
             <ChevronRight className="h-4 w-4" />
-          </Link>
+          </button>
         </div>
       </div>
 

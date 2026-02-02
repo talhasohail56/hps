@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -92,6 +93,7 @@ const mobileLinkVariants = {
 /* ------------------------------------------------------------------ */
 
 export function Navbar() {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -120,6 +122,17 @@ export function Navbar() {
 
   /* ---- close mobile menu on route-like interactions ---- */
   const closeMobile = useCallback(() => setIsMobileOpen(false), []);
+
+  /* ---- scroll to #get-quote (or navigate home first) ---- */
+  const scrollToQuote = useCallback(() => {
+    closeMobile();
+    const el = document.getElementById("get-quote");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#get-quote");
+    }
+  }, [closeMobile, router]);
 
   /* ---- close mobile menu on Escape key ---- */
   useEffect(() => {
@@ -188,9 +201,9 @@ export function Navbar() {
           <Image
             src="/logo-light.png"
             alt={siteConfig.name}
-            width={180}
-            height={48}
-            className="h-9 w-auto sm:h-10"
+            width={220}
+            height={56}
+            className="h-11 w-auto sm:h-12"
             priority
           />
         </Link>
@@ -230,8 +243,8 @@ export function Navbar() {
             <span className="hidden xl:inline">{siteConfig.phone}</span>
           </a>
 
-          <Link
-            href="/#get-quote"
+          <button
+            onClick={scrollToQuote}
             className={cn(
               "inline-flex items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold shadow-sm transition-all duration-300",
               "bg-hydra-500 text-white hover:bg-hydra-600 hover:shadow-md",
@@ -240,7 +253,7 @@ export function Navbar() {
           >
             Get a Quote
             <ChevronRight className="h-4 w-4" />
-          </Link>
+          </button>
         </div>
 
         {/* ---- mobile hamburger button ---- */}
@@ -345,9 +358,8 @@ export function Navbar() {
                 transition={{ delay: 0.32, duration: 0.3 }}
                 className="mt-2 px-4"
               >
-                <Link
-                  href="/#get-quote"
-                  onClick={closeMobile}
+                <button
+                  onClick={scrollToQuote}
                   className={cn(
                     "flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-base font-semibold shadow-sm transition-all duration-300",
                     "bg-hydra-500 text-white hover:bg-hydra-600 hover:shadow-md",
@@ -356,7 +368,7 @@ export function Navbar() {
                 >
                   Get a Quote
                   <ChevronRight className="h-4 w-4" />
-                </Link>
+                </button>
               </motion.div>
             </div>
           </motion.div>
