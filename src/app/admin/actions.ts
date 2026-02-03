@@ -10,9 +10,14 @@ import * as db from "@/lib/blog/db";
 /* ------------------------------------------------------------------ */
 
 export async function loginAction(formData: FormData) {
-  const password = formData.get("password") as string;
+  const password = (formData.get("password") as string)?.trim();
+  const adminPassword = process.env.ADMIN_PASSWORD?.trim();
 
-  if (password !== process.env.ADMIN_PASSWORD) {
+  if (!adminPassword) {
+    return { error: "ADMIN_PASSWORD is not configured on the server." };
+  }
+
+  if (password !== adminPassword) {
     return { error: "Invalid password" };
   }
 
