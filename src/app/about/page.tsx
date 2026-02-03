@@ -95,9 +95,9 @@ const standards = [
 /* ------------------------------------------------------------------ */
 
 const photoItems = [
-  { image: "/pool-5.jpg", caption: "Our service vehicles — always stocked and ready" },
-  { image: "/pool-3.jpg", caption: "Detailed water testing at every visit" },
-  { image: "/pool-6.jpg", caption: "Clean, balanced, swim-ready results" },
+  { image: "/about-1.jpeg", caption: "Crystal-clear results after every service" },
+  { image: "/about-2.jpeg", caption: "Professional care you can count on" },
+  { image: "/about-3.jpeg", caption: "Clean, balanced, swim-ready pools" },
 ] as const;
 
 /* ------------------------------------------------------------------ */
@@ -209,8 +209,8 @@ export default function AboutPage() {
             >
               <div className="aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl border border-border-light">
                 <img
-                  src="/pool-2.jpg"
-                  alt="Hydra Pool Services team work — clean pool with spa"
+                  src="/about-hero.jpeg"
+                  alt="Hydra Pool Services — sparkling clean pool"
                   className="h-full w-full object-cover"
                   loading="lazy"
                 />
