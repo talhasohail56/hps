@@ -2,14 +2,18 @@
 /*  Chat widget types & reducer                                        */
 /* ------------------------------------------------------------------ */
 
+export type ServiceType = "cleaning" | "repair" | "question";
+
 export type Step =
-  | "welcome"
-  | "photo"
+  | "serviceType"
   | "poolSize"
   | "schedule"
   | "details"
   | "submitting"
-  | "result";
+  | "result"
+  | "inquiry"
+  | "inquirySubmitting"
+  | "inquiryResult";
 
 export type PoolSize = "10k-20k" | "20k-30k" | "30k+";
 export type Schedule = "weekly" | "biweekly";
@@ -21,22 +25,31 @@ export interface ContactDetails {
   address: string;
 }
 
+export interface InquiryDetails {
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+}
+
 export interface ChatState {
   step: Step;
-  photo: string | null;       // base64 data-url
+  serviceType: ServiceType | null;
   poolSize: PoolSize | null;
   schedule: Schedule | null;
   details: ContactDetails | null;
+  inquiry: InquiryDetails | null;
   monthlyPrice: number | null;
   quoteId: string | null;
   error: string | null;
 }
 
 export type ChatAction =
-  | { type: "SET_PHOTO"; photo: string }
+  | { type: "SET_SERVICE_TYPE"; serviceType: ServiceType }
   | { type: "SET_POOL_SIZE"; poolSize: PoolSize }
   | { type: "SET_SCHEDULE"; schedule: Schedule }
   | { type: "SET_DETAILS"; details: ContactDetails }
+  | { type: "SET_INQUIRY"; inquiry: InquiryDetails }
   | { type: "SET_PRICE"; price: number }
   | { type: "SET_QUOTE_ID"; quoteId: string }
   | { type: "SET_STEP"; step: Step }
@@ -44,27 +57,39 @@ export type ChatAction =
   | { type: "RESET" };
 
 export const initialChatState: ChatState = {
-  step: "welcome",
-  photo: null,
+  step: "serviceType",
+  serviceType: null,
   poolSize: null,
   schedule: null,
   details: null,
+  inquiry: null,
   monthlyPrice: null,
   quoteId: null,
   error: null,
 };
 
-/* Flow: welcome → poolSize → schedule → details → photo (optional) → result */
+/*
+ * Flow A (cleaning): serviceType → poolSize → schedule → details → submitting → result
+ * Flow B (repair/question): serviceType → inquiry → inquirySubmitting → inquiryResult
+ */
 export function chatReducer(state: ChatState, action: ChatAction): ChatState {
   switch (action.type) {
+    case "SET_SERVICE_TYPE": {
+      const svc = action.serviceType;
+      return {
+        ...state,
+        serviceType: svc,
+        step: svc === "cleaning" ? "poolSize" : "inquiry",
+      };
+    }
     case "SET_POOL_SIZE":
       return { ...state, poolSize: action.poolSize, step: "schedule" };
     case "SET_SCHEDULE":
       return { ...state, schedule: action.schedule, step: "details" };
     case "SET_DETAILS":
-      return { ...state, details: action.details, step: "photo" };
-    case "SET_PHOTO":
-      return { ...state, photo: action.photo, step: "submitting" };
+      return { ...state, details: action.details, step: "submitting" };
+    case "SET_INQUIRY":
+      return { ...state, inquiry: action.inquiry, step: "inquirySubmitting" };
     case "SET_PRICE":
       return { ...state, monthlyPrice: action.price };
     case "SET_QUOTE_ID":

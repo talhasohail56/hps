@@ -50,7 +50,7 @@ export function ChatLauncher() {
             >
               <Zap className="h-4 w-4 text-hydra-500" />
               <span className="text-xs font-semibold text-navy">
-                Free estimate in 3 questions
+                Need help? Chat with us
               </span>
             </button>
             {/* Arrow pointing to FAB */}
@@ -65,7 +65,7 @@ export function ChatLauncher() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className="fixed bottom-5 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-hydra-600 text-white shadow-lg shadow-hydra-600/30 transition-colors hover:bg-hydra-700 sm:right-6"
-        aria-label={open ? "Close quote assistant" : "Free estimate in 3 questions"}
+        aria-label={open ? "Close quote assistant" : "Need help? Chat with us"}
       >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (

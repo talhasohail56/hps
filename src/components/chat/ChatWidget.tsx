@@ -9,17 +9,22 @@ import {
   type ChatState,
   type PoolSize,
   type Schedule,
+  type ServiceType,
   type ContactDetails,
+  type InquiryDetails,
 } from "./types";
 import { getMonthlyPrice } from "./pricing";
 import { submitQuote } from "@/app/actions/quote";
+import { submitInquiry } from "@/app/actions/inquiry";
 
 import { ChatMessage } from "./ChatMessage";
-import { PhotoStep } from "./steps/PhotoStep";
+import { ServiceTypeStep } from "./steps/ServiceTypeStep";
 import { PoolSizeStep } from "./steps/PoolSizeStep";
 import { ScheduleStep } from "./steps/ScheduleStep";
 import { DetailsStep } from "./steps/DetailsStep";
 import { QuoteResultStep } from "./steps/QuoteResultStep";
+import { InquiryStep } from "./steps/InquiryStep";
+import { InquiryResultStep } from "./steps/InquiryResultStep";
 
 const STORAGE_KEY = "hps-quote-chat";
 
@@ -29,8 +34,9 @@ function loadState(): ChatState {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw) as ChatState;
-      // don't restore mid-submission state
+      // don't restore mid-submission states
       if (parsed.step === "submitting") parsed.step = "details";
+      if (parsed.step === "inquirySubmitting") parsed.step = "inquiry";
       return parsed;
     }
   } catch {
@@ -38,6 +44,84 @@ function loadState(): ChatState {
   }
   return initialChatState;
 }
+
+/* ------------------------------------------------------------------ */
+/*  Step progress indicator                                            */
+/* ------------------------------------------------------------------ */
+
+const QUOTE_STEPS = ["poolSize", "schedule", "details"] as const;
+
+function StepIndicator({ currentStep }: { currentStep: string }) {
+  const idx = QUOTE_STEPS.indexOf(currentStep as (typeof QUOTE_STEPS)[number]);
+  if (idx === -1) return null;
+
+  return (
+    <div className="flex items-center gap-1.5 mb-3">
+      {QUOTE_STEPS.map((s, i) => (
+        <div
+          key={s}
+          className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
+            i <= idx ? "bg-hydra-500" : "bg-hydra-100"
+          }`}
+        />
+      ))}
+      <span className="ml-1.5 text-[10px] font-medium text-slate-light">
+        {idx + 1}/{QUOTE_STEPS.length}
+      </span>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Progress bar for submission                                        */
+/* ------------------------------------------------------------------ */
+
+function SubmittingBar() {
+  return (
+    <ChatMessage from="bot">
+      <div className="space-y-3">
+        <p className="text-sm font-semibold text-navy">
+          Generating your quote...
+        </p>
+        <div className="h-2 w-full rounded-full bg-hydra-100 overflow-hidden">
+          <motion.div
+            className="h-full rounded-full bg-gradient-to-r from-hydra-400 to-hydra-600"
+            initial={{ width: "0%" }}
+            animate={{ width: "90%" }}
+            transition={{ duration: 6, ease: "easeOut" }}
+          />
+        </div>
+        <p className="text-[11px] text-slate-light">
+          Calculating price &amp; sending confirmation email...
+        </p>
+      </div>
+    </ChatMessage>
+  );
+}
+
+function InquirySubmittingBar() {
+  return (
+    <ChatMessage from="bot">
+      <div className="space-y-3">
+        <p className="text-sm font-semibold text-navy">
+          Sending your message...
+        </p>
+        <div className="h-2 w-full rounded-full bg-hydra-100 overflow-hidden">
+          <motion.div
+            className="h-full rounded-full bg-gradient-to-r from-hydra-400 to-hydra-600"
+            initial={{ width: "0%" }}
+            animate={{ width: "90%" }}
+            transition={{ duration: 4, ease: "easeOut" }}
+          />
+        </div>
+      </div>
+    </ChatMessage>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Main widget                                                        */
+/* ------------------------------------------------------------------ */
 
 interface ChatWidgetProps {
   onClose: () => void;
@@ -59,7 +143,10 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
   }, [state.step]);
 
   /* ---------- handlers ---------- */
-  /* Flow: welcome → poolSize → schedule → details → photo (optional) → result */
+
+  const handleServiceType = useCallback((type: ServiceType) => {
+    dispatch({ type: "SET_SERVICE_TYPE", serviceType: type });
+  }, []);
 
   const handlePoolSize = useCallback((size: PoolSize) => {
     dispatch({ type: "SET_POOL_SIZE", poolSize: size });
@@ -69,21 +156,12 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
     dispatch({ type: "SET_SCHEDULE", schedule });
   }, []);
 
-  const handleDetails = useCallback((details: ContactDetails) => {
-    dispatch({ type: "SET_DETAILS", details });
-    // reducer moves to "photo" step
-  }, []);
-
-  const doSubmit = useCallback(
-    async (photo?: string) => {
-      dispatch({ type: "SET_STEP", step: "submitting" });
-
+  const doSubmitQuote = useCallback(
+    async (details: ContactDetails) => {
       const price = getMonthlyPrice(state.schedule!, state.poolSize!);
       dispatch({ type: "SET_PRICE", price });
 
-      const details = state.details!;
       const result = await submitQuote({
-        photo: photo || undefined,
         poolSize: state.poolSize!,
         schedule: state.schedule!,
         monthlyPrice: price,
@@ -99,20 +177,40 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
         dispatch({ type: "SET_ERROR", error: result.error });
       }
     },
-    [state.poolSize, state.schedule, state.details]
+    [state.poolSize, state.schedule]
   );
 
-  const handlePhoto = useCallback(
-    (base64: string) => {
-      dispatch({ type: "SET_PHOTO", photo: base64 });
-      doSubmit(base64);
+  const handleDetails = useCallback(
+    (details: ContactDetails) => {
+      dispatch({ type: "SET_DETAILS", details });
+      doSubmitQuote(details);
     },
-    [doSubmit]
+    [doSubmitQuote]
   );
 
-  const handleSkipPhoto = useCallback(() => {
-    doSubmit();
-  }, [doSubmit]);
+  const doSubmitInquiry = useCallback(
+    async (details: InquiryDetails) => {
+      const result = await submitInquiry({
+        serviceType: state.serviceType as "repair" | "question",
+        ...details,
+      });
+
+      if (result.success) {
+        dispatch({ type: "SET_STEP", step: "inquiryResult" });
+      } else {
+        dispatch({ type: "SET_STEP", step: "inquiry" });
+      }
+    },
+    [state.serviceType]
+  );
+
+  const handleInquiry = useCallback(
+    (details: InquiryDetails) => {
+      dispatch({ type: "SET_INQUIRY", inquiry: details });
+      doSubmitInquiry(details);
+    },
+    [doSubmitInquiry]
+  );
 
   const handleReset = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY);
@@ -123,35 +221,21 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
 
   function renderStep() {
     switch (state.step) {
-      case "welcome":
-        return (
-          <>
-            <ChatMessage from="bot">
-              <p className="font-semibold mb-1">
-                Welcome to Hydra Pool Services!
-              </p>
-              <p>
-                Get a free estimate in just 3 questions — takes under 30
-                seconds. Let&apos;s go!
-              </p>
-            </ChatMessage>
-            <div className="flex justify-end mt-1">
-              <button
-                onClick={() => dispatch({ type: "SET_STEP", step: "poolSize" })}
-                className="rounded-full bg-hydra-600 px-5 py-2 text-xs font-semibold text-white transition-colors hover:bg-hydra-700"
-              >
-                Get My Estimate
-              </button>
-            </div>
-          </>
-        );
+      case "serviceType":
+        return <ServiceTypeStep onSelect={handleServiceType} />;
 
       case "poolSize":
-        return <PoolSizeStep onSelect={handlePoolSize} />;
+        return (
+          <>
+            <StepIndicator currentStep="poolSize" />
+            <PoolSizeStep onSelect={handlePoolSize} />
+          </>
+        );
 
       case "schedule":
         return (
           <>
+            <StepIndicator currentStep="schedule" />
             <ChatMessage from="user">
               Pool size:{" "}
               {state.poolSize === "30k+"
@@ -166,6 +250,7 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
       case "details":
         return (
           <>
+            <StepIndicator currentStep="details" />
             <ChatMessage from="user">
               Schedule: <span className="capitalize">{state.schedule}</span>
             </ChatMessage>
@@ -178,17 +263,8 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
           </>
         );
 
-      case "photo":
-        return <PhotoStep onUpload={handlePhoto} onSkip={handleSkipPhoto} />;
-
       case "submitting":
-        return (
-          <ChatMessage from="bot">
-            <p className="text-sm text-slate-light animate-pulse">
-              Generating your quote…
-            </p>
-          </ChatMessage>
-        );
+        return <SubmittingBar />;
 
       case "result":
         return (
@@ -200,6 +276,21 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
             onReset={handleReset}
           />
         );
+
+      /* -- inquiry flow -- */
+      case "inquiry":
+        return (
+          <InquiryStep
+            serviceType={state.serviceType!}
+            onSubmit={handleInquiry}
+          />
+        );
+
+      case "inquirySubmitting":
+        return <InquirySubmittingBar />;
+
+      case "inquiryResult":
+        return <InquiryResultStep onReset={handleReset} />;
 
       default:
         return null;
@@ -222,9 +313,9 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
             <MessageSquare className="h-4 w-4 text-white" />
           </div>
           <div>
-            <p className="text-sm font-semibold text-white">Quote Assistant</p>
+            <p className="text-sm font-semibold text-white">Hydra Assistant</p>
             <p className="text-[11px] text-hydra-100">
-              Instant pool service quotes
+              We typically respond instantly
             </p>
           </div>
         </div>

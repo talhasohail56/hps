@@ -204,15 +204,13 @@ export async function submitQuote(
       createdAt: new Date().toISOString(),
     };
 
-    // Send email notification to you (primary — must succeed)
-    await notifyViaFormspree(record);
-
-    // Send confirmation email to customer (await so Vercel doesn't kill the function early)
-    try {
-      await sendCustomerConfirmation(record);
-    } catch {
-      // Don't fail the quote if Gmail errors
-    }
+    // Send both emails in parallel for faster response
+    await Promise.all([
+      notifyViaFormspree(record),
+      sendCustomerConfirmation(record).catch(() => {
+        // Don't fail the quote if Gmail errors
+      }),
+    ]);
 
     // Try to persist locally (works in dev, fails silently on Vercel)
     try {
