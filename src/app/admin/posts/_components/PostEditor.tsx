@@ -154,7 +154,6 @@ export function PostEditor({ post }: PostEditorProps) {
           lastSavedRef.current = JSON.stringify(data);
           if (publish !== undefined) updateField("published", publish);
           showToast(publish ? "Post published" : "Post saved", "success");
-          router.refresh();
         } else if (result.error) {
           if (typeof result.error === "string") {
             showToast(result.error, "error");
@@ -173,13 +172,13 @@ export function PostEditor({ post }: PostEditorProps) {
         lastSavedRef.current = JSON.stringify(data);
         if (result.post) {
           setPostId(result.post.id);
-          router.replace(`/admin/posts/${result.post.id}`);
+          // Update URL without triggering a server navigation
+          window.history.replaceState(null, "", `/admin/posts/${result.post.id}`);
         }
         if (publish !== undefined) {
           updateField("published", publish);
         }
         showToast("Post created", "success");
-        router.refresh();
       } else if (result.error) {
         if (typeof result.error === "string") {
           showToast(result.error, "error");
