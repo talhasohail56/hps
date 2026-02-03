@@ -5,22 +5,59 @@ import type { BlogPost, BlogDB } from "./types";
 const IS_VERCEL = !!process.env.VERCEL;
 
 /* ------------------------------------------------------------------ */
-/*  Upstash Redis client (only used on Vercel)                         */
+/*  GitHub API storage (used on Vercel)                                */
 /* ------------------------------------------------------------------ */
 
-let redis: import("@upstash/redis").Redis | null = null;
+const GH_TOKEN = process.env.GITHUB_TOKEN;
+const GH_REPO = "talhasohail56/hps";
+const GH_FILE = "data/blog.json";
+const GH_API = `https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`;
 
-async function getRedis() {
-  if (redis) return redis;
-  const { Redis } = await import("@upstash/redis");
-  redis = new Redis({
-    url: process.env.KV_REST_API_URL!,
-    token: process.env.KV_REST_API_TOKEN!,
+async function ghRead(): Promise<{ db: BlogDB; sha: string }> {
+  const res = await fetch(GH_API, {
+    headers: {
+      Authorization: `Bearer ${GH_TOKEN}`,
+      Accept: "application/vnd.github.v3+json",
+    },
+    cache: "no-store",
   });
-  return redis;
+
+  if (!res.ok) {
+    console.error("GitHub read error:", res.status, await res.text());
+    return { db: { posts: [] }, sha: "" };
+  }
+
+  const json = await res.json();
+  const content = Buffer.from(json.content, "base64").toString("utf-8");
+  return { db: JSON.parse(content), sha: json.sha };
 }
 
-const REDIS_KEY = "blog:posts";
+async function ghWrite(db: BlogDB, sha: string): Promise<void> {
+  const content = Buffer.from(
+    JSON.stringify(db, null, 2),
+    "utf-8"
+  ).toString("base64");
+
+  const res = await fetch(GH_API, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${GH_TOKEN}`,
+      Accept: "application/vnd.github.v3+json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      message: "Update blog posts",
+      content,
+      sha,
+    }),
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    console.error("GitHub write error:", res.status, body);
+    throw new Error("Failed to save to GitHub");
+  }
+}
 
 /* ------------------------------------------------------------------ */
 /*  Local file-system paths (dev only)                                 */
@@ -29,7 +66,7 @@ const REDIS_KEY = "blog:posts";
 const LOCAL_PATH = path.join(process.cwd(), "data", "blog.json");
 
 /* ------------------------------------------------------------------ */
-/*  Simple write mutex for local file safety                           */
+/*  Simple write mutex                                                 */
 /* ------------------------------------------------------------------ */
 
 let writeLock = false;
@@ -51,18 +88,11 @@ async function withWriteLock<T>(fn: () => Promise<T>): Promise<T> {
 /* ------------------------------------------------------------------ */
 
 async function readDB(): Promise<BlogDB> {
-  if (IS_VERCEL) {
-    try {
-      const kv = await getRedis();
-      const posts = await kv.get<BlogPost[]>(REDIS_KEY);
-      return { posts: posts || [] };
-    } catch (err) {
-      console.error("Redis readDB error:", err);
-      return { posts: [] };
-    }
+  if (IS_VERCEL && GH_TOKEN) {
+    const { db } = await ghRead();
+    return db;
   }
 
-  // Local dev: file system
   try {
     const data = await fs.readFile(LOCAL_PATH, "utf-8");
     return JSON.parse(data);
@@ -72,18 +102,12 @@ async function readDB(): Promise<BlogDB> {
 }
 
 async function writeDB(db: BlogDB): Promise<void> {
-  if (IS_VERCEL) {
-    try {
-      const kv = await getRedis();
-      await kv.set(REDIS_KEY, db.posts);
-    } catch (err) {
-      console.error("Redis writeDB error:", err);
-      throw err;
-    }
+  if (IS_VERCEL && GH_TOKEN) {
+    const { sha } = await ghRead();
+    await ghWrite(db, sha);
     return;
   }
 
-  // Local dev: file system
   await fs.mkdir(path.dirname(LOCAL_PATH), { recursive: true });
   await fs.writeFile(LOCAL_PATH, JSON.stringify(db, null, 2), "utf-8");
 }
