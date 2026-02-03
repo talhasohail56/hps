@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { BlogPost } from "@/lib/blog/types";
-import { deletePostAction, togglePublishAction } from "../../actions";
 import { DeleteModal } from "./DeleteModal";
 import { Toast } from "./Toast";
 
@@ -54,26 +53,36 @@ export function PostList({ posts: initialPosts }: PostListProps) {
   /* ---- Actions ---- */
   async function handleDelete() {
     if (!deleteTarget) return;
-    const result = await deletePostAction(deleteTarget.id);
-    if (result.success) {
-      showToast("Post deleted", "success");
-      router.refresh();
-    } else {
-      showToast(result.error || "Failed to delete", "error");
+    try {
+      const res = await fetch(`/api/admin/posts/${deleteTarget.id}`, { method: "DELETE" });
+      const result = await res.json();
+      if (result.success) {
+        showToast("Post deleted", "success");
+        router.refresh();
+      } else {
+        showToast(result.error || "Failed to delete", "error");
+      }
+    } catch {
+      showToast("Failed to delete", "error");
     }
     setDeleteTarget(null);
   }
 
   async function handleTogglePublish(post: BlogPost) {
-    const result = await togglePublishAction(post.id);
-    if (result.success) {
-      showToast(
-        result.published ? "Post published" : "Post unpublished",
-        "success"
-      );
-      router.refresh();
-    } else {
-      showToast(result.error || "Failed to update", "error");
+    try {
+      const res = await fetch(`/api/admin/posts/${post.id}/publish`, { method: "POST" });
+      const result = await res.json();
+      if (result.success) {
+        showToast(
+          result.published ? "Post published" : "Post unpublished",
+          "success"
+        );
+        router.refresh();
+      } else {
+        showToast(result.error || "Failed to update", "error");
+      }
+    } catch {
+      showToast("Failed to update", "error");
     }
   }
 

@@ -15,11 +15,6 @@ import {
 import { cn } from "@/lib/utils";
 import { generateSlug } from "@/lib/blog/slug";
 import type { BlogPost } from "@/lib/blog/types";
-import {
-  createPostAction,
-  updatePostAction,
-  deletePostAction,
-} from "../../actions";
 import { Prose } from "@/components/Prose";
 import { DeleteModal } from "./DeleteModal";
 import { Toast } from "./Toast";
@@ -86,10 +81,14 @@ export function PostEditor({ post }: PostEditorProps) {
     if (serialised === lastSavedRef.current) return;
 
     const timer = setTimeout(async () => {
-      const result = await updatePostAction(postId, { ...form });
-      if (result.success) {
-        lastSavedRef.current = JSON.stringify(form);
-      }
+      try {
+        const res = await fetch(`/api/admin/posts/${postId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...form }),
+        });
+        if (res.ok) lastSavedRef.current = JSON.stringify(form);
+      } catch { /* silent autosave failure */ }
     }, 30000);
 
     return () => clearTimeout(timer);
@@ -149,7 +148,12 @@ export function PostEditor({ post }: PostEditorProps) {
 
     try {
       if (postId) {
-        const result = await updatePostAction(postId, data);
+        const res = await fetch(`/api/admin/posts/${postId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        const result = await res.json();
         if (result.success) {
           lastSavedRef.current = JSON.stringify(data);
           if (publish !== undefined) updateField("published", publish);
@@ -166,13 +170,17 @@ export function PostEditor({ post }: PostEditorProps) {
         return;
       }
 
-      const result = await createPostAction(data);
+      const res = await fetch("/api/admin/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
 
       if (result.success) {
         lastSavedRef.current = JSON.stringify(data);
         if (result.post) {
           setPostId(result.post.id);
-          // Update URL without triggering a server navigation
           window.history.replaceState(null, "", `/admin/posts/${result.post.id}`);
         }
         if (publish !== undefined) {
@@ -201,7 +209,8 @@ export function PostEditor({ post }: PostEditorProps) {
   async function handleDelete() {
     if (!postId) return;
     try {
-      const result = await deletePostAction(postId);
+      const res = await fetch(`/api/admin/posts/${postId}`, { method: "DELETE" });
+      const result = await res.json();
       if (result.success) {
         router.push("/admin/posts");
       } else {

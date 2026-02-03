@@ -1,38 +1,3 @@
 {
-  "posts": [
-    {
-      "id": "2fd6c664-0bdc-4b19-ae31-bf85bfe58085",
-      "title": "heloo this is first blog",
-      "slug": "heloo-this-is-first-blog",
-      "excerpt": "shdfhjhsduifhuisdhufihsduifhius",
-      "content": "sdfsdfsdfsdfsdf",
-      "coverImage": "",
-      "author": "Hydra Pool Services",
-      "published": true,
-      "seoTitle": "",
-      "seoDescription": "",
-      "tags": [],
-      "publishedAt": "2026-02-02T20:32:18.923Z",
-      "createdAt": "2026-02-02T20:32:18.923Z",
-      "updatedAt": "2026-02-02T20:32:18.923Z",
-      "readingTime": 1
-    },
-    {
-      "id": "b3dafb15-142c-4eb4-a64b-9ac396388946",
-      "title": "first blog",
-      "slug": "first-blog",
-      "excerpt": "njadnjnfjadjnfjad",
-      "content": "adfadfsdafsda",
-      "coverImage": "afadf",
-      "author": "Hydra Pool Services",
-      "published": true,
-      "seoTitle": "afadfad",
-      "seoDescription": "fdafda",
-      "tags": [],
-      "publishedAt": "2026-02-02T20:50:48.492Z",
-      "createdAt": "2026-02-02T20:50:48.492Z",
-      "updatedAt": "2026-02-02T20:50:48.492Z",
-      "readingTime": 1
-    }
-  ]
+  "posts": []
 }
