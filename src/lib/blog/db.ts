@@ -3,36 +3,33 @@ import path from "path";
 import type { BlogPost, BlogDB } from "./types";
 
 const IS_VERCEL = !!process.env.VERCEL;
-const SOURCE_PATH = path.join(process.cwd(), "data", "blog.json");
-const DB_PATH = IS_VERCEL ? path.join("/tmp", "blog.json") : SOURCE_PATH;
 
 /* ------------------------------------------------------------------ */
-/*  Copy build-time data to /tmp on first Vercel access                */
+/*  Upstash Redis client (only used on Vercel)                         */
 /* ------------------------------------------------------------------ */
 
-let tmpReady = false;
+let redis: import("@upstash/redis").Redis | null = null;
 
-async function ensureDB(): Promise<void> {
-  if (!IS_VERCEL || tmpReady) return;
-  try {
-    await fs.access(DB_PATH);
-  } catch {
-    try {
-      const data = await fs.readFile(SOURCE_PATH, "utf-8");
-      await fs.writeFile(DB_PATH, data, "utf-8");
-    } catch {
-      await fs.writeFile(
-        DB_PATH,
-        JSON.stringify({ posts: [] }),
-        "utf-8"
-      );
-    }
-  }
-  tmpReady = true;
+async function getRedis() {
+  if (redis) return redis;
+  const { Redis } = await import("@upstash/redis");
+  redis = new Redis({
+    url: process.env.KV_REST_API_URL!,
+    token: process.env.KV_REST_API_TOKEN!,
+  });
+  return redis;
 }
 
+const REDIS_KEY = "blog:posts";
+
 /* ------------------------------------------------------------------ */
-/*  Simple write mutex for safe concurrent access                      */
+/*  Local file-system paths (dev only)                                 */
+/* ------------------------------------------------------------------ */
+
+const LOCAL_PATH = path.join(process.cwd(), "data", "blog.json");
+
+/* ------------------------------------------------------------------ */
+/*  Simple write mutex for local file safety                           */
 /* ------------------------------------------------------------------ */
 
 let writeLock = false;
@@ -54,9 +51,20 @@ async function withWriteLock<T>(fn: () => Promise<T>): Promise<T> {
 /* ------------------------------------------------------------------ */
 
 async function readDB(): Promise<BlogDB> {
-  await ensureDB();
+  if (IS_VERCEL) {
+    try {
+      const kv = await getRedis();
+      const posts = await kv.get<BlogPost[]>(REDIS_KEY);
+      return { posts: posts || [] };
+    } catch (err) {
+      console.error("Redis readDB error:", err);
+      return { posts: [] };
+    }
+  }
+
+  // Local dev: file system
   try {
-    const data = await fs.readFile(DB_PATH, "utf-8");
+    const data = await fs.readFile(LOCAL_PATH, "utf-8");
     return JSON.parse(data);
   } catch {
     return { posts: [] };
@@ -64,9 +72,20 @@ async function readDB(): Promise<BlogDB> {
 }
 
 async function writeDB(db: BlogDB): Promise<void> {
-  await ensureDB();
-  await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
-  await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2), "utf-8");
+  if (IS_VERCEL) {
+    try {
+      const kv = await getRedis();
+      await kv.set(REDIS_KEY, db.posts);
+    } catch (err) {
+      console.error("Redis writeDB error:", err);
+      throw err;
+    }
+    return;
+  }
+
+  // Local dev: file system
+  await fs.mkdir(path.dirname(LOCAL_PATH), { recursive: true });
+  await fs.writeFile(LOCAL_PATH, JSON.stringify(db, null, 2), "utf-8");
 }
 
 /* ------------------------------------------------------------------ */
