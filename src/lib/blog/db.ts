@@ -14,7 +14,7 @@ const GH_FILE = "data/blog.json";
 const GH_API = `https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`;
 
 async function ghRead(): Promise<{ db: BlogDB; sha: string }> {
-  const res = await fetch(GH_API, {
+  const res = await fetch(`${GH_API}?t=${Date.now()}`, {
     headers: {
       Authorization: `Bearer ${GH_TOKEN}`,
       Accept: "application/vnd.github.v3+json",
