@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, DollarSign } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -229,10 +228,11 @@ export default function PlansPage() {
             </p>
 
             <div className="mt-8">
-              <Link
-                href="/contact"
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent("open-chat"))}
                 className={cn(
-                  "inline-flex items-center justify-center gap-2 rounded-xl bg-hydra-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-hydra-500/25",
+                  "inline-flex items-center justify-center gap-2 rounded-xl bg-hydra-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-hydra-500/25 cursor-pointer",
                   "transition-all duration-200 ease-out",
                   "hover:-translate-y-0.5 hover:shadow-xl hover:shadow-hydra-500/30 hover:brightness-105",
                   "active:scale-[0.98]",
@@ -241,7 +241,7 @@ export default function PlansPage() {
               >
                 Request a Quote
                 <ArrowRight className="h-4.5 w-4.5" />
-              </Link>
+              </button>
             </div>
           </motion.div>
         </div>

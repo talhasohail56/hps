@@ -106,8 +106,9 @@ export function PlanCard({ plan, index }: PlanCardProps) {
       <div className="mt-auto pt-6">
         <button
           type="button"
+          onClick={() => window.dispatchEvent(new CustomEvent("open-chat"))}
           className={cn(
-            "w-full rounded-xl py-3 text-sm font-semibold transition-all duration-300",
+            "w-full rounded-xl py-3 text-sm font-semibold transition-all duration-300 cursor-pointer",
             featured
               ? "bg-gradient-to-r from-hydra-500 to-hydra-600 text-white shadow-md shadow-hydra-500/25 hover:shadow-lg hover:shadow-hydra-500/30 hover:brightness-105"
               : "border border-hydra-200 bg-hydra-50 text-hydra-700 hover:bg-hydra-100 hover:border-hydra-300"
