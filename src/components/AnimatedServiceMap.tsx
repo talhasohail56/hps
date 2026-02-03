@@ -112,21 +112,16 @@ export function AnimatedServiceMap({
             const pos = positions[area.id];
             if (!pos) return null;
 
-            const dx = pos.cx - friscoPos.cx;
-            const dy = pos.cy - friscoPos.cy;
-            const len = Math.sqrt(dx * dx + dy * dy);
             const isHovered = hoveredArea === area.id;
 
             return (
-              <motion.line
+              <motion.path
                 key={`line-${area.id}`}
-                x1={friscoPos.cx}
-                y1={friscoPos.cy}
-                x2={pos.cx}
-                y2={pos.cy}
+                d={`M ${friscoPos.cx},${friscoPos.cy} L ${pos.cx},${pos.cy}`}
                 stroke={isHovered ? "#27B6E6" : "url(#lineGrad)"}
                 strokeWidth={isHovered ? 2.5 : 1.5}
-                strokeDasharray="6 4"
+                strokeLinecap="round"
+                fill="none"
                 initial={{ pathLength: 0, opacity: 0 }}
                 whileInView={{ pathLength: 1, opacity: isHovered ? 1 : 0.8 }}
                 viewport={{ once: true }}
@@ -141,15 +136,7 @@ export function AnimatedServiceMap({
                 style={{
                   transition: "stroke 0.2s, stroke-width 0.2s",
                 }}
-              >
-                {/* Animated dash travel */}
-                <animate
-                  attributeName="strokeDashoffset"
-                  values={`0;${len}`}
-                  dur="12s"
-                  repeatCount="indefinite"
-                />
-              </motion.line>
+              />
             );
           })}
 
