@@ -2,7 +2,7 @@
 
 import { useReducer, useEffect, useCallback, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, MessageSquare } from "lucide-react";
+import { X, MessageSquare, ChevronLeft } from "lucide-react";
 import {
   chatReducer,
   initialChatState,
@@ -69,6 +69,22 @@ function StepIndicator({ currentStep }: { currentStep: string }) {
         {idx + 1}/{QUOTE_STEPS.length}
       </span>
     </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Back button                                                        */
+/* ------------------------------------------------------------------ */
+
+function BackButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className="inline-flex items-center gap-0.5 text-[11px] font-medium text-slate-light transition-colors hover:text-hydra-600 mb-1"
+    >
+      <ChevronLeft className="h-3.5 w-3.5" />
+      Back
+    </button>
   );
 }
 
@@ -212,6 +228,10 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
     [doSubmitInquiry]
   );
 
+  const handleBack = useCallback(() => {
+    dispatch({ type: "GO_BACK" });
+  }, []);
+
   const handleReset = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY);
     dispatch({ type: "RESET" });
@@ -227,6 +247,7 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
       case "poolSize":
         return (
           <>
+            <BackButton onClick={handleBack} />
             <StepIndicator currentStep="poolSize" />
             <PoolSizeStep onSelect={handlePoolSize} />
           </>
@@ -235,6 +256,7 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
       case "schedule":
         return (
           <>
+            <BackButton onClick={handleBack} />
             <StepIndicator currentStep="schedule" />
             <ChatMessage from="user">
               Pool size:{" "}
@@ -250,6 +272,7 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
       case "details":
         return (
           <>
+            <BackButton onClick={handleBack} />
             <StepIndicator currentStep="details" />
             <ChatMessage from="user">
               Schedule: <span className="capitalize">{state.schedule}</span>
@@ -280,10 +303,13 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
       /* -- inquiry flow -- */
       case "inquiry":
         return (
-          <InquiryStep
-            serviceType={state.serviceType!}
-            onSubmit={handleInquiry}
-          />
+          <>
+            <BackButton onClick={handleBack} />
+            <InquiryStep
+              serviceType={state.serviceType!}
+              onSubmit={handleInquiry}
+            />
+          </>
         );
 
       case "inquirySubmitting":

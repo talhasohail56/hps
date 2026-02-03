@@ -54,6 +54,7 @@ export type ChatAction =
   | { type: "SET_QUOTE_ID"; quoteId: string }
   | { type: "SET_STEP"; step: Step }
   | { type: "SET_ERROR"; error: string }
+  | { type: "GO_BACK" }
   | { type: "RESET" };
 
 export const initialChatState: ChatState = {
@@ -98,6 +99,17 @@ export function chatReducer(state: ChatState, action: ChatAction): ChatState {
       return { ...state, step: action.step };
     case "SET_ERROR":
       return { ...state, error: action.error, step: "details" };
+    case "GO_BACK": {
+      const BACK_MAP: Partial<Record<Step, Step>> = {
+        poolSize: "serviceType",
+        schedule: "poolSize",
+        details: "schedule",
+        inquiry: "serviceType",
+      };
+      const prev = BACK_MAP[state.step];
+      if (!prev) return state;
+      return { ...state, step: prev };
+    }
     case "RESET":
       return { ...initialChatState };
     default:
