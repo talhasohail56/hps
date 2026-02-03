@@ -2,7 +2,34 @@ import fs from "fs/promises";
 import path from "path";
 import type { BlogPost, BlogDB } from "./types";
 
-const DB_PATH = path.join(process.cwd(), "data", "blog.json");
+const IS_VERCEL = !!process.env.VERCEL;
+const SOURCE_PATH = path.join(process.cwd(), "data", "blog.json");
+const DB_PATH = IS_VERCEL ? path.join("/tmp", "blog.json") : SOURCE_PATH;
+
+/* ------------------------------------------------------------------ */
+/*  Copy build-time data to /tmp on first Vercel access                */
+/* ------------------------------------------------------------------ */
+
+let tmpReady = false;
+
+async function ensureDB(): Promise<void> {
+  if (!IS_VERCEL || tmpReady) return;
+  try {
+    await fs.access(DB_PATH);
+  } catch {
+    try {
+      const data = await fs.readFile(SOURCE_PATH, "utf-8");
+      await fs.writeFile(DB_PATH, data, "utf-8");
+    } catch {
+      await fs.writeFile(
+        DB_PATH,
+        JSON.stringify({ posts: [] }),
+        "utf-8"
+      );
+    }
+  }
+  tmpReady = true;
+}
 
 /* ------------------------------------------------------------------ */
 /*  Simple write mutex for safe concurrent access                      */
@@ -27,6 +54,7 @@ async function withWriteLock<T>(fn: () => Promise<T>): Promise<T> {
 /* ------------------------------------------------------------------ */
 
 async function readDB(): Promise<BlogDB> {
+  await ensureDB();
   try {
     const data = await fs.readFile(DB_PATH, "utf-8");
     return JSON.parse(data);
@@ -36,6 +64,7 @@ async function readDB(): Promise<BlogDB> {
 }
 
 async function writeDB(db: BlogDB): Promise<void> {
+  await ensureDB();
   await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
   await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2), "utf-8");
 }
