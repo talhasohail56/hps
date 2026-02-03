@@ -61,36 +61,41 @@ export async function createPostAction(
   post?: { id: string };
   error?: Record<string, string[]> | string;
 }> {
-  const session = await getSession();
-  if (!session.isAdmin) return { error: "Unauthorized" };
+  try {
+    const session = await getSession();
+    if (!session.isAdmin) return { error: "Unauthorized" };
 
-  const parsed = postSchema.safeParse(data);
-  if (!parsed.success) {
-    return { error: parsed.error.flatten().fieldErrors as Record<string, string[]> };
+    const parsed = postSchema.safeParse(data);
+    if (!parsed.success) {
+      return { error: parsed.error.flatten().fieldErrors as Record<string, string[]> };
+    }
+
+    const isUnique = await db.isSlugUnique(parsed.data.slug);
+    if (!isUnique) {
+      return { error: { slug: ["A post with this slug already exists"] } };
+    }
+
+    const now = new Date().toISOString();
+    const post = {
+      id: crypto.randomUUID(),
+      ...parsed.data,
+      coverImage: parsed.data.coverImage || "",
+      author: parsed.data.author || "Hydra Pool Services",
+      seoTitle: parsed.data.seoTitle || "",
+      seoDescription: parsed.data.seoDescription || "",
+      tags: parsed.data.tags || [],
+      publishedAt: parsed.data.published ? now : null,
+      createdAt: now,
+      updatedAt: now,
+      readingTime: db.calculateReadingTime(parsed.data.content),
+    };
+
+    await db.createPost(post);
+    return { success: true, post: { id: post.id } };
+  } catch (err) {
+    console.error("createPostAction error:", err);
+    return { error: err instanceof Error ? err.message : "Failed to create post" };
   }
-
-  const isUnique = await db.isSlugUnique(parsed.data.slug);
-  if (!isUnique) {
-    return { error: { slug: ["A post with this slug already exists"] } };
-  }
-
-  const now = new Date().toISOString();
-  const post = {
-    id: crypto.randomUUID(),
-    ...parsed.data,
-    coverImage: parsed.data.coverImage || "",
-    author: parsed.data.author || "Hydra Pool Services",
-    seoTitle: parsed.data.seoTitle || "",
-    seoDescription: parsed.data.seoDescription || "",
-    tags: parsed.data.tags || [],
-    publishedAt: parsed.data.published ? now : null,
-    createdAt: now,
-    updatedAt: now,
-    readingTime: db.calculateReadingTime(parsed.data.content),
-  };
-
-  await db.createPost(post);
-  return { success: true, post: { id: post.id } };
 }
 
 export async function updatePostAction(
@@ -100,67 +105,82 @@ export async function updatePostAction(
   success?: boolean;
   error?: Record<string, string[]> | string;
 }> {
-  const session = await getSession();
-  if (!session.isAdmin) return { error: "Unauthorized" };
+  try {
+    const session = await getSession();
+    if (!session.isAdmin) return { error: "Unauthorized" };
 
-  const parsed = postSchema.safeParse(data);
-  if (!parsed.success) {
-    return { error: parsed.error.flatten().fieldErrors as Record<string, string[]> };
+    const parsed = postSchema.safeParse(data);
+    if (!parsed.success) {
+      return { error: parsed.error.flatten().fieldErrors as Record<string, string[]> };
+    }
+
+    const isUnique = await db.isSlugUnique(parsed.data.slug, id);
+    if (!isUnique) {
+      return { error: { slug: ["A post with this slug already exists"] } };
+    }
+
+    const existing = await db.getPostById(id);
+    if (!existing) return { error: "Post not found" };
+
+    const wasPublished = existing.published;
+    const nowPublished = parsed.data.published;
+
+    await db.updatePost(id, {
+      ...parsed.data,
+      coverImage: parsed.data.coverImage || "",
+      author: parsed.data.author || "Hydra Pool Services",
+      seoTitle: parsed.data.seoTitle || "",
+      seoDescription: parsed.data.seoDescription || "",
+      tags: parsed.data.tags || [],
+      publishedAt:
+        nowPublished && !wasPublished
+          ? new Date().toISOString()
+          : existing.publishedAt,
+      readingTime: db.calculateReadingTime(parsed.data.content),
+    });
+
+    return { success: true };
+  } catch (err) {
+    console.error("updatePostAction error:", err);
+    return { error: err instanceof Error ? err.message : "Failed to update post" };
   }
-
-  const isUnique = await db.isSlugUnique(parsed.data.slug, id);
-  if (!isUnique) {
-    return { error: { slug: ["A post with this slug already exists"] } };
-  }
-
-  const existing = await db.getPostById(id);
-  if (!existing) return { error: "Post not found" };
-
-  const wasPublished = existing.published;
-  const nowPublished = parsed.data.published;
-
-  await db.updatePost(id, {
-    ...parsed.data,
-    coverImage: parsed.data.coverImage || "",
-    author: parsed.data.author || "Hydra Pool Services",
-    seoTitle: parsed.data.seoTitle || "",
-    seoDescription: parsed.data.seoDescription || "",
-    tags: parsed.data.tags || [],
-    publishedAt:
-      nowPublished && !wasPublished
-        ? new Date().toISOString()
-        : existing.publishedAt,
-    readingTime: db.calculateReadingTime(parsed.data.content),
-  });
-
-  return { success: true };
 }
 
 export async function deletePostAction(
   id: string
 ): Promise<{ success?: boolean; error?: string }> {
-  const session = await getSession();
-  if (!session.isAdmin) return { error: "Unauthorized" };
+  try {
+    const session = await getSession();
+    if (!session.isAdmin) return { error: "Unauthorized" };
 
-  const deleted = await db.deletePost(id);
-  if (!deleted) return { error: "Post not found" };
-  return { success: true };
+    const deleted = await db.deletePost(id);
+    if (!deleted) return { error: "Post not found" };
+    return { success: true };
+  } catch (err) {
+    console.error("deletePostAction error:", err);
+    return { error: err instanceof Error ? err.message : "Failed to delete post" };
+  }
 }
 
 export async function togglePublishAction(
   id: string
 ): Promise<{ success?: boolean; published?: boolean; error?: string }> {
-  const session = await getSession();
-  if (!session.isAdmin) return { error: "Unauthorized" };
+  try {
+    const session = await getSession();
+    if (!session.isAdmin) return { error: "Unauthorized" };
 
-  const post = await db.getPostById(id);
-  if (!post) return { error: "Post not found" };
+    const post = await db.getPostById(id);
+    if (!post) return { error: "Post not found" };
 
-  const nowPublished = !post.published;
-  await db.updatePost(id, {
-    published: nowPublished,
-    publishedAt: nowPublished ? new Date().toISOString() : post.publishedAt,
-  });
+    const nowPublished = !post.published;
+    await db.updatePost(id, {
+      published: nowPublished,
+      publishedAt: nowPublished ? new Date().toISOString() : post.publishedAt,
+    });
 
-  return { success: true, published: nowPublished };
+    return { success: true, published: nowPublished };
+  } catch (err) {
+    console.error("togglePublishAction error:", err);
+    return { error: err instanceof Error ? err.message : "Failed to toggle publish" };
+  }
 }

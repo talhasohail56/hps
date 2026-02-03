@@ -147,12 +147,38 @@ export function PostEditor({ post }: PostEditorProps) {
       published: publish !== undefined ? publish : form.published,
     };
 
-    if (postId) {
-      const result = await updatePostAction(postId, data);
+    try {
+      if (postId) {
+        const result = await updatePostAction(postId, data);
+        if (result.success) {
+          lastSavedRef.current = JSON.stringify(data);
+          if (publish !== undefined) updateField("published", publish);
+          showToast(publish ? "Post published" : "Post saved", "success");
+          router.refresh();
+        } else if (result.error) {
+          if (typeof result.error === "string") {
+            showToast(result.error, "error");
+          } else {
+            setErrors(result.error as Record<string, string[]>);
+            showToast("Please fix the errors below", "error");
+          }
+        }
+        setSaving(false);
+        return;
+      }
+
+      const result = await createPostAction(data);
+
       if (result.success) {
         lastSavedRef.current = JSON.stringify(data);
-        if (publish !== undefined) updateField("published", publish);
-        showToast(publish ? "Post published" : "Post saved", "success");
+        if (result.post) {
+          setPostId(result.post.id);
+          router.replace(`/admin/posts/${result.post.id}`);
+        }
+        if (publish !== undefined) {
+          updateField("published", publish);
+        }
+        showToast("Post created", "success");
         router.refresh();
       } else if (result.error) {
         if (typeof result.error === "string") {
@@ -162,30 +188,11 @@ export function PostEditor({ post }: PostEditorProps) {
           showToast("Please fix the errors below", "error");
         }
       }
-      setSaving(false);
-      return;
-    }
-
-    const result = await createPostAction(data);
-
-    if (result.success) {
-      lastSavedRef.current = JSON.stringify(data);
-      if (result.post) {
-        setPostId(result.post.id);
-        router.replace(`/admin/posts/${result.post.id}`);
-      }
-      if (publish !== undefined) {
-        updateField("published", publish);
-      }
-      showToast("Post created", "success");
-      router.refresh();
-    } else if (result.error) {
-      if (typeof result.error === "string") {
-        showToast(result.error, "error");
-      } else {
-        setErrors(result.error as Record<string, string[]>);
-        showToast("Please fix the errors below", "error");
-      }
+    } catch (err) {
+      showToast(
+        err instanceof Error ? err.message : "Something went wrong. Please try again.",
+        "error"
+      );
     }
 
     setSaving(false);
@@ -194,11 +201,18 @@ export function PostEditor({ post }: PostEditorProps) {
   /* ---- Delete ---- */
   async function handleDelete() {
     if (!postId) return;
-    const result = await deletePostAction(postId);
-    if (result.success) {
-      router.push("/admin/posts");
-    } else {
-      showToast(result.error || "Failed to delete", "error");
+    try {
+      const result = await deletePostAction(postId);
+      if (result.success) {
+        router.push("/admin/posts");
+      } else {
+        showToast(result.error || "Failed to delete", "error");
+      }
+    } catch (err) {
+      showToast(
+        err instanceof Error ? err.message : "Failed to delete",
+        "error"
+      );
     }
     setShowDelete(false);
   }
