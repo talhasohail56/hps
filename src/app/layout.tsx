@@ -3,6 +3,8 @@ import { siteConfig } from "@/lib/data/site";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ChatLauncher } from "@/components/chat/ChatLauncher";
+import { PostHogProvider } from "@/components/PostHogProvider";
+import { PostHogPageView } from "@/components/PostHogPageView";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -59,10 +61,13 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-white font-sans text-slate">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <ChatLauncher />
+        <PostHogProvider>
+          <PostHogPageView />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <ChatLauncher />
+        </PostHogProvider>
       </body>
     </html>
   );
