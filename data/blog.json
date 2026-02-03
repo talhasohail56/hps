@@ -1,3 +1,21 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "id": "b056c78e-8ef1-4e80-8fb3-60f37acb3a1b",
+      "title": "Conan",
+      "slug": "conan the barbarian",
+      "excerpt": "Hijron ki kahani",
+      "content": "clark kent Hijra",
+      "coverImage": "",
+      "author": "Hydra Pool Services",
+      "published": true,
+      "seoTitle": "",
+      "seoDescription": "",
+      "tags": [],
+      "publishedAt": "2026-02-03T02:30:49.067Z",
+      "createdAt": "2026-02-03T02:30:49.067Z",
+      "updatedAt": "2026-02-03T02:30:49.067Z",
+      "readingTime": 1
+    }
+  ]
 }
