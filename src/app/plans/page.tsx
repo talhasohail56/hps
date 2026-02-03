@@ -8,6 +8,7 @@ import { PlanCard } from "@/components/PlanCard";
 import { PricingTable } from "@/components/PricingTable";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
 import { NoiseOverlay } from "@/components/graphics/NoiseOverlay";
+import { GradientOrb } from "@/components/graphics/GradientOrb";
 
 /* ------------------------------------------------------------------ */
 /*  Animation variants                                                 */
@@ -49,27 +50,35 @@ export default function PlansPage() {
       {/*  1. HERO HEADER                                              */}
       {/* ============================================================ */}
       <section
-        className="relative overflow-hidden bg-white py-24 md:py-32"
+        className="relative overflow-hidden bg-gradient-to-b from-hydra-50/60 to-white py-24 md:py-32"
         aria-label="Plans hero"
       >
         <AuroraBackground className="opacity-60" />
         <NoiseOverlay />
+        <GradientOrb className="top-[-10%] left-[-8%]" size="lg" />
+        <GradientOrb className="right-[-6%] bottom-[10%]" size="md" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const }}
-            className="mx-auto max-w-2xl text-center"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-navy sm:text-5xl lg:text-6xl">
+            <motion.h1
+              variants={sectionFade}
+              className="text-balance text-4xl font-extrabold leading-[1.1] tracking-tight text-navy sm:text-5xl lg:text-[3.4rem]"
+            >
               Plans{" "}
               <span className="text-hydra-500">&amp; Pricing</span>
-            </h1>
-            <p className="mt-5 text-lg leading-relaxed text-slate-light sm:text-xl">
+            </motion.h1>
+            <motion.p
+              variants={sectionFade}
+              className="mt-5 text-lg leading-relaxed text-slate-light sm:text-xl"
+            >
               Straightforward pricing with everything included. No hidden fees,
               no surprises.
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </section>

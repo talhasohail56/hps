@@ -111,7 +111,7 @@ export default function AboutPage() {
       {/*  1. HERO HEADER                                               */}
       {/* ============================================================ */}
       <section
-        className="relative overflow-hidden bg-white py-24 md:py-32"
+        className="relative overflow-hidden bg-gradient-to-b from-hydra-50/60 to-white py-24 md:py-32"
         aria-label="About hero"
       >
         <AuroraBackground className="opacity-60" />

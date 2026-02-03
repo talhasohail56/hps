@@ -3,6 +3,9 @@ import Link from "next/link";
 import { Calendar, Clock, ArrowRight, BookOpen } from "lucide-react";
 import { getPublishedPosts } from "@/lib/blog/db";
 import { siteConfig } from "@/lib/data/site";
+import { AuroraBackground } from "@/components/graphics/AuroraBackground";
+import { NoiseOverlay } from "@/components/graphics/NoiseOverlay";
+import { GradientOrb } from "@/components/graphics/GradientOrb";
 
 export const dynamic = "force-dynamic";
 
@@ -21,19 +24,22 @@ export default async function BlogsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-white py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-hydra-200 bg-hydra-50 px-3.5 py-1 text-xs font-semibold text-hydra-600">
-            <BookOpen className="h-3.5 w-3.5" />
-            Blog
-          </span>
-          <h1 className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl lg:text-6xl">
-            Pool Care Insights
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate">
-            Tips, guides, and industry knowledge to help you maintain a
-            crystal-clear pool year-round.
-          </p>
+      <section className="relative overflow-hidden bg-gradient-to-b from-hydra-50/60 to-white py-24 md:py-32">
+        <AuroraBackground className="opacity-60" />
+        <NoiseOverlay />
+        <GradientOrb className="top-[-10%] left-[-8%]" size="lg" />
+        <GradientOrb className="right-[-6%] bottom-[10%]" size="md" />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="text-balance text-4xl font-extrabold leading-[1.1] tracking-tight text-navy sm:text-5xl lg:text-[3.4rem]">
+              Pool Care <span className="text-hydra-500">Insights</span>
+            </h1>
+            <p className="mt-5 text-lg leading-relaxed text-slate-light sm:text-xl">
+              Tips, guides, and industry knowledge to help you maintain a
+              crystal-clear pool year-round.
+            </p>
+          </div>
         </div>
       </section>
 

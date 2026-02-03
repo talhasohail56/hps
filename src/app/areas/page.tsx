@@ -8,6 +8,9 @@ import { cn } from "@/lib/utils";
 import { serviceAreas } from "@/lib/data/areas";
 import { siteConfig } from "@/lib/data/site";
 import { AnimatedServiceMap } from "@/components/AnimatedServiceMap";
+import { AuroraBackground } from "@/components/graphics/AuroraBackground";
+import { NoiseOverlay } from "@/components/graphics/NoiseOverlay";
+import { GradientOrb } from "@/components/graphics/GradientOrb";
 
 /* ------------------------------------------------------------------ */
 /*  Map positions (same as home page)                                  */
@@ -67,31 +70,29 @@ export default function AreasPage() {
       {/* ============================================================ */}
       {/*  1. HERO HEADER                                               */}
       {/* ============================================================ */}
-      <section className="relative bg-white py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative overflow-hidden bg-gradient-to-b from-hydra-50/60 to-white py-24 md:py-32">
+        <AuroraBackground className="opacity-60" />
+        <NoiseOverlay />
+        <GradientOrb className="top-[-10%] left-[-8%]" size="lg" />
+        <GradientOrb className="right-[-6%] bottom-[10%]" size="md" />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
+            className="mx-auto max-w-3xl"
           >
-            <motion.span
-              variants={staggerItem}
-              className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-hydra-200 bg-hydra-50 px-3.5 py-1 text-xs font-semibold text-hydra-600"
-            >
-              <MapPin className="h-3.5 w-3.5" />
-              DFW Metroplex
-            </motion.span>
-
             <motion.h1
               variants={staggerItem}
-              className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl lg:text-6xl"
+              className="text-balance text-4xl font-extrabold leading-[1.1] tracking-tight text-navy sm:text-5xl lg:text-[3.4rem]"
             >
-              Service Areas
+              Service <span className="text-hydra-500">Areas</span>
             </motion.h1>
 
             <motion.p
               variants={staggerItem}
-              className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate"
+              className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-light sm:text-xl"
             >
               We serve Frisco, TX and nearby communities across the DFW
               metroplex.

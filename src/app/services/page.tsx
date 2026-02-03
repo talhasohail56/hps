@@ -96,34 +96,36 @@ export default function ServicesPage() {
       {/*  1. HERO HEADER                                              */}
       {/* ============================================================ */}
       <section
-        className="relative overflow-hidden bg-white py-24 md:py-32"
+        className="relative overflow-hidden bg-gradient-to-b from-hydra-50/60 to-white py-24 md:py-32"
         aria-label="Services hero"
       >
         <AuroraBackground className="opacity-60" />
         <NoiseOverlay />
-        <GradientOrb className="top-[-12%] right-[-6%]" size="lg" />
-        <GradientOrb className="bottom-[-8%] left-[-4%]" size="md" />
+        <GradientOrb className="top-[-10%] left-[-8%]" size="lg" />
+        <GradientOrb className="right-[-6%] bottom-[10%]" size="md" />
 
-        <div className="relative z-10 mx-auto max-w-4xl px-5 text-center sm:px-6 lg:px-8">
-          <motion.h1
-            variants={fadeIn}
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <motion.div
+            variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-navy sm:text-5xl lg:text-6xl"
+            className="mx-auto max-w-3xl text-center"
           >
-            Our Services
-          </motion.h1>
+            <motion.h1
+              variants={fadeIn}
+              className="text-balance text-4xl font-extrabold leading-[1.1] tracking-tight text-navy sm:text-5xl lg:text-[3.4rem]"
+            >
+              Our <span className="text-hydra-500">Services</span>
+            </motion.h1>
 
-          <motion.p
-            variants={fadeIn}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.15 }}
-            className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-light sm:text-xl"
+            <motion.p
+              variants={fadeIn}
+              className="mt-5 text-lg leading-relaxed text-slate-light sm:text-xl"
           >
             From weekly cleaning to equipment repairs, we keep your pool in peak
             condition year-round.
           </motion.p>
+          </motion.div>
         </div>
       </section>
 
