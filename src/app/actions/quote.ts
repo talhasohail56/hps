@@ -207,10 +207,12 @@ export async function submitQuote(
     // Send email notification to you (primary — must succeed)
     await notifyViaFormspree(record);
 
-    // Send confirmation email to customer (fire-and-forget)
-    sendCustomerConfirmation(record).catch(() => {
-      // Don't block the quote flow if Gmail fails
-    });
+    // Send confirmation email to customer (await so Vercel doesn't kill the function early)
+    try {
+      await sendCustomerConfirmation(record);
+    } catch {
+      // Don't fail the quote if Gmail errors
+    }
 
     // Try to persist locally (works in dev, fails silently on Vercel)
     try {
