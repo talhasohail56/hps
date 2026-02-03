@@ -1,3 +1,21 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "id": "224adb7d-13bd-4e98-8445-164d2ce723b0",
+      "title": "dfsgfsgsf",
+      "slug": "dfsgfsgsf",
+      "excerpt": "sfgfsgdsgs",
+      "content": "gfssgdfgdsf",
+      "coverImage": "",
+      "author": "Hydra Pool Services",
+      "published": true,
+      "seoTitle": "",
+      "seoDescription": "",
+      "tags": [],
+      "publishedAt": "2026-02-03T02:28:53.207Z",
+      "createdAt": "2026-02-03T02:28:53.207Z",
+      "updatedAt": "2026-02-03T02:28:53.207Z",
+      "readingTime": 1
+    }
+  ]
 }
