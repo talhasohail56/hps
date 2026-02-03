@@ -47,7 +47,7 @@ export const plans: Plan[] = [
     subtitle: "Complete weekly service for a swim-ready pool",
     price: 179,
     priceLabel: "starting at",
-    featured: false,
+    featured: true,
     features: [
       { text: "Weekly pool cleaning", included: true },
       { text: "Chemical testing & balancing", included: true },
@@ -66,7 +66,7 @@ export const plans: Plan[] = [
     subtitle: "Full-service care with equipment support & priority scheduling",
     price: 229,
     priceLabel: "starting at",
-    featured: true,
+    featured: false,
     features: [
       { text: "Weekly pool cleaning", included: true },
       { text: "Chemical testing & balancing", included: true },
