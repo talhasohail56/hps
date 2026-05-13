@@ -28,8 +28,20 @@ async function ghRead(): Promise<{ db: BlogDB; sha: string }> {
   }
 
   const json = await res.json();
-  const content = Buffer.from(json.content, "base64").toString("utf-8");
-  return { db: JSON.parse(content), sha: json.sha };
+
+  // Files over 1 MB have empty content; fall back to the raw download URL.
+  let raw: string;
+  if (json.content) {
+    raw = Buffer.from(json.content, "base64").toString("utf-8");
+  } else if (json.download_url) {
+    const dl = await fetch(json.download_url, { cache: "no-store" });
+    raw = await dl.text();
+  } else {
+    console.error("GitHub: no content or download_url for", GH_FILE);
+    return { db: { posts: [] }, sha: json.sha ?? "" };
+  }
+
+  return { db: JSON.parse(raw), sha: json.sha };
 }
 
 async function ghWrite(db: BlogDB, sha: string): Promise<void> {
