@@ -10,6 +10,11 @@ export interface NeighborhoodDetail {
   description: string;
 }
 
+export interface CityTestimonial {
+  name: string;
+  quote: string;
+}
+
 export interface CityContent {
   /** Matches ServiceArea.id */
   id: string;
@@ -39,6 +44,8 @@ export interface CityContent {
   neighborhoodDetails?: NeighborhoodDetail[];
   /** Reasons homeowners switch to us */
   switchReasons?: string[];
+  /** Customer testimonials */
+  testimonials?: CityTestimonial[];
 }
 
 export const cityContent: Record<string, CityContent> = {
@@ -155,6 +162,13 @@ export const cityContent: Record<string, CityContent> = {
           "Communication (photo reports every visit), transparency (all chemicals included), and expertise (we maintain and repair, not just clean).",
       },
     ],
+    testimonials: [
+      { name: "Taarushi S.", quote: "They communicate so well, which is the best part. Prices haven't increased and they're consistent and good at what they do. I don't have to worry about my pool anymore which is amazing!!" },
+      { name: "Sarah K.", quote: "One of the best services in Frisco with reasonable charges." },
+      { name: "Zee S.", quote: "Very happy with their service. No ripping off intention - very honest, sincere and timely. Definitely recommend these folks." },
+      { name: "Kara P.", quote: "Their team is professional, reliable, and always goes above and beyond." },
+      { name: "Essa S.", quote: "These guys are the most reliable and very helpful. I've had a handful of other companies but these guys are easily the best." },
+    ],
     nearbyCities: ["plano", "prosper", "mckinney", "little-elm", "the-colony"],
   },
 
@@ -207,6 +221,11 @@ export const cityContent: Record<string, CityContent> = {
         answer:
           "Yes. Our technicians handle pump repairs, filter replacements, heater diagnostics, plumbing fixes, and automation system repairs for Plano pool owners.",
       },
+    ],
+    testimonials: [
+      { name: "Kathleen N.", quote: "Their service was amazing and they are super communicative and knowledgeable!!" },
+      { name: "Jasmine R.", quote: "Absolutely love! 100% recommend if you need to have your pool cleaned!" },
+      { name: "Nadeem S.", quote: "Dedication, commitment to quality, and consistent service. Beats the competition by miles." },
     ],
     nearbyCities: ["frisco", "allen", "mckinney", "richardson", "murphy"],
   },
@@ -261,6 +280,11 @@ export const cityContent: Record<string, CityContent> = {
           "Yes. We handle pump repairs, filter replacements, heater issues, plumbing fixes, and more throughout McKinney, TX. Repairs are available as needed or included in our Premium Care plan.",
       },
     ],
+    testimonials: [
+      { name: "Lauren E.", quote: "Best prices, they always reply to any problems and are very honest and straightforward." },
+      { name: "Haja M.", quote: "Fantastic pool service for 2 years!" },
+      { name: "Mary F.", quote: "They are efficient, knowledgeable, and very kind! 100% recommend!" },
+    ],
     nearbyCities: ["frisco", "allen", "prosper", "plano", "celina"],
   },
 
@@ -311,6 +335,11 @@ export const cityContent: Record<string, CityContent> = {
         answer:
           "Yes. Pool care is needed year-round in North Texas. We provide seasonal adjustments to our service including winterization preparation and spring startup to keep your pool protected.",
       },
+    ],
+    testimonials: [
+      { name: "Aiza M.", quote: "Consistent, helpful people. No regrets! Go with them!" },
+      { name: "Taha K.", quote: "One of the best in town. Service was fast and very easy to communicate with." },
+      { name: "Zarreen A.", quote: "Very professional and knowledgeable folks with affordability and easy accessibility." },
     ],
     nearbyCities: ["frisco", "celina", "mckinney", "little-elm"],
   },
@@ -413,6 +442,11 @@ export const cityContent: Record<string, CityContent> = {
           "Yes. We offer responsive pool repair services for equipment failures, plumbing issues, and other urgent pool problems throughout The Colony, TX.",
       },
     ],
+    testimonials: [
+      { name: "Rajeel R.", quote: "They know what they're doing and have great customer service. Highly recommended!" },
+      { name: "Alina", quote: "Service was easy and very helpful. They did a great job!" },
+      { name: "Lindsey P.", quote: "Great company! And great people!" },
+    ],
     nearbyCities: ["frisco", "little-elm", "plano", "richardson"],
   },
 
@@ -463,6 +497,11 @@ export const cityContent: Record<string, CityContent> = {
         answer:
           "Yes. Our Pool School program is available to Allen homeowners. It is a one-hour hands-on class that teaches you pool care basics, water chemistry, and seasonal maintenance.",
       },
+    ],
+    testimonials: [
+      { name: "Sultan S.", quote: "I have been using their services for 2+ years and am very happy with the quality of service and professionalism." },
+      { name: "Ongo G.", quote: "I recently moved into a house with a neglected pool. These guys came and took a look at it for me. Couldn't be happier." },
+      { name: "Macy L.", quote: "Incredible, reliable service. Best pool services around. Would highly recommend." },
     ],
     nearbyCities: ["mckinney", "plano", "frisco", "murphy", "richardson"],
   },
@@ -564,6 +603,11 @@ export const cityContent: Record<string, CityContent> = {
         answer:
           "Yes. We handle pump repairs, filter replacements, heater diagnostics, and other equipment repairs for Murphy pool owners. Our Premium Care plan includes equipment repair support.",
       },
+    ],
+    testimonials: [
+      { name: "Raissa A.", quote: "Super reliable! And their prices are great. 10/10 recommend." },
+      { name: "Aaron F.", quote: "They are very knowledgeable on pool systems and were very helpful." },
+      { name: "Riya S.", quote: "Super efficient, informative, and helpful." },
     ],
     nearbyCities: ["plano", "allen", "richardson"],
   },

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MapPin, Phone, CheckCircle, ChevronRight, ArrowRight } from "lucide-react";
+import { MapPin, Phone, CheckCircle, ChevronRight, ArrowRight, Star } from "lucide-react";
 import { siteConfig } from "@/lib/data/site";
 import { serviceAreas } from "@/lib/data/areas";
 import { cityContent } from "@/lib/data/city-content";
@@ -419,6 +419,67 @@ export default async function CityPage({
           </div>
         </div>
       </section>
+
+      {/* ── Testimonials ── */}
+      {content.testimonials && content.testimonials.length > 0 && (
+        <section className="bg-white py-16 md:py-20 border-t border-border-light">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            {/* Google rating badge */}
+            <div className="mb-4 flex items-center gap-2">
+              <div className="flex gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className="h-5 w-5 fill-yellow-400 text-yellow-400"
+                  />
+                ))}
+              </div>
+              <span className="text-sm font-semibold text-navy">
+                4.9 stars on Google
+              </span>
+            </div>
+
+            <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">
+              What Our Customers Say
+            </h2>
+            <p className="mt-2 text-sm text-slate-light">
+              Real reviews from {area.name} homeowners we serve every week.
+            </p>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {content.testimonials.map((t) => (
+                <div
+                  key={t.name}
+                  className="flex flex-col rounded-2xl border border-border-light bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:shadow-hydra-100/30"
+                >
+                  {/* Stars */}
+                  <div className="mb-4 flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-[18px] w-[18px] fill-yellow-400 text-yellow-400"
+                      />
+                    ))}
+                  </div>
+
+                  {/* Quote */}
+                  <blockquote className="mb-5 flex-1 text-sm leading-relaxed text-slate">
+                    <span className="text-hydra-300 select-none">&ldquo;</span>
+                    {t.quote}
+                    <span className="text-hydra-300 select-none">&rdquo;</span>
+                  </blockquote>
+
+                  {/* Name */}
+                  <div className="mt-auto border-t border-border-light pt-4">
+                    <p className="text-sm font-semibold text-navy">{t.name}</p>
+                    <p className="mt-0.5 text-xs text-slate-light">{area.name}, TX</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Why Homeowners Switch to Us ── */}
       {content.switchReasons && content.switchReasons.length > 0 && (
