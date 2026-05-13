@@ -203,11 +203,9 @@ export default async function ServiceDetailPage({
       { "@type": "City", name: "McKinney, TX" },
       { "@type": "City", name: "Allen, TX" },
       { "@type": "City", name: "Murphy, TX" },
-      { "@type": "City", name: "The Colony, TX" },
       { "@type": "City", name: "Prosper, TX" },
-      { "@type": "City", name: "Little Elm, TX" },
-      { "@type": "City", name: "Celina, TX" },
-      { "@type": "City", name: "Richardson, TX" },
+      { "@type": "City", name: "Parker, TX" },
+      { "@type": "City", name: "The Colony, TX" },
     ],
     serviceType: service.title,
   };

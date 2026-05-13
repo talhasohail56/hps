@@ -17,17 +17,14 @@ import { GradientOrb } from "@/components/graphics/GradientOrb";
 /* ------------------------------------------------------------------ */
 
 const areaMapPositions: Record<string, { cx: number; cy: number }> = {
-  celina: { cx: 200, cy: 60 },
-  prosper: { cx: 260, cy: 110 },
-  "little-elm": { cx: 130, cy: 160 },
-  frisco: { cx: 250, cy: 190 },
-  "the-colony": { cx: 130, cy: 240 },
-  mckinney: { cx: 370, cy: 150 },
-  allen: { cx: 370, cy: 220 },
+  prosper: { cx: 220, cy: 80 },
+  frisco: { cx: 250, cy: 170 },
+  "the-colony": { cx: 130, cy: 220 },
+  mckinney: { cx: 370, cy: 120 },
+  parker: { cx: 430, cy: 140 },
+  allen: { cx: 370, cy: 210 },
   plano: { cx: 310, cy: 280 },
-  parker: { cx: 430, cy: 170 },
   murphy: { cx: 420, cy: 290 },
-  richardson: { cx: 310, cy: 320 },
 };
 
 /* ------------------------------------------------------------------ */

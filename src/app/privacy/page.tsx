@@ -212,8 +212,8 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-lg font-bold text-navy">8. Service Areas</h2>
             <p className="mt-3">
               This policy applies to customers and website visitors in our
-              service areas: Frisco, Plano, McKinney, Prosper, Little Elm, The
-              Colony, Allen, Celina, Murphy, and Richardson, Texas, and
+              service areas: Frisco, Plano, McKinney, Allen, Murphy, Prosper,
+              Parker, and The Colony, Texas, and
               surrounding areas in the Dallas-Fort Worth metroplex.
             </p>
           </section>

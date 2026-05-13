@@ -54,8 +54,8 @@ export default function TermsOfServicePage() {
               maintenance, pool repair, bead blasting, chemical-only service,
               and pool education (Pool School) in the Dallas-Fort Worth area of
               Texas. Our services are available in Frisco, Plano, McKinney,
-              Prosper, Little Elm, The Colony, Allen, Celina, Murphy,
-              Richardson, and surrounding areas.
+              Allen, Murphy, Prosper, Parker, The Colony, and surrounding
+              areas.
             </p>
             <p className="mt-3">
               Service availability, scheduling, and scope may vary depending on

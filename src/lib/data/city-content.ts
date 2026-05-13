@@ -169,7 +169,7 @@ export const cityContent: Record<string, CityContent> = {
       { name: "Kara P.", quote: "Their team is professional, reliable, and always goes above and beyond." },
       { name: "Essa S.", quote: "These guys are the most reliable and very helpful. I've had a handful of other companies but these guys are easily the best." },
     ],
-    nearbyCities: ["plano", "prosper", "mckinney", "little-elm", "the-colony"],
+    nearbyCities: ["plano", "prosper", "mckinney", "the-colony", "parker"],
   },
 
   plano: {
@@ -286,7 +286,7 @@ export const cityContent: Record<string, CityContent> = {
       { name: "Jasmine R.", quote: "Absolutely love! 100% recommend if you need to have your pool cleaned!" },
       { name: "Nadeem S.", quote: "Dedication, commitment to quality, and consistent service. Beats the competition by miles." },
     ],
-    nearbyCities: ["frisco", "allen", "mckinney", "richardson", "murphy"],
+    nearbyCities: ["frisco", "allen", "mckinney", "murphy", "parker"],
   },
 
   mckinney: {
@@ -402,7 +402,7 @@ export const cityContent: Record<string, CityContent> = {
       { name: "Haja M.", quote: "Fantastic pool service for 2 years!" },
       { name: "Mary F.", quote: "They are efficient, knowledgeable, and very kind! 100% recommend!" },
     ],
-    nearbyCities: ["frisco", "allen", "prosper", "plano", "celina"],
+    nearbyCities: ["frisco", "allen", "prosper", "plano", "parker"],
   },
 
   prosper: {
@@ -517,58 +517,7 @@ export const cityContent: Record<string, CityContent> = {
       { name: "Taha K.", quote: "One of the best in town. Service was fast and very easy to communicate with." },
       { name: "Zarreen A.", quote: "Very professional and knowledgeable folks with affordability and easy accessibility." },
     ],
-    nearbyCities: ["frisco", "celina", "mckinney", "little-elm"],
-  },
-
-  "little-elm": {
-    id: "little-elm",
-    metaTitle:
-      "Pool Service in Little Elm, TX | Pool Maintenance | Hydra Pool Services",
-    metaDescription:
-      "Reliable pool service in Little Elm, TX. Weekly cleaning, chemical balancing & equipment care starting at $139/mo. Serving lakeside communities. Call (214) 233-6803.",
-    headline: "Pool Service in Little Elm, TX",
-    intro:
-      "Little Elm's lakeside communities feature pools that face unique challenges — from increased debris due to proximity to Lake Lewisville to the higher humidity that affects water chemistry. Hydra Pool Services understands these local conditions and provides tailored weekly pool maintenance that keeps Little Elm pools clean, balanced, and safe for your family.",
-    whyChoose:
-      "Little Elm pool owners choose Hydra because we understand the specific challenges of maintaining pools near the lake. Our technicians adjust chemical treatments for local water conditions and manage seasonal debris that lakeside properties experience.",
-    whyChooseBullets: [
-      "Experience with lakeside pool maintenance and debris management",
-      "Chemical adjustments for local water conditions",
-      "Weekly or bi-weekly service options",
-      "All chemicals included in every plan",
-      "Serving all Little Elm neighborhoods",
-    ],
-    neighborhoods: [
-      "Lakewood Village",
-      "Sunset Pointe",
-      "Eldorado",
-      "The Tribute",
-      "Paloma Creek",
-      "Union Park",
-    ],
-    faqs: [
-      {
-        question: "How much does pool service cost in Little Elm, TX?",
-        answer:
-          "Pool service in Little Elm starts at $139/month for bi-weekly cleaning. Weekly service is $179/month and Premium Care is $229/month. All chemicals are included.",
-      },
-      {
-        question: "Do lakeside pools need more maintenance?",
-        answer:
-          "Pools near Lake Lewisville can experience more debris, higher humidity, and different water chemistry. We adjust our service to handle these conditions and keep your pool in great shape year-round.",
-      },
-      {
-        question: "Do you service The Tribute in Little Elm?",
-        answer:
-          "Yes. We provide weekly pool cleaning and maintenance to homeowners in The Tribute and throughout Little Elm, TX.",
-      },
-      {
-        question: "Can you start service this week in Little Elm?",
-        answer:
-          "Most new customers in Little Elm are scheduled within 3-5 business days. We start with a complimentary pool assessment before beginning regular service.",
-      },
-    ],
-    nearbyCities: ["frisco", "the-colony", "prosper", "celina"],
+    nearbyCities: ["frisco", "mckinney", "parker", "the-colony"],
   },
 
   "the-colony": {
@@ -682,7 +631,7 @@ export const cityContent: Record<string, CityContent> = {
       { name: "Alina", quote: "Service was easy and very helpful. They did a great job!" },
       { name: "Lindsey P.", quote: "Great company! And great people!" },
     ],
-    nearbyCities: ["frisco", "little-elm", "plano", "richardson"],
+    nearbyCities: ["frisco", "plano", "prosper", "allen"],
   },
 
   allen: {
@@ -797,7 +746,7 @@ export const cityContent: Record<string, CityContent> = {
       { name: "Ongo G.", quote: "I recently moved into a house with a neglected pool. These guys came and took a look at it for me. Couldn't be happier." },
       { name: "Macy L.", quote: "Incredible, reliable service. Best pool services around. Would highly recommend." },
     ],
-    nearbyCities: ["mckinney", "plano", "frisco", "murphy", "richardson"],
+    nearbyCities: ["mckinney", "plano", "frisco", "murphy", "parker"],
   },
 
   parker: {
@@ -914,57 +863,6 @@ export const cityContent: Record<string, CityContent> = {
     nearbyCities: ["frisco", "plano", "mckinney", "allen", "prosper"],
   },
 
-  celina: {
-    id: "celina",
-    metaTitle:
-      "Pool Service in Celina, TX | Pool Cleaning & Maintenance | Hydra Pool Services",
-    metaDescription:
-      "Professional pool service in Celina, TX. Serving Light Farms & growing communities. Weekly pool cleaning from $139/mo. Call (214) 233-6803 for a free quote.",
-    headline: "Pool Service in Celina, TX",
-    intro:
-      "Celina is one of the fastest-growing cities in North Texas, with new neighborhoods and pools being built at a rapid pace. Hydra Pool Services brings professional weekly pool maintenance to Celina homeowners, from Light Farms to the newest developments. Whether your pool is brand new or a few years old, our team ensures it stays clean, safe, and perfectly balanced.",
-    whyChoose:
-      "As Celina grows, so does our presence. Hydra is already serving homeowners throughout Celina's newest communities, and our proximity from Frisco means fast response times and reliable weekly visits. We specialize in new-build pools and help first-time pool owners understand their systems.",
-    whyChooseBullets: [
-      "Experienced with new construction and startup pool care",
-      "Growing presence in Celina's expanding communities",
-      "First-time pool owner support and Pool School available",
-      "All chemicals included — no hidden costs",
-      "Fast service from our nearby Frisco headquarters",
-    ],
-    neighborhoods: [
-      "Light Farms",
-      "Cambridge Crossing",
-      "Mustang Lakes",
-      "Carter Ranch",
-      "Legacy Hills",
-      "Downtown Celina area",
-    ],
-    faqs: [
-      {
-        question: "How much does pool service cost in Celina, TX?",
-        answer:
-          "Pool service in Celina starts at $139/month for bi-weekly service and $179/month for weekly cleaning. Premium Care with equipment support is $229/month. All chemicals are included.",
-      },
-      {
-        question: "Do you service Light Farms in Celina?",
-        answer:
-          "Yes. Light Farms is one of our growing service areas in Celina. We provide weekly pool cleaning, chemical balancing, and equipment maintenance to homeowners throughout the community.",
-      },
-      {
-        question: "Can you set up maintenance for a newly built pool?",
-        answer:
-          "Absolutely. We specialize in new-build pool startups. We handle initial water fill chemistry, filter system setup, and ongoing weekly maintenance from day one.",
-      },
-      {
-        question: "Is Celina too far for regular service?",
-        answer:
-          "Not at all. Our Frisco headquarters is just minutes from Celina. We provide consistent weekly and bi-weekly service to Celina homeowners with the same reliability as our Frisco customers.",
-      },
-    ],
-    nearbyCities: ["prosper", "frisco", "mckinney"],
-  },
-
   murphy: {
     id: "murphy",
     metaTitle:
@@ -1076,57 +974,7 @@ export const cityContent: Record<string, CityContent> = {
       { name: "Aaron F.", quote: "They are very knowledgeable on pool systems and were very helpful." },
       { name: "Riya S.", quote: "Super efficient, informative, and helpful." },
     ],
-    nearbyCities: ["plano", "allen", "richardson"],
+    nearbyCities: ["plano", "allen", "mckinney"],
   },
 
-  richardson: {
-    id: "richardson",
-    metaTitle:
-      "Pool Service in Richardson, TX | Pool Maintenance | Hydra Pool Services",
-    metaDescription:
-      "Professional pool service in Richardson, TX. Serving Canyon Creek & North Richardson. Weekly cleaning from $139/mo. All chemicals included. Call (214) 233-6803.",
-    headline: "Pool Service in Richardson, TX",
-    intro:
-      "Richardson has some of the most established neighborhoods in the DFW area, and many homes feature pools that have been enjoyed for years. Hydra Pool Services provides expert weekly pool maintenance to North Richardson homeowners, handling everything from chemical balancing to equipment care. Whether your pool is decades old or newly renovated, we keep it running at its best.",
-    whyChoose:
-      "Richardson homeowners trust Hydra because we understand older pools just as well as new ones. Many Richardson pools have aging equipment that needs extra attention — our technicians spot wear and tear during routine visits and help you plan repairs before emergencies happen.",
-    whyChooseBullets: [
-      "Experienced with established and aging pool systems",
-      "Proactive equipment monitoring during every visit",
-      "Complete chemical testing and balancing included",
-      "Repair services available for pumps, heaters, and filters",
-      "Flexible plans with no long-term commitments",
-    ],
-    neighborhoods: [
-      "Canyon Creek",
-      "Cottonwood Heights",
-      "Sherrill Park area",
-      "Prairie Creek",
-      "Reservation",
-      "North Richardson",
-    ],
-    faqs: [
-      {
-        question: "How much does pool service cost in Richardson, TX?",
-        answer:
-          "Pool service in Richardson starts at $139/month for bi-weekly cleaning. Weekly service is $179/month and Premium Care is $229/month. All chemicals are included in every plan.",
-      },
-      {
-        question: "Do you service older pools in Richardson?",
-        answer:
-          "Yes. Many Richardson pools are well-established, and we have extensive experience maintaining and repairing older pool systems. Our technicians monitor aging equipment and help you plan upgrades when needed.",
-      },
-      {
-        question: "Do you serve Canyon Creek in Richardson?",
-        answer:
-          "Yes. Canyon Creek is one of our active service areas in Richardson. We provide weekly pool cleaning, chemical balancing, and equipment inspections throughout the neighborhood.",
-      },
-      {
-        question: "Can you renovate or remodel an older pool in Richardson?",
-        answer:
-          "Yes. We offer pool remodeling services including tile replacement, surface refinishing, and equipment upgrades. Contact us for a free assessment and quote.",
-      },
-    ],
-    nearbyCities: ["plano", "murphy", "allen"],
-  },
 };

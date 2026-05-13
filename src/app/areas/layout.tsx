@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/data/site";
 export const metadata: Metadata = {
   title: "Service Areas — Frisco, Plano, McKinney & North DFW",
   description:
-    "Hydra Pool Services proudly serves Frisco, Plano, McKinney, Allen, Murphy, Prosper, Little Elm, The Colony, Celina, and Richardson, TX. Professional pool care across North DFW.",
+    "Hydra Pool Services proudly serves Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX. Professional pool care across North DFW.",
   alternates: {
     canonical: `${siteConfig.url}/areas`,
   },

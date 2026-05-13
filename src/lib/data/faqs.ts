@@ -51,7 +51,7 @@ export const faqs: FAQ[] = [
     id: "8",
     question: "What areas do you serve for pool cleaning?",
     answer:
-      "We serve Frisco, Plano, McKinney, Allen, Murphy, Prosper, Little Elm, The Colony, Celina, and Richardson in the North DFW area of Texas. Frisco is our home base, and we provide the same reliable weekly service to all surrounding cities.",
+      "We serve Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony in the North DFW area of Texas. Frisco is our home base, and we provide the same reliable weekly service to all surrounding cities.",
   },
   {
     id: "9",

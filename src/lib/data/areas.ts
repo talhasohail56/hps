@@ -32,51 +32,11 @@ export const serviceAreas: ServiceArea[] = [
       "South and central McKinney neighborhoods including Stonebridge Ranch and Craig Ranch.",
   },
   {
-    id: "prosper",
-    name: "Prosper",
-    state: "TX",
-    primary: false,
-    description:
-      "Prosper and surrounding master-planned communities including Windsong Ranch and Star Trail.",
-  },
-  {
-    id: "little-elm",
-    name: "Little Elm",
-    state: "TX",
-    primary: false,
-    description:
-      "Little Elm lakeside communities and surrounding neighborhoods.",
-  },
-  {
-    id: "the-colony",
-    name: "The Colony",
-    state: "TX",
-    primary: false,
-    description:
-      "The Colony communities near Lake Lewisville and surrounding areas.",
-  },
-  {
     id: "allen",
     name: "Allen",
     state: "TX",
     primary: false,
     description: "Allen neighborhoods including Twin Creeks and Montgomery Farm.",
-  },
-  {
-    id: "celina",
-    name: "Celina",
-    state: "TX",
-    primary: false,
-    description:
-      "Growing Celina communities including Light Farms and surrounding developments.",
-  },
-  {
-    id: "parker",
-    name: "Parker",
-    state: "TX",
-    primary: false,
-    description:
-      "Parker properties including Southfork Ranch area, Mustang Park, and rural homesteads.",
   },
   {
     id: "murphy",
@@ -87,11 +47,27 @@ export const serviceAreas: ServiceArea[] = [
       "Murphy neighborhoods and surrounding communities in eastern Collin County.",
   },
   {
-    id: "richardson",
-    name: "Richardson",
+    id: "prosper",
+    name: "Prosper",
     state: "TX",
     primary: false,
     description:
-      "North Richardson communities including Canyon Creek and surrounding areas.",
+      "Prosper and surrounding master-planned communities including Windsong Ranch and Star Trail.",
+  },
+  {
+    id: "parker",
+    name: "Parker",
+    state: "TX",
+    primary: false,
+    description:
+      "Parker properties including Southfork Ranch area, Mustang Park, and rural homesteads.",
+  },
+  {
+    id: "the-colony",
+    name: "The Colony",
+    state: "TX",
+    primary: false,
+    description:
+      "The Colony communities near Lake Lewisville and surrounding areas.",
   },
 ];
