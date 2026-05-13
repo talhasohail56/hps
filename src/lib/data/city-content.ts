@@ -73,45 +73,45 @@ export const cityContent: Record<string, CityContent> = {
       "Frisco Lakes",
     ],
     poolChallenges: [
-      "Hard water (150–250 ppm calcium) that scales tile, plaster, and salt cells through evaporation",
-      "UV-driven chlorine loss — 230+ sunny days per year means a pool at 3 ppm in the morning can hit 0.5 ppm by afternoon without proper stabilizer",
-      "Clay soil movement that stresses pool shells, cracks decks, and shifts plumbing",
-      "Pollen season (March–May) overwhelming skimmers and filters",
+      "Frisco's pool maintenance challenges are unique to North Texas. The municipal water supply from NTMWD carries 150–250 ppm calcium hardness at the tap, and through summer evaporation cycles, that calcium concentrates in your pool — depositing white scale on tile, roughening plaster surfaces, and coating salt cell plates until they stop producing chlorine. A pool service that doesn't actively monitor and manage calcium is letting your surfaces and equipment degrade week by week.",
+      "The sun is the other constant challenge. With 230+ sunny days per year, ultraviolet radiation destroys free chlorine faster than most homeowners realize. A pool that tests at 3 ppm chlorine in the morning can drop to 0.5 ppm by mid-afternoon without adequate cyanuric acid protection. This is why pools in Phillips Creek Ranch and Richwoods turn green seemingly overnight during July — the chlorine disappeared faster than it was being replaced, and algae took the opportunity.",
+      "Beneath the surface, Frisco's expansive clay soil creates a slower but more expensive problem. The clay swells when wet and contracts when dry, and this seasonal cycle stresses pool shells, cracks decks, separates coping from the beam, and shifts buried plumbing at the joints. A technician who sees your pool every week notices the early warning signs — a new hairline crack, a slight gap at the coping — before they become structural repairs costing thousands.",
+      "Then there's pollen season. From March through May, Frisco's mature oak and pecan trees blanket every outdoor surface with yellow-green pollen. Your skimmer can't keep up, your filter clogs faster, and the organic load from decomposing pollen drives up chlorine demand at exactly the time when UV loss is also increasing. Weekly service during pollen season means aggressive skimming, more frequent filter cleaning, and chemistry adjustments that account for the elevated demand.",
     ],
     visitIncludes: [
-      "Water chemistry testing and balancing — all chemicals included in your monthly rate",
-      "Surface cleaning — skim, brush walls/steps/floor, vacuum",
-      "Basket and filter monitoring — emptied every visit, filter cleaned when needed",
-      "Equipment inspection — pump, filter, heater, salt cell checked every visit",
-      "Digital service report with photos after every visit",
+      "Every weekly visit follows the same comprehensive routine — no shortcuts, no skipped steps, regardless of whether anyone swam that week. We start by testing the water chemistry: free chlorine, pH, alkalinity, and cyanuric acid. We don't estimate — we measure, calculate the exact dose needed, and add it on the spot. All chemicals are included in your monthly rate, so you never buy a jug of chlorine or a bottle of acid.",
+      "We then clean every surface. That means a full skim of the water surface to remove leaves, insects, and pollen. Brushing the walls, steps, floor, and the spots most services skip — behind ladders, around the main drain, under the skimmer lip. Those low-circulation areas are exactly where algae establishes first, and weekly brushing prevents it before it starts. We vacuum any settled debris so the pool floor is clean.",
+      "Every visit includes emptying the skimmer basket and pump strainer basket, and checking filter pressure against the baseline we track for your specific filter. When pressure indicates the filter needs cleaning, we handle it — cartridge rinse, backwash, or whatever your filter type requires.",
+      "We also inspect your equipment at every visit. We listen to the pump for bearing noise, check for moisture at the shaft seal, verify the pump is priming correctly, and note any changes from the previous week. We check the heater, salt cell output, and automation system. Problems caught at week one cost $100 to fix. The same problems discovered at month six cost $1,500. This weekly inspection is the difference between maintenance and emergency repair.",
+      "After every visit, you receive a digital service report with photos showing what was done, what was found, and the current condition of your pool. You never wonder whether we showed up or what state the pool is in.",
     ],
     neighborhoodDetails: [
       {
         name: "Phillips Creek Ranch & Richwoods",
-        description: "Larger custom pools, automation systems, premium finishes",
+        description: "Phillips Creek Ranch and Richwoods feature some of Frisco's most impressive custom pools — oversized shells with raised spas, water features, fire features, and premium pebble or quartz finishes. Many of these pools run Pentair IntelliCenter or Hayward OmniLogic automation systems that require a technician who understands the programming, not just the chemistry. We manage the full system — pump speed schedules, heater cycling, salt cell output, and lighting programs — as part of weekly service.",
       },
       {
         name: "Starwood & Newman Village",
-        description: "Mature trees, heavy fall leaf loads, older equipment we monitor closely",
+        description: "Starwood and Newman Village have mature tree canopies that create significant leaf loads, particularly during October through December. Pools in these neighborhoods need more aggressive skimming and filter cleaning during fall than pools in newer developments. Several properties also have equipment that's 10–15 years old, approaching end of life. We track each component's condition and alert homeowners when replacement is coming — so it's a planned expense, not a Saturday emergency.",
       },
       {
         name: "Plantation Resort & Grayhawk",
-        description: "Standard residential, consistent weekly service",
+        description: "Plantation Resort and Grayhawk represent Frisco's established residential core — standard pools that benefit most from consistent, reliable weekly service. The tree coverage is moderate, the equipment is generally mid-life, and the water chemistry responds predictably to regular attention. These are the pools where consistency matters most — showing up every week, maintaining the same chemical balance, and keeping the filter clean prevents 90% of problems.",
       },
       {
         name: "Hollyhock & Lawler Park",
-        description: "Newer pools — we adjust service for plaster curing",
+        description: "Hollyhock and Lawler Park are among Frisco's newest communities, with pools that are often less than three years old. New pool plaster goes through a curing period that lasts 6–12 months, during which the surface releases calcium hydroxide into the water, driving pH upward aggressively. We adjust our service protocol for new pools — more frequent acid additions, specific brushing schedules during the first weeks, and careful monitoring of calcium levels during the curing window.",
       },
       {
         name: "Lebanon Road & Frisco Lakes",
-        description: "Mixed ages — we help transition to variable speed pumps",
+        description: "Lebanon Road area and Frisco Lakes include a mix of pool ages and equipment configurations. Some properties still run older single-speed pumps that consume $80–120 per month in electricity. We help homeowners in these neighborhoods plan and execute the transition to variable speed pumps — an upgrade that pays for itself within two years through electricity savings of $500–800 annually.",
       },
     ],
     switchReasons: [
-      "Previous service didn't communicate — we send photo reports every visit",
-      "Hidden chemical charges — we include all chemicals, no surprise fees",
-      "Previous service only cleaned, didn't maintain — we inspect equipment and track trends weekly",
-      "Previous service couldn't handle repairs — we do repairs in-house, same team that maintains your pool",
+      "Most of our Frisco customers came from another pool service. The reasons they switched follow a pattern. The most common complaint is communication — or the lack of it. Their previous service showed up (sometimes), did something (presumably), and left no evidence of what was done or what condition the pool was in. We send a timestamped digital report with photos after every single visit. You see exactly what happened, what was found, and what your pool looks like — every week, without asking.",
+      "The second reason is hidden costs. Some pool services advertise a low monthly rate, then charge separately for every chemical addition — shock, acid, stabilizer, algaecide. By the end of the month, the bill is 40–60% higher than the quoted price. We include all chemicals in every plan. The price on your invoice is the price you agreed to. No surprise line items, no seasonal surcharges, no chemical upcharges.",
+      "The third reason is depth of service. Their previous company cleaned — they skimmed, they vacuumed, they added chlorine. But they didn't maintain. They didn't track filter pressure over weeks to spot a declining cartridge. They didn't notice the pump bearings getting louder. They didn't catch the slow leak at the equipment pad fitting. We inspect equipment, monitor trends, and flag issues before they become emergencies. That's the difference between a cleaning service and a maintenance service.",
+      "The fourth reason is repair capability. When something broke, their previous service said 'call a repair company.' We handle repairs in-house. The same technician who knows your pool's equipment, its history, and its quirks is the one who diagnoses and fixes the problem. No explaining your setup to a stranger. No waiting for a separate company to schedule a visit. One team, one relationship, complete service.",
     ],
     faqs: [
       {

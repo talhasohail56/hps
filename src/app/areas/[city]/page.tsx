@@ -247,14 +247,13 @@ export default async function CityPage({
             <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">
               What Makes {area.name} Pools Different
             </h2>
-            <ul className="mt-6 space-y-3">
-              {content.poolChallenges.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-hydra-500" />
-                  <span className="text-sm leading-relaxed text-navy">{item}</span>
-                </li>
+            <div className="mt-6 space-y-4">
+              {content.poolChallenges.map((para, i) => (
+                <p key={i} className="text-sm leading-relaxed text-slate sm:text-base">
+                  {para}
+                </p>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
       )}
@@ -336,14 +335,13 @@ export default async function CityPage({
             <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">
               What&apos;s Included in Every Visit
             </h2>
-            <ul className="mt-6 space-y-3">
-              {content.visitIncludes.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
-                  <span className="text-sm leading-relaxed text-navy">{item}</span>
-                </li>
+            <div className="mt-6 space-y-4">
+              {content.visitIncludes.map((para, i) => (
+                <p key={i} className="text-sm leading-relaxed text-slate sm:text-base">
+                  {para}
+                </p>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
       )}
@@ -378,14 +376,13 @@ export default async function CityPage({
             <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">
               {area.name} Pool Service by Neighborhood
             </h2>
-            <div className="mt-8 space-y-4">
+            <div className="mt-6 space-y-6">
               {content.neighborhoodDetails.map((nd) => (
-                <div
-                  key={nd.name}
-                  className="rounded-xl border border-border-light bg-white p-5"
-                >
-                  <p className="text-sm font-semibold text-navy">{nd.name}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-light">
+                <div key={nd.name}>
+                  <h3 className="text-base font-semibold text-navy sm:text-lg">
+                    {nd.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate sm:text-base">
                     {nd.description}
                   </p>
                 </div>
@@ -430,14 +427,13 @@ export default async function CityPage({
             <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">
               Why {area.name} Homeowners Switch to Us
             </h2>
-            <ul className="mt-6 space-y-3">
-              {content.switchReasons.map((reason) => (
-                <li key={reason} className="flex items-start gap-3">
-                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
-                  <span className="text-sm leading-relaxed text-navy">{reason}</span>
-                </li>
+            <div className="mt-6 space-y-4">
+              {content.switchReasons.map((para, i) => (
+                <p key={i} className="text-sm leading-relaxed text-slate sm:text-base">
+                  {para}
+                </p>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
       )}
