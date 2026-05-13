@@ -112,6 +112,11 @@ const legacyBlogRedirects: Array<{
   // Old Squarespace store — no current equivalent
   { source: "/store/:path*", destination: "/", permanent: true },
   { source: "/cart", destination: "/", permanent: true },
+
+  // Removed city pages
+  { source: "/areas/richardson", destination: "/areas", permanent: true },
+  { source: "/areas/celina", destination: "/areas", permanent: true },
+  { source: "/areas/little-elm", destination: "/areas", permanent: true },
 ];
 
 const nextConfig: NextConfig = {
