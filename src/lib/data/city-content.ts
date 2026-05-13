@@ -175,9 +175,9 @@ export const cityContent: Record<string, CityContent> = {
   plano: {
     id: "plano",
     metaTitle:
-      "Pool Service in Plano, TX | Weekly Pool Cleaning | Hydra Pool Services",
+      "Pool Cleaning Service in Plano, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Trusted pool service in Plano, TX. Weekly cleaning, water chemistry, and equipment inspections starting at $139/mo. Serving West Plano, Willow Bend & Legacy. Call (214) 233-6803.",
+      "Plano pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Willow Bend, Deerfield, Kings Ridge & all Plano neighborhoods. Call 214-233-6803.",
     headline: "Pool Service in Plano, TX",
     intro:
       "Plano homeowners deserve a pool that is always ready for a swim. Hydra Pool Services provides professional weekly pool cleaning and maintenance across West Plano, the Legacy corridor, and surrounding communities. With hot Texas summers pushing pool chemistry to its limits, our technicians ensure your water stays balanced, your equipment runs efficiently, and your pool surfaces stay clean week after week.",
@@ -200,26 +200,85 @@ export const cityContent: Record<string, CityContent> = {
       "Shaddock Creek Estates",
       "Castle Hills",
     ],
+    poolChallenges: [
+      "Plano's municipal water from NTMWD carries moderate calcium hardness at 150–250 ppm — not as extreme as Parker's well water, but high enough to cause persistent scaling on pool tile, plaster, and salt cell plates over time. Through summer evaporation cycles, calcium concentrates and deposits white scale on the waterline tile that becomes progressively harder to remove. We monitor calcium levels monthly and manage them proactively so the buildup never reaches the point where bead blasting is the only solution.",
+      "The Preston Road corridor and neighborhoods east of 75 sit on some of Plano's most active clay soil. Seasonal expansion and contraction cycles stress pool shells, crack decks, and shift coping away from the beam. Pools built in the early 2000s in Deerfield and Kings Ridge are now 20+ years old — the age where soil movement damage becomes visible as hairline cracks in the shell, deck separation, and plumbing joint failures. We inspect for these signs every week and flag them early.",
+      "Plano's mature tree canopy — particularly live oaks, pecans, and red oaks — produces heavy leaf loads from October through December and intense pollen through March and April. Pools in West Plano near Willow Bend and the Legacy area get hit hardest because the tree density is greater than in newer developments. We increase filter cleaning frequency and skimming intensity during these seasons.",
+      "Energy costs are a real factor for Plano pool owners. A single-speed pump running 10–12 hours per day during summer adds $80–120 per month to your Oncor electricity bill. We help homeowners plan transitions to variable speed pumps that cut electricity consumption by 70–80%, and we can advise on available Oncor rebates that offset the upgrade cost.",
+    ],
+    visitIncludes: [
+      "Every weekly visit starts with water chemistry testing — free chlorine, pH, alkalinity, and cyanuric acid measured and adjusted on the spot. All chemicals are included in your monthly rate. We don't quote a low price and then charge extra for shock, acid, or stabilizer. The number on your invoice is the number you agreed to.",
+      "We clean every surface of the pool. Full skim of the surface to catch leaves, insects, and pollen. Brushing the walls, steps, and floor — including behind ladders, under the skimmer lip, and around fittings where algae establishes first. Vacuuming any settled debris so the floor is spotless.",
+      "Filter pressure is checked and logged every visit against your pool's specific baseline. When pressure rises to the cleaning threshold, we handle it — cartridge rinse, backwash, or DE recharge depending on your filter type. We also empty the skimmer basket and pump strainer basket every visit without exception.",
+      "Equipment inspection is part of every service call. We listen to the pump for bearing wear, check the shaft seal for moisture, verify priming, inspect the salt cell for scale buildup, and note any changes from the previous week. After every visit, you receive a digital report with photos showing what was done and what condition the pool is in.",
+    ],
+    neighborhoodDetails: [
+      {
+        name: "Willow Bend",
+        description:
+          "Willow Bend is one of Plano's most established pool communities — homes built from the 1990s through early 2000s with mature landscaping and pools that are now 20–25 years old. Equipment in these pools is often approaching or past end of life. We track each component's condition and help homeowners plan replacements as scheduled upgrades rather than emergency scrambles.",
+      },
+      {
+        name: "Deerfield & Kings Ridge",
+        description:
+          "Deerfield and Kings Ridge feature mid-size residential pools with moderate tree coverage. These neighborhoods sit on active clay soil that causes more deck movement than newer subdivisions. We watch for deck separation, coping shifts, and new cracks that signal soil-related stress on the pool structure.",
+      },
+      {
+        name: "Legacy & Preston Area",
+        description:
+          "The Legacy and Preston area is home to newer construction with modern pool designs — variable speed pumps, salt chlorine generators, LED lighting, and automation systems. These pools need a technician who understands the technology, not just the chemistry. We program pump schedules, optimize salt cell output, and manage automation settings as part of regular service.",
+      },
+      {
+        name: "Preston Hollow & West Plano",
+        description:
+          "Preston Hollow and surrounding West Plano neighborhoods have some of the largest residential pools in the DFW area. Larger pools mean more water to treat, more surface to clean, and more equipment to maintain — but the fundamentals are the same. Consistent weekly attention prevents problems regardless of pool size.",
+      },
+    ],
+    switchReasons: [
+      "The most common reason Plano homeowners switch to us is inconsistency. Their previous service showed up some weeks and didn't others — with no communication either way. We show up on the same day every week, and after every visit you receive a timestamped photo report. You never wonder whether we came or what we did.",
+      "The second reason is hidden chemical charges. Plano has no shortage of pool services quoting $99 or $110 per month for weekly service — then adding $30–50 in chemical surcharges every month. We include all chemicals in every plan. No surprise line items.",
+      "The third reason is capability. Their previous service could clean but couldn't diagnose why the pump was making noise, why the salt cell kept showing an error, or why the water wouldn't hold chlorine despite regular additions. We troubleshoot and repair — not just clean.",
+    ],
     faqs: [
       {
-        question: "How much does pool service cost in Plano, TX?",
+        question: "How much does pool service cost in Plano?",
         answer:
-          "Pool service in Plano starts at $139/month for bi-weekly service and $179/month for weekly cleaning. Our Premium Care plan at $229/month includes priority scheduling and equipment repair support. All chemicals are included.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
       },
       {
-        question: "Do you service pools in West Plano?",
+        question: "Do you include chemicals?",
         answer:
-          "Yes. We serve all of West Plano including Willow Bend, Deerfield, Kings Ridge, and the Legacy corridor. Our Frisco headquarters is just minutes away for fast service.",
+          "Yes, all chemicals in every plan. No separate charges.",
       },
       {
-        question: "What pool services do you offer in Plano?",
+        question: "How quickly can you start?",
         answer:
-          "We offer weekly pool cleaning, water chemistry management, equipment inspections, filter cleaning, bead blasting, pool repairs, and chemical-only service plans throughout Plano, TX.",
+          "As soon as you fill out the quote form we get you scheduled.",
       },
       {
-        question: "Do you handle pool repairs in Plano?",
+        question: "Do you service saltwater pools?",
         answer:
-          "Yes. Our technicians handle pump repairs, filter replacements, heater diagnostics, plumbing fixes, and automation system repairs for Plano pool owners.",
+          "Yes, all brands. We clean cells, monitor salt levels, adjust output by season, diagnose errors.",
+      },
+      {
+        question: "What Plano neighborhoods do you serve?",
+        answer:
+          "All — Willow Bend, Deerfield, Kings Ridge, Legacy, Preston area, and all surrounding communities.",
+      },
+      {
+        question: "What if my pool needs a repair?",
+        answer:
+          "We handle repairs in-house. Same technician who maintains your pool.",
+      },
+      {
+        question: "Do you offer one-time cleanings?",
+        answer:
+          "Yes, plus green pool recovery and post-storm cleanups.",
+      },
+      {
+        question: "What makes you different?",
+        answer:
+          "Photo reports every visit, all chemicals included, we maintain and repair — not just clean.",
       },
     ],
     testimonials: [
@@ -233,9 +292,9 @@ export const cityContent: Record<string, CityContent> = {
   mckinney: {
     id: "mckinney",
     metaTitle:
-      "Pool Service in McKinney, TX | Pool Cleaning & Maintenance | Hydra Pool Services",
+      "Pool Cleaning Service in McKinney, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Professional pool service in McKinney, TX. Serving Stonebridge Ranch, Craig Ranch & more. Weekly cleaning starting at $139/mo. Call (214) 233-6803 for a free quote.",
+      "McKinney pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Craig Ranch, Stonebridge Ranch, Adriatica & all McKinney. Call 214-233-6803.",
     headline: "Pool Service in McKinney, TX",
     intro:
       "McKinney is one of the fastest-growing cities in Texas, and with new homes come new pools that need expert care. Hydra Pool Services brings professional pool maintenance to McKinney's master-planned communities including Stonebridge Ranch, Craig Ranch, and beyond. Whether you have a new build or an established pool, our weekly service keeps your water safe, clean, and crystal clear.",
@@ -257,27 +316,85 @@ export const cityContent: Record<string, CityContent> = {
       "Erwin Park area",
       "Eldorado Parkway corridor",
     ],
+    poolChallenges: [
+      "McKinney's water sits at the higher end of the North Texas hardness range — consistently 200–300 ppm calcium from the tap. Pools in south McKinney near Craig Ranch and Stonebridge Ranch pull from the same NTMWD supply as Plano, but pools in north McKinney near Adriatica and Tucker Hill may experience slightly different mineral profiles. We test each pool's water individually rather than applying a single chemistry template across the city.",
+      "McKinney's rapid growth means pool ages vary dramatically by neighborhood. Craig Ranch and Stonebridge Ranch pools are 10–20 years old with equipment approaching or past end of life. Tucker Hill and Adriatica pools are 5–10 years old and entering mid-life. Brand-new developments on the northern fringe have pools still curing. Each age bracket requires a different service approach — from end-of-life equipment monitoring in mature neighborhoods to plaster curing management in new construction.",
+      "North McKinney's elevation and open terrain create more wind exposure than the sheltered neighborhoods closer to US-75. Pools in these areas accumulate debris faster, lose water to evaporation more quickly, and require more aggressive skimming and chemical management during windy spring seasons.",
+      "McKinney's clay soil is among the most expansive in Collin County. The seasonal swell-and-shrink cycle is pronounced, and pools built on inadequately prepared soil develop deck cracks, coping separation, and shell stress faster than pools in areas with more stable ground. We document and track structural changes at every visit so homeowners see the progression and can act before minor movement becomes major repair.",
+    ],
+    visitIncludes: [
+      "Every weekly visit covers the complete maintenance checklist — water chemistry testing and adjustment, surface cleaning including brushing and vacuuming, basket emptying, filter pressure monitoring, and a full equipment inspection. All chemicals are included. You never receive a separate bill for chlorine, acid, or stabilizer.",
+      "We brush the areas where algae hides — behind ladders, under coping lips, around drain covers, and in low-circulation corners. McKinney's hard water promotes calcium-algae combinations on plaster that are harder to remove than standard green algae. Weekly brushing prevents these deposits from forming.",
+      "Equipment gets a thorough check every visit. We track pump bearing condition, filter pressure trends, salt cell output, and heater performance week over week. This longitudinal monitoring catches degradation patterns that a monthly or bi-weekly service would miss entirely.",
+      "After every visit, you receive a photo report showing what was done and what your pool looks like. If we found anything that needs attention — rising filter pressure, a new deck crack, a pump bearing getting louder — it's documented in the report with our recommendation.",
+    ],
+    neighborhoodDetails: [
+      {
+        name: "Craig Ranch",
+        description:
+          "Craig Ranch is McKinney's flagship master-planned community with some of the area's most impressive pool installations. Custom pools with spas, fire features, and automation systems are common. Many Craig Ranch pools are 10–15 years old, entering the window where equipment replacement planning becomes critical. We track each component and alert homeowners before failures happen.",
+      },
+      {
+        name: "Stonebridge Ranch",
+        description:
+          "Stonebridge Ranch pools are among the oldest in McKinney — 15–25 years in some sections. These pools often have original plaster showing wear, aging plumbing joints stressed by decades of soil movement, and equipment that's been replaced once and is approaching its second cycle. We provide honest assessments of what needs attention now versus what can wait.",
+      },
+      {
+        name: "Adriatica & Tucker Hill",
+        description:
+          "Adriatica and Tucker Hill feature mid-age pools with modern equipment configurations. These neighborhoods have moderate tree coverage and well-maintained landscapes. Pool maintenance is straightforward when done consistently — which is where we excel.",
+      },
+      {
+        name: "North McKinney",
+        description:
+          "North McKinney developments near Prosper and Celina borders have the newest pools. New plaster, new equipment, and curing chemistry that needs careful management during the first year. We adjust our service protocol for new pool startups with more frequent pH management and specific brushing schedules.",
+      },
+    ],
+    switchReasons: [
+      "McKinney homeowners switch to us when they realize their previous service was cleaning without maintaining. Skimming and adding chlorine keeps the water blue this week — but it doesn't catch the pump bearings wearing out, the filter cartridge degrading, or the deck crack widening with each rain cycle. We inspect, monitor, and communicate what we find.",
+      "The second reason is chemical transparency. We include everything. No surprise charges, no seasonal upcharges, no line items for shock or acid. Your monthly rate covers all chemicals your pool needs.",
+      "The third reason is repair capability. When equipment fails, we diagnose and fix it. The same technician who's been watching your pump every week is the one who tells you the bearings need replacement — with full context of how the sound has changed over the past month. That context leads to better decisions.",
+    ],
     faqs: [
       {
-        question: "How much does pool cleaning cost in McKinney, TX?",
+        question: "How much does pool service cost in McKinney?",
         answer:
-          "Pool cleaning in McKinney starts at $139/month for bi-weekly service. Weekly service is $179/month and Premium Care with equipment support is $229/month. All chemicals are included in every plan.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
       },
       {
-        question:
-          "Do you service pools in Stonebridge Ranch and Craig Ranch?",
+        question: "Do you include chemicals?",
         answer:
-          "Yes. Stonebridge Ranch and Craig Ranch are two of our most active service areas in McKinney. We provide weekly cleaning, chemical balancing, and maintenance to many homes in both communities.",
+          "Yes, all chemicals in every plan.",
       },
       {
-        question: "Are you available for new-build pool maintenance?",
+        question: "How quickly can you start?",
         answer:
-          "Absolutely. Many McKinney homeowners with newly built pools rely on us for startup care. We handle initial chemical balancing, filter system setup, and ongoing weekly maintenance.",
+          "As soon as you fill out the quote form we get you scheduled.",
       },
       {
-        question: "Do you offer pool repair services in McKinney?",
+        question: "Do you service saltwater pools?",
         answer:
-          "Yes. We handle pump repairs, filter replacements, heater issues, plumbing fixes, and more throughout McKinney, TX. Repairs are available as needed or included in our Premium Care plan.",
+          "Yes, all brands.",
+      },
+      {
+        question: "What McKinney neighborhoods do you serve?",
+        answer:
+          "All — Craig Ranch, Stonebridge Ranch, Adriatica, Tucker Hill, and all surrounding areas.",
+      },
+      {
+        question: "What if my pool needs a repair?",
+        answer:
+          "We handle repairs in-house.",
+      },
+      {
+        question: "Do you offer one-time cleanings?",
+        answer:
+          "Yes, plus green pool recovery and post-storm cleanups.",
+      },
+      {
+        question: "What makes you different?",
+        answer:
+          "Weekly equipment monitoring, photo reports every visit, all chemicals included, in-house repairs.",
       },
     ],
     testimonials: [
@@ -453,9 +570,9 @@ export const cityContent: Record<string, CityContent> = {
   allen: {
     id: "allen",
     metaTitle:
-      "Pool Service in Allen, TX | Pool Maintenance & Cleaning | Hydra Pool Services",
+      "Pool Cleaning Service in Allen, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Trusted pool service in Allen, TX. Serving Twin Creeks, Montgomery Farm & more. Weekly cleaning from $139/mo. All chemicals included. Call (214) 233-6803.",
+      "Allen pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Twin Creeks, Montgomery Farm, Watters Creek & all Allen. Call 214-233-6803.",
     headline: "Pool Service in Allen, TX",
     intro:
       "Allen is home to established neighborhoods with beautiful pools that deserve expert care. Hydra Pool Services provides weekly pool cleaning and maintenance to Allen homeowners, from Twin Creeks to Montgomery Farm and beyond. Our technicians keep your water chemistry balanced, your pool surfaces clean, and your equipment running smoothly — so your pool is always ready for family and friends.",
@@ -471,31 +588,90 @@ export const cityContent: Record<string, CityContent> = {
     neighborhoods: [
       "Twin Creeks",
       "Montgomery Farm",
+      "Watters Creek",
+      "The Villages of Allen",
       "The Retreat at Twin Creeks",
-      "Ridgeview",
-      "Waterford Parks",
       "Allen Station",
+    ],
+    poolChallenges: [
+      "Allen's municipal water carries moderate calcium hardness that sits right at the threshold where scaling begins if left unmanaged. Pools in the western half of Allen near Twin Creeks and The Villages tend to have slightly different water characteristics than pools in eastern Allen near Montgomery Farm — subtle differences that matter when you're fine-tuning chemistry for a specific pool. We calibrate our approach to each pool's actual water rather than applying a citywide average.",
+      "Allen has a relatively uniform pool age profile — most residential pools were built between 2005 and 2018 during Allen's major growth phase. This means a large percentage of Allen pools are entering the 8–15 year window where original equipment starts failing. Pumps, heaters, salt cells, and automation controllers installed during construction are reaching end of life simultaneously. We track every component's condition and help homeowners plan replacements strategically.",
+      "The tree canopy in Allen's established neighborhoods — particularly Twin Creeks and the areas near Bethany Lakes Park — produces significant leaf loads during fall and pollen during spring. Pools surrounded by mature trees need more aggressive skimming, more frequent filter cleaning, and chemistry adjustments that account for the organic demand from decomposing leaves.",
+      "Allen's proximity to major highways (US-75 and SH-121) means some neighborhoods experience elevated dust and particulate matter that settles on pool surfaces. This fine particulate isn't visible individually but creates a hazy appearance in the water over time. Regular brushing and proper filtration eliminate the effect, but pools that are serviced bi-weekly instead of weekly show the difference.",
+    ],
+    visitIncludes: [
+      "Every weekly visit covers complete maintenance — chemistry testing, surface cleaning, filter monitoring, and equipment inspection. We test free chlorine, pH, alkalinity, and stabilizer at every visit and adjust as needed. All chemicals are included. No separate charges, no surprise bills.",
+      "Surface cleaning means every surface — not just the visible ones. We brush behind ladders, around light niches, under skimmer lips, and along the main drain where debris settles and algae establishes in low-flow zones. We vacuum settled material so the floor is clean, not just the surface.",
+      "We track your filter pressure from week to week. A gradual pressure increase means the filter is loading and approaching cleaning time. A sudden spike means something changed — a broken cartridge pleat, a collapsed lateral, or a debris event that overwhelmed the filter. Both patterns require different responses, and both are only visible with weekly tracking.",
+      "Every visit ends with a digital photo report sent to your phone. You see the pool condition, what was done, and any observations about equipment or water quality. If something needs attention, it's in the report with our recommendation and estimated cost.",
+    ],
+    neighborhoodDetails: [
+      {
+        name: "Twin Creeks",
+        description:
+          "Twin Creeks is Allen's largest master-planned community with hundreds of pool homes ranging from standard residential to custom builds. The mature tree canopy creates beautiful settings but heavy seasonal debris. Pool equipment ranges from 8–18 years old depending on the section — we service all ages and configurations.",
+      },
+      {
+        name: "Montgomery Farm",
+        description:
+          "Montgomery Farm features newer construction with modern pool designs. Many pools include automation systems, variable speed pumps, and salt generators that were standard in the 2015–2020 building period. These systems need a technician who manages the technology, not just the chemistry.",
+      },
+      {
+        name: "Watters Creek & The Villages of Allen",
+        description:
+          "Watters Creek and The Villages of Allen have mid-size residential pools in established neighborhoods. These are the pools where consistent weekly service delivers the highest value — preventing the slow-building problems that become expensive when they finally become visible.",
+      },
+      {
+        name: "Eastern Allen",
+        description:
+          "Eastern Allen neighborhoods near Allen Station Park feature a mix of pool ages and styles. Some properties have older equipment approaching replacement age. We help homeowners evaluate repair-versus-replace decisions with honest assessments based on the specific equipment's condition and remaining useful life.",
+      },
+    ],
+    switchReasons: [
+      "Allen homeowners switch to us for the same reasons we hear across North DFW — their previous service didn't communicate, charged extra for chemicals, or couldn't handle repairs. We address all three: photo reports every visit, all chemicals included, and in-house repair capability.",
+      "The specific Allen pattern we see is equipment neglect. With so many Allen pools in the 8–15 year age range, equipment failures are common. Previous services that only cleaned — without inspecting and monitoring equipment — let problems develop until the pump seized, the heater failed, or the salt cell stopped producing. We catch these issues weeks or months before they become emergencies.",
+      "The third reason is expertise with salt systems. Allen has a high percentage of saltwater pools, and salt system maintenance requires specific knowledge — cell cleaning frequency based on local water hardness, output adjustment by season, error code diagnosis, and knowing when a cell is past cleaning and needs replacement. We handle all of it.",
     ],
     faqs: [
       {
-        question: "How much does pool service cost in Allen, TX?",
+        question: "How much does pool service cost in Allen?",
         answer:
-          "Pool service in Allen starts at $139/month for bi-weekly cleaning. Weekly service is $179/month and Premium Care with equipment support is $229/month. All chemicals are included in every plan.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
       },
       {
-        question: "Do you serve Twin Creeks and Montgomery Farm?",
+        question: "Do you include chemicals?",
         answer:
-          "Yes. Twin Creeks and Montgomery Farm are among our most active service areas in Allen. We provide weekly cleaning, chemical balancing, and equipment inspections in both neighborhoods.",
+          "Yes, all chemicals in every plan.",
       },
       {
-        question: "Can I switch from bi-weekly to weekly service?",
+        question: "How quickly can you start?",
         answer:
-          "Absolutely. You can upgrade or downgrade your service plan at any time. Many Allen customers start with bi-weekly and switch to weekly once they see the difference consistent care makes.",
+          "As soon as you fill out the quote form we get you scheduled.",
       },
       {
-        question: "Do you offer pool school in Allen?",
+        question: "Do you service saltwater pools?",
         answer:
-          "Yes. Our Pool School program is available to Allen homeowners. It is a one-hour hands-on class that teaches you pool care basics, water chemistry, and seasonal maintenance.",
+          "Yes, all brands. We clean cells, monitor salt levels, adjust output, diagnose errors.",
+      },
+      {
+        question: "What Allen neighborhoods do you serve?",
+        answer:
+          "All — Twin Creeks, Montgomery Farm, Watters Creek, The Villages, and all surrounding areas.",
+      },
+      {
+        question: "What if my pool needs a repair?",
+        answer:
+          "We handle repairs in-house.",
+      },
+      {
+        question: "Do you offer one-time cleanings?",
+        answer:
+          "Yes, plus green pool recovery and post-storm cleanups.",
+      },
+      {
+        question: "What makes you different?",
+        answer:
+          "Equipment monitoring every visit, photo reports, all chemicals included, salt system expertise, in-house repairs.",
       },
     ],
     testimonials: [
@@ -504,6 +680,120 @@ export const cityContent: Record<string, CityContent> = {
       { name: "Macy L.", quote: "Incredible, reliable service. Best pool services around. Would highly recommend." },
     ],
     nearbyCities: ["mckinney", "plano", "frisco", "murphy", "richardson"],
+  },
+
+  parker: {
+    id: "parker",
+    metaTitle:
+      "Pool Cleaning Service in Parker, TX | Weekly from $179/mo | Hydra Pool Services",
+    metaDescription:
+      "Parker's local pool service — weekly cleaning, chemical balancing, and equipment maintenance for well water and municipal water pools. All chemicals included. Free first 2 weeks. Call 214-233-6803.",
+    headline: "Pool Service in Parker, TX",
+    intro:
+      "Parker's larger lots, well water systems, and rural-adjacent properties create pool maintenance challenges you won't find in the surrounding suburbs. Hard well water with elevated calcium and iron, deer browsing your landscaping, and equipment pads exposed to open-field wind require a pool service that understands the specifics — not a company running the same playbook they use in Plano or McKinney.",
+    whyChoose:
+      "Parker homeowners choose Hydra because we understand well water chemistry, rural property challenges, and the equipment demands that come with larger pool installations. We don't treat your pool like a suburban cookie-cutter — we calibrate our service to your specific water source and property conditions.",
+    whyChooseBullets: [
+      "Well water chemistry expertise — calcium, iron, and metal management",
+      "All chemicals included, including metal sequestrant for well water",
+      "Digital photo reports after every visit",
+      "In-house equipment repair — no outside contractors",
+      "Serving all Parker properties regardless of lot size or location",
+    ],
+    neighborhoods: [
+      "Southfork Ranch area",
+      "Mustang Park",
+      "Parker Road corridor",
+      "Woodlands area",
+      "Rural homesteads",
+    ],
+    poolChallenges: [
+      "Many Parker properties rely on private well water instead of municipal supply. Well water in the Parker area carries 200–500 ppm calcium hardness — two to three times what municipal water delivers. That calcium concentrates through evaporation and deposits scale on every surface: tile, plaster, salt cell plates, and heater heat exchangers. We test fill water quality and adjust the chemistry strategy based on what your specific well produces.",
+      "Iron is the other well water challenge. Dissolved iron is invisible in fresh well water, but the moment you add chlorine, the iron oxidizes and turns the water brown or orange. We add metal sequestrant before every shock treatment to prevent iron staining on your plaster — a step most services don't take because they've never dealt with well water pools.",
+      "Parker's open lots catch more wind than sheltered backyards in Frisco or Allen. Wind accelerates evaporation, blows debris into the pool faster, and stresses landscaping around the pool area. We adjust skimming frequency and filter maintenance to account for the higher debris load that wind-exposed Parker pools experience.",
+      "Deer are a reality on Parker properties without solid perimeter fencing. They browse landscaping, leave droppings near the pool area, and introduce organic material that affects water chemistry. We factor this into our maintenance approach and can recommend deer-resistant pool landscaping that reduces the impact on your pool.",
+    ],
+    visitIncludes: [
+      "Every weekly visit follows the same comprehensive routine. We test free chlorine, pH, alkalinity, and cyanuric acid — and for Parker well water pools, we also monitor calcium hardness and iron levels monthly. All chemicals are included in your monthly rate, including the metal sequestrant that well water pools need before every shock treatment.",
+      "We clean every surface — full skim, wall and floor brushing, vacuuming settled debris. Parker pools with heavy tree coverage or wind exposure accumulate debris faster, so we adjust our cleaning intensity based on conditions rather than running a fixed checklist.",
+      "Equipment inspection happens every visit. We listen to the pump, check filter pressure, inspect the salt cell for scaling, and verify the heater is operating correctly. Parker's well water scales equipment faster than municipal water, so we clean salt cells quarterly instead of the typical twice-yearly schedule.",
+      "After every visit, you receive a digital service report with photos. You see what was done, what was found, and the current condition of your pool — every week.",
+    ],
+    neighborhoodDetails: [
+      {
+        name: "Southfork Ranch Area",
+        description:
+          "Southfork Ranch area properties feature larger lots with custom pool installations, often including spas, water features, and premium finishes. Many are on well water, requiring specialized chemistry management that accounts for elevated mineral content.",
+      },
+      {
+        name: "Mustang Park",
+        description:
+          "Mustang Park and surrounding developments are newer builds with recently constructed pools. New plaster curing in Parker's well water requires extra attention — the high calcium content accelerates scale formation during the curing window, and we adjust acid dosing and brushing schedules accordingly.",
+      },
+      {
+        name: "Parker Road Corridor",
+        description:
+          "Parker Road corridor properties range from established homes with aging pool equipment to new construction. We help homeowners with older single-speed pumps plan transitions to variable speed — saving $500–800 per year in electricity while improving circulation.",
+      },
+      {
+        name: "Rural Homesteads",
+        description:
+          "Rural homesteads on larger acreage lots face unique challenges — greater wind exposure, more organic debris from surrounding land, and longer distances between properties that some services won't travel. We serve all of Parker regardless of lot size or location.",
+      },
+    ],
+    switchReasons: [
+      "Most Parker pool owners who switch to us had a service that treated their well water pool the same as a municipal water pool in Plano. The chemistry is fundamentally different — higher calcium, dissolved metals, different pH behavior — and a one-size-fits-all approach leads to staining, scaling, and equipment damage that could have been prevented.",
+      "The second reason is communication. Parker properties are spread out, and some homeowners aren't home during service visits. Our digital photo reports after every visit mean you always know exactly what happened, even if you weren't there to see it.",
+      "The third reason is repair capability. When equipment fails on a Parker property, the last thing you want is to coordinate between a cleaning service and a separate repair company. We handle both — the same technician who maintains your pool diagnoses and fixes equipment issues.",
+    ],
+    faqs: [
+      {
+        question: "How much does pool service cost in Parker?",
+        answer:
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
+      },
+      {
+        question: "Do you service well water pools?",
+        answer:
+          "Yes. We test well water quality, manage calcium and iron levels, and use metal sequestrant before every shock to prevent staining.",
+      },
+      {
+        question: "How quickly can you start?",
+        answer:
+          "As soon as you fill out the quote form we get you scheduled.",
+      },
+      {
+        question: "Do you service saltwater pools on well water?",
+        answer:
+          "Yes. Well water pools with salt systems need more frequent cell cleaning due to higher calcium. We clean cells quarterly.",
+      },
+      {
+        question: "What areas in Parker do you serve?",
+        answer:
+          "All of Parker — Southfork area, Mustang Park, Parker Road corridor, and rural properties.",
+      },
+      {
+        question: "What if my pool needs a repair?",
+        answer:
+          "We handle repairs in-house. Same technician who maintains your pool.",
+      },
+      {
+        question: "Do you handle green pool recovery?",
+        answer:
+          "Yes. For well water pools we pre-treat with sequestrant before shocking to prevent iron staining during recovery.",
+      },
+      {
+        question: "What makes you different?",
+        answer:
+          "We understand well water chemistry, which most DFW pool services don't. Photo reports every visit. All chemicals included. In-house repairs.",
+      },
+    ],
+    testimonials: [
+      { name: "Rahim H.", quote: "They came out when my pool pump was acting up and took care of the problem right away." },
+      { name: "J. Roscoe", quote: "Awesome workmanship, communicative! Would recommend to anyone in the area!" },
+      { name: "Shp G.", quote: "I have been working with this company for several years. They've helped me out with many situations." },
+    ],
+    nearbyCities: ["frisco", "plano", "mckinney", "allen", "prosper"],
   },
 
   celina: {

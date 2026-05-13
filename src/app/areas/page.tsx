@@ -25,6 +25,7 @@ const areaMapPositions: Record<string, { cx: number; cy: number }> = {
   mckinney: { cx: 370, cy: 150 },
   allen: { cx: 370, cy: 220 },
   plano: { cx: 310, cy: 280 },
+  parker: { cx: 430, cy: 170 },
   murphy: { cx: 420, cy: 290 },
   richardson: { cx: 310, cy: 320 },
 };

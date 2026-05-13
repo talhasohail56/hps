@@ -71,6 +71,14 @@ export const serviceAreas: ServiceArea[] = [
       "Growing Celina communities including Light Farms and surrounding developments.",
   },
   {
+    id: "parker",
+    name: "Parker",
+    state: "TX",
+    primary: false,
+    description:
+      "Parker properties including Southfork Ranch area, Mustang Park, and rural homesteads.",
+  },
+  {
     id: "murphy",
     name: "Murphy",
     state: "TX",
