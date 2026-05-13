@@ -5,6 +5,11 @@ export interface CityFAQ {
   answer: string;
 }
 
+export interface NeighborhoodDetail {
+  name: string;
+  description: string;
+}
+
 export interface CityContent {
   /** Matches ServiceArea.id */
   id: string;
@@ -26,15 +31,23 @@ export interface CityContent {
   faqs: CityFAQ[];
   /** Nearby cities to cross-link */
   nearbyCities: string[];
+  /** Local pool challenges unique to this city */
+  poolChallenges?: string[];
+  /** What's included in every visit */
+  visitIncludes?: string[];
+  /** Neighborhood-specific service notes */
+  neighborhoodDetails?: NeighborhoodDetail[];
+  /** Reasons homeowners switch to us */
+  switchReasons?: string[];
 }
 
 export const cityContent: Record<string, CityContent> = {
   frisco: {
     id: "frisco",
     metaTitle:
-      "Pool Service in Frisco, TX | Weekly Cleaning & Maintenance | Hydra Pool Services",
+      "Pool Cleaning Service in Frisco, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Professional pool service in Frisco, TX. Weekly cleaning, chemical balancing, and equipment maintenance starting at $120/mo. Free first 2 weeks. Call (214) 233-6803.",
+      "Frisco's local pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Phillips Creek Ranch, Richwoods, Starwood & all Frisco neighborhoods. Call 214-233-6803.",
     headline: "Pool Service in Frisco, TX",
     intro:
       "Frisco is our home base. As a locally owned pool service company headquartered right here in Frisco, we understand the unique needs of North Texas pools — from the intense summer heat that drives up chlorine demand to the occasional hailstorms that leave debris in your water. Our certified technicians serve neighborhoods across Frisco with weekly pool cleaning, water chemistry management, and equipment inspections that keep your pool swim-ready year-round.",
@@ -59,26 +72,87 @@ export const cityContent: Record<string, CityContent> = {
       "Lebanon Road area",
       "Frisco Lakes",
     ],
+    poolChallenges: [
+      "Hard water (150–250 ppm calcium) that scales tile, plaster, and salt cells through evaporation",
+      "UV-driven chlorine loss — 230+ sunny days per year means a pool at 3 ppm in the morning can hit 0.5 ppm by afternoon without proper stabilizer",
+      "Clay soil movement that stresses pool shells, cracks decks, and shifts plumbing",
+      "Pollen season (March–May) overwhelming skimmers and filters",
+    ],
+    visitIncludes: [
+      "Water chemistry testing and balancing — all chemicals included in your monthly rate",
+      "Surface cleaning — skim, brush walls/steps/floor, vacuum",
+      "Basket and filter monitoring — emptied every visit, filter cleaned when needed",
+      "Equipment inspection — pump, filter, heater, salt cell checked every visit",
+      "Digital service report with photos after every visit",
+    ],
+    neighborhoodDetails: [
+      {
+        name: "Phillips Creek Ranch & Richwoods",
+        description: "Larger custom pools, automation systems, premium finishes",
+      },
+      {
+        name: "Starwood & Newman Village",
+        description: "Mature trees, heavy fall leaf loads, older equipment we monitor closely",
+      },
+      {
+        name: "Plantation Resort & Grayhawk",
+        description: "Standard residential, consistent weekly service",
+      },
+      {
+        name: "Hollyhock & Lawler Park",
+        description: "Newer pools — we adjust service for plaster curing",
+      },
+      {
+        name: "Lebanon Road & Frisco Lakes",
+        description: "Mixed ages — we help transition to variable speed pumps",
+      },
+    ],
+    switchReasons: [
+      "Previous service didn't communicate — we send photo reports every visit",
+      "Hidden chemical charges — we include all chemicals, no surprise fees",
+      "Previous service only cleaned, didn't maintain — we inspect equipment and track trends weekly",
+      "Previous service couldn't handle repairs — we do repairs in-house, same team that maintains your pool",
+    ],
     faqs: [
       {
-        question: "How much does pool service cost in Frisco, TX?",
+        question: "How much does weekly pool service cost in Frisco?",
         answer:
-          "Pool service in Frisco starts at $120/month for bi-weekly cleaning and goes up to $229/month for Premium Care with priority scheduling and equipment support. All chemicals are included in every plan.",
+          "Weekly service starts at $179/mo, bi-weekly from $139/mo, and Premium Care is $229/mo. All chemicals are included in every plan — no separate charges.",
       },
       {
-        question: "Do you offer pool service near Phillips Creek Ranch?",
+        question: "Do you include chemicals?",
         answer:
-          "Yes. Phillips Creek Ranch is one of our most-served neighborhoods in Frisco. We provide weekly pool cleaning, chemical balancing, and equipment maintenance to dozens of homes in the community.",
+          "Yes. Every plan includes all chemicals — chlorine, acid, stabilizer, salt, everything. We never charge separately for chemicals.",
       },
       {
-        question: "How fast can you start pool service in Frisco?",
+        question: "How quickly can you start?",
         answer:
-          "Since Frisco is our home base, we can typically schedule your first visit within 2-3 business days. We start with a complimentary pool assessment before beginning regular service.",
+          "As soon as you fill out the quote form we get you scheduled. Since Frisco is our home base, we can typically start within a few days.",
       },
       {
-        question: "Do you service saltwater pools in Frisco, TX?",
+        question: "Do you service saltwater pools?",
         answer:
-          "Yes. We service both traditional chlorine and saltwater pool systems throughout Frisco. For saltwater pools, we also monitor salt levels and clean the chlorine generator cell.",
+          "Yes, all brands. We clean cells, monitor salt levels, adjust output by season, and diagnose errors.",
+      },
+      {
+        question: "What areas in Frisco do you serve?",
+        answer:
+          "Every neighborhood — Phillips Creek Ranch, Richwoods, Starwood, Newman Village, Plantation Resort, Hollyhock, Lawler Park, Grayhawk, and all surrounding communities.",
+      },
+      {
+        question: "What if my pool needs a repair?",
+        answer:
+          "We handle repairs in-house. The same technician who maintains your pool diagnoses and fixes equipment issues — no outside contractors.",
+      },
+      {
+        question: "Do you offer one-time cleanings?",
+        answer:
+          "Yes, plus green pool recovery and post-storm cleanups. We recommend weekly service after to keep it clear permanently.",
+      },
+      {
+        question: "What makes you different from other pool services?",
+        answer:
+          "Communication (photo reports every visit), transparency (all chemicals included), and expertise (we maintain and repair, not just clean).",
       },
     ],
     nearbyCities: ["plano", "prosper", "mckinney", "little-elm", "the-colony"],
