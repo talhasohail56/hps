@@ -87,8 +87,8 @@ const legacyBlogRedirects: Array<{
   { source: "/pool-tips/:slug*", destination: "/blogs", permanent: true },
 
   // Squarespace duplicate slugs
-  { source: "/commercial-pool-maintenance-1", destination: "/commercial-pool-maintenance", permanent: true },
-  { source: "/commercial-pool-maintenance-2-1", destination: "/commercial-pool-maintenance", permanent: true },
+  { source: "/commercial-pool-maintenance-1", destination: "/services/commercial-pool-maintenance", permanent: true },
+  { source: "/commercial-pool-maintenance-2-1", destination: "/services/commercial-pool-maintenance", permanent: true },
 
   // Old structural pages
   { source: "/home", destination: "/", permanent: true },

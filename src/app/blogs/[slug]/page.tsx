@@ -48,7 +48,7 @@ export async function generateMetadata({
       siteName: siteConfig.name,
       publishedTime: post.publishedAt || undefined,
       modifiedTime: post.updatedAt,
-      authors: [post.author],
+      authors: ["John Smith"],
       ...(post.coverImage ? { images: [{ url: post.coverImage }] } : {}),
     },
     twitter: {
@@ -90,7 +90,7 @@ export default async function BlogPostPage({
     description: post.excerpt,
     author: {
       "@type": "Person",
-      name: post.author,
+      name: "John Smith",
     },
     publisher: {
       "@type": "Organization",
@@ -187,7 +187,7 @@ export default async function BlogPostPage({
             <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-slate-light">
               <span className="flex items-center gap-1.5">
                 <User className="h-3.5 w-3.5" />
-                {post.author}
+                John Smith, CPO-Certified Pool Technician
               </span>
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-3.5 w-3.5" />

@@ -169,7 +169,7 @@ const residentialPoolMaintenance: Service = {
     {
       question: "Do you service saltwater pools?",
       answer:
-        "Absolutely. We service both traditional chlorine and saltwater pool systems across North DFW, including Frisco, Plano, Murphy, Allen, McKinney, and The Colony.",
+        "Absolutely. We service both traditional chlorine and saltwater pool systems across North DFW, including Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony.",
     },
     {
       question: "Can you help if I need pool repairs?",
@@ -226,7 +226,7 @@ const commercialPoolMaintenance: Service = {
   sections: [
     {
       heading: "Why Businesses in North DFW Choose Hydra Pool Services",
-      body: "Hydra Pool Services is known as America's #1 Swimming Pool Service Company, and locally we stand out in Frisco, Murphy, Allen, Plano, McKinney, and The Colony, TX. Commercial property managers call us because they need a partner that shows up on time, keeps detailed records, and understands health and safety standards for high-use pools.",
+      body: "Hydra Pool Services is known as America's #1 Swimming Pool Service Company, and locally we stand out in Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX. Commercial property managers call us because they need a partner that shows up on time, keeps detailed records, and understands health and safety standards for high-use pools.",
       bullets: [
         "Peace of mind because you'll know your pool is always compliant with health codes",
         "Our team is certified and trained to manage commercial pools of all sizes",
@@ -300,7 +300,7 @@ const commercialPoolMaintenance: Service = {
       question:
         "Do you service commercial pools in Frisco, TX and Plano, TX?",
       answer:
-        "Yes. We provide commercial pool maintenance across all of North DFW including Frisco, Plano, Murphy, Allen, McKinney, and The Colony, TX.",
+        "Yes. We provide commercial pool maintenance across all of North DFW including Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
     },
     {
       question: "What is included in commercial pool maintenance?",
@@ -360,10 +360,10 @@ const poolRepairServices: Service = {
     "Pool owners with equipment issues or aging pool systems that need attention.",
   subtitle: "Expert Solutions for Pool Equipment",
   heroDescription:
-    "Pools are meant for fun and relaxation, but when something breaks, stress quickly takes over. At Hydra Pool Services, we provide expert pool repair services to get your system running smoothly again. From small leaks and pump issues to full pool remodeling and filter replacements, we have the tools, the parts, and the know-how to bring your pool back to life.\n\nWe proudly serve North DFW, TX, including Frisco, Murphy, Allen, Plano, McKinney, and The Colony, TX, with fast and reliable pool repairs backed by friendly and experienced technicians.",
+    "Pools are meant for fun and relaxation, but when something breaks, stress quickly takes over. At Hydra Pool Services, we provide expert pool repair services to get your system running smoothly again. From small leaks and pump issues to full pool remodeling and filter replacements, we have the tools, the parts, and the know-how to bring your pool back to life.\n\nWe proudly serve North DFW, TX, including Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX, with fast and reliable pool repairs backed by friendly and experienced technicians.",
   metaTitle: "Pool Repair in Frisco & North DFW — Same-Week Service | Hydra",
   metaDescription:
-    "Pump failures, heater issues, leaks, filter problems — diagnosed and repaired by techs who service pools weekly and know your equipment. Frisco, Plano, McKinney, Allen. Call 214-233-6803.",
+    "Pump failures, heater issues, leaks, filter problems — diagnosed and repaired by techs who service pools weekly and know your equipment. Frisco, Plano, McKinney, Allen & North DFW. Call 214-233-6803.",
   sections: [
     {
       heading: "Our Pool Repair Process — Full Equipment Inspections Before Repairs",
@@ -407,7 +407,7 @@ const poolRepairServices: Service = {
     },
     {
       heading: "Trusted Pool Service Company Across North DFW",
-      body: "Businesses and homeowners alike rely on Hydra Pool Services in Frisco, Murphy, Allen, Plano, McKinney, and The Colony, TX for pool repairs, pool cleaning, and weekly service. Our reputation is built on delivering crystal-clear water and honest communication.",
+      body: "Businesses and homeowners alike rely on Hydra Pool Services in Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX for pool repairs, pool cleaning, and weekly service. Our reputation is built on delivering crystal-clear water and honest communication.",
       bullets: [
         "Professional Pool Care that protects your investment",
         "Clear pricing with no surprise chemical charges",
@@ -421,7 +421,7 @@ const poolRepairServices: Service = {
       question:
         "Do you repair pool equipment in Frisco, TX and Plano, TX?",
       answer:
-        "Yes. We provide pool repair services across all of North DFW including Frisco, Plano, Murphy, Allen, McKinney, and The Colony, TX.",
+        "Yes. We provide pool repair services across all of North DFW including Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
     },
     {
       question: "What types of repairs do you handle?",
@@ -480,7 +480,7 @@ const beadBlasting: Service = {
     "Pools with calcium buildup, stains, or aging tile that need a deep refresh.",
   subtitle: "Bring Your Pool Surfaces Back to Life",
   heroDescription:
-    "Even the cleanest pool needs a deep refresh from time to time. Over the years, pool tiles and surfaces begin to show stains, calcium deposits, algae spots, and debris that regular pool cleaning cannot remove. That is where Hydra Pool Services comes in with our professional bead blasting service.\n\nUsing fine, eco-friendly glass beads, we restore tile, stone, and pool surfaces without scratching or damage. The result is a sparkling, fresh look that makes your pool appear brand new.\n\nIf you are in North DFW, TX, including Frisco, Murphy, Allen, Plano, McKinney, or The Colony, TX, our bead blasting experts are here to bring your pool back to life.",
+    "Even the cleanest pool needs a deep refresh from time to time. Over the years, pool tiles and surfaces begin to show stains, calcium deposits, algae spots, and debris that regular pool cleaning cannot remove. That is where Hydra Pool Services comes in with our professional bead blasting service.\n\nUsing fine, eco-friendly glass beads, we restore tile, stone, and pool surfaces without scratching or damage. The result is a sparkling, fresh look that makes your pool appear brand new.\n\nIf you are in North DFW, TX, including Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, or The Colony, TX, our bead blasting experts are here to bring your pool back to life.",
   metaTitle: "Pool Tile Bead Blasting — Frisco, Plano, McKinney | Hydra",
   metaDescription:
     "Years of calcium scale and waterline buildup removed in one visit. Your tile looks new again. Safe for glass, porcelain, and stone tile. Serving North DFW. Call 214-233-6803.",
@@ -570,7 +570,7 @@ const beadBlasting: Service = {
   ctaBody:
     "New to Hydra? Get $100 off your first month of pool service when you schedule with us. Our team will inspect your pool, recommend bead blasting if needed, and provide a clear, honest quote.",
   ctaClosing:
-    "Bring your pool back to life with Hydra's bead blasting service. Our friendly and experienced technicians deliver professional pool care that restores surfaces, removes calcium, and leaves your pool sparkling. Serving North DFW, Frisco, Murphy, Allen, Plano, McKinney, and The Colony, TX.",
+    "Bring your pool back to life with Hydra's bead blasting service. Our friendly and experienced technicians deliver professional pool care that restores surfaces, removes calcium, and leaves your pool sparkling. Serving North DFW, Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
 };
 
 /* ================================================================== */
@@ -602,7 +602,7 @@ const poolSchool: Service = {
     "First-time pool owners learning the basics of pool care and maintenance.",
   subtitle: "Are You A First Time Pool Owner? No Problem",
   heroDescription:
-    "Buying a pool is exciting. But for many new homeowners in North DFW, TX, the reality sets in quickly. You have pumps, filters, heaters, chemicals, and cleaning routines that all need attention. Without the right knowledge, things can get overwhelming fast.\n\nThat is why Hydra Pool Services created Pool School, a one-hour detailed class designed for first-time pool owners in Frisco, Murphy, Allen, Plano, McKinney, and The Colony, TX. We walk you step by step through how your pool works, how to take care of it in each season, and what to do if something goes wrong.\n\nWhether you want to handle pool cleaning and pool maintenance yourself or eventually sign up for our weekly service, Pool School gives you the knowledge and confidence to make the right choice.",
+    "Buying a pool is exciting. But for many new homeowners in North DFW, TX, the reality sets in quickly. You have pumps, filters, heaters, chemicals, and cleaning routines that all need attention. Without the right knowledge, things can get overwhelming fast.\n\nThat is why Hydra Pool Services created Pool School, a one-hour detailed class designed for first-time pool owners in Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX. We walk you step by step through how your pool works, how to take care of it in each season, and what to do if something goes wrong.\n\nWhether you want to handle pool cleaning and pool maintenance yourself or eventually sign up for our weekly service, Pool School gives you the knowledge and confidence to make the right choice.",
   metaTitle: "Pool School for New Pool Owners | Hydra Pool Services",
   metaDescription:
     "1-hour hands-on class for first-time pool owners in North DFW. Learn water chemistry, equipment basics, and seasonal care from certified technicians.",
@@ -631,7 +631,7 @@ const poolSchool: Service = {
         },
         {
           heading: "Seasonal Care for Pools in North DFW, TX",
-          body: "Texas weather changes quickly. Our Pool School covers how to manage swimming pool care in summer heat, as well as winter preparation in Frisco, Murphy, Allen, Plano, McKinney, and The Colony, TX. You will know when to drain water, when to protect pipes, and when to call for help.",
+          body: "Texas weather changes quickly. Our Pool School covers how to manage swimming pool care in summer heat, as well as winter preparation in Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX. You will know when to drain water, when to protect pipes, and when to call for help.",
         },
         {
           heading: "Maintenance and Cleaning Routines",
@@ -649,7 +649,7 @@ const poolSchool: Service = {
     },
     {
       heading: "Why Hydra Pool Services Stands Out",
-      body: "Hydra Pool Services has earned 5-star ratings across Google, Yelp, and Nextdoor because we put customers first. Homeowners in Frisco, Murphy, Allen, Plano, McKinney, and The Colony choose us because we offer more than just cleaning. We offer education, repairs, and full pool remodeling when needed.",
+      body: "Hydra Pool Services has earned 5-star ratings across Google, Yelp, and Nextdoor because we put customers first. Homeowners in Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony choose us because we offer more than just cleaning. We offer education, repairs, and full pool remodeling when needed.",
       bullets: [
         "Friendly and Experienced Technicians who explain everything clearly",
         "Peace of Mind knowing your pool is safe and cared for",
@@ -699,7 +699,7 @@ const poolSchool: Service = {
     {
       question: "Do you only offer Pool School in Frisco, TX?",
       answer:
-        "No. Pool School is available across North DFW including Frisco, Murphy, Allen, Plano, McKinney, and The Colony, TX.",
+        "No. Pool School is available across North DFW including Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
     },
     {
       question: "Is Pool School only for residential pools?",
@@ -751,7 +751,7 @@ const chemicalOnlyService: Service = {
     {
       heading:
         "Why Choose Hydra for Chemical Only Pool Service in North DFW, TX",
-      body: "Hydra Pool Services has built its reputation as America's #1 Swimming Pool Service Company, and our Chemical Only Service is one of the most popular options for DIY pool owners in Frisco, Murphy, Allen, Plano, McKinney, and The Colony, TX.",
+      body: "Hydra Pool Services has built its reputation as America's #1 Swimming Pool Service Company, and our Chemical Only Service is one of the most popular options for DIY pool owners in Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
       bullets: [
         "Affordable and Transparent",
         "Weekly Service Options",
@@ -849,7 +849,7 @@ const chemicalOnlyService: Service = {
   ctaBody:
     "New to Hydra? Get $100 off your first month of pool service when you sign up in North DFW, TX. We will perform a full water test, balance your pool, and provide honest pricing.",
   ctaClosing:
-    "Tired of spending too much money on pool chemicals? Let Hydra handle it. With our Chemical Only Service, you get the right balance every time, discounted products, and friendly and experienced technicians who care about your pool. Serving North DFW, Frisco, Murphy, Allen, Plano, McKinney, and The Colony, TX.",
+    "Tired of spending too much money on pool chemicals? Let Hydra handle it. With our Chemical Only Service, you get the right balance every time, discounted products, and friendly and experienced technicians who care about your pool. Serving North DFW, Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
 };
 
 /* ================================================================== */
