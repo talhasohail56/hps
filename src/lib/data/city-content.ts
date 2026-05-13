@@ -408,9 +408,9 @@ export const cityContent: Record<string, CityContent> = {
   prosper: {
     id: "prosper",
     metaTitle:
-      "Pool Service in Prosper, TX | Pool Cleaning & Care | Hydra Pool Services",
+      "Pool Cleaning Service in Prosper, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Professional pool service in Prosper, TX. Serving Windsong Ranch, Star Trail & surrounding communities. Weekly cleaning from $139/mo. Call (214) 233-6803.",
+      "Prosper pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Windsong Ranch, Star Trail, Whitley Place & all Prosper. Call 214-233-6803.",
     headline: "Pool Service in Prosper, TX",
     intro:
       "Prosper's master-planned communities feature some of the most beautiful residential pools in North Texas. Hydra Pool Services provides premium pool cleaning and maintenance to Prosper homeowners who want their backyard oasis to stay in perfect condition. From Windsong Ranch to Star Trail, our weekly service ensures your pool water is balanced, your surfaces are clean, and your equipment runs at peak performance.",
@@ -426,31 +426,90 @@ export const cityContent: Record<string, CityContent> = {
     neighborhoods: [
       "Windsong Ranch",
       "Star Trail",
-      "Whittler's Ridge",
+      "Whitley Place",
       "Prosper Lakes",
       "Gentle Creek",
       "Light Farms (bordering Celina)",
     ],
+    poolChallenges: [
+      "Prosper is one of the fastest-growing cities in Collin County, and that growth means a high concentration of newly built pools. New pool plaster goes through a 6–12 month curing period during which the surface releases calcium hydroxide into the water, driving pH upward aggressively and creating a chalky haze that worries homeowners who don't understand the process. We manage new pool chemistry through the entire curing window — daily brushing recommendations for the first month, frequent acid additions to control pH, and careful calcium monitoring as the plaster stabilizes.",
+      "Prosper's master-planned communities — Windsong Ranch, Star Trail, Whitley Place, Gentle Creek — feature some of the most sophisticated pool installations in North DFW. Raised spas with spillovers, sheer descent waterfalls, bubblers, fire features, and full automation systems are standard in many new builds. These pools require a technician who can manage the technology — programming pump speed schedules, optimizing heater cycling, adjusting salt cell output, and troubleshooting automation errors.",
+      "HOA standards in Prosper's communities are among the strictest in Collin County. Pool landscaping must be completed within 60–90 days of construction, fencing must meet specific design standards, and pool areas must be maintained to community appearance guidelines. A poorly maintained pool with green water or visible algae can trigger HOA violation notices. We keep pools pristine so homeowners never face compliance issues.",
+      "Prosper's clay soil is heavily expansive, and the rapid development in the area means much of the soil was recently disturbed during construction. Newly built pools on freshly graded soil are particularly susceptible to settlement and soil movement in the first 3–5 years. We watch for deck cracks, coping separation, and beam shifts that indicate soil-related movement.",
+    ],
+    visitIncludes: [
+      "Every weekly visit covers chemistry testing, surface cleaning, equipment inspection, and filter monitoring. For Prosper's many new pools, we include additional attention during the plaster curing period — more frequent pH testing, specific brushing guidance, and calcium monitoring that prevents scaling during the critical first year.",
+      "We clean every surface thoroughly — skim, brush walls and floor, vacuum debris. Prosper pools with water features like spillovers, sheers, and bubblers need attention to the feature plumbing and fixtures that standard cleaning doesn't cover. We check feature operation and clean nozzles as part of regular service.",
+      "Equipment inspection includes the automation system, not just the pump and filter. We verify that scheduled programs are running correctly, salt cell output matches the season, and heater cycling is efficient. For Prosper pools with complex systems, this technology management is as important as the chemistry.",
+      "After every visit, you receive a photo report showing the pool condition and any notes about equipment or water quality. For new pool owners in Prosper who are learning their pool's behavior during the first year, these reports are especially valuable — they create a documented history of how the pool responds to each season.",
+    ],
+    neighborhoodDetails: [
+      {
+        name: "Windsong Ranch",
+        description:
+          "Windsong Ranch features premium custom pools with advanced automation, spa spillovers, and resort-style finishes. Many pools run Pentair IntelliCenter or Hayward OmniLogic systems that require programming expertise beyond basic pool maintenance. We manage the full technology stack as part of weekly service.",
+      },
+      {
+        name: "Star Trail",
+        description:
+          "Star Trail pools represent Prosper's newer construction wave — modern designs with salt systems, variable speed pumps, and LED lighting as standard features. These pools benefit most from consistent weekly service during their first 2–3 years as the plaster cures and the homeowner learns the pool's behavior patterns.",
+      },
+      {
+        name: "Whitley Place & Gentle Creek",
+        description:
+          "Whitley Place and Gentle Creek have a mix of pool ages — some sections built 8–10 years ago with equipment entering mid-life, others still under construction. We service all ages and configurations, adjusting our approach based on each pool's specific needs and equipment vintage.",
+      },
+      {
+        name: "North Prosper",
+        description:
+          "Prosper developments north of US-380 are the newest — many with pools that are less than a year old. These pools need careful curing management that most pool services don't understand or don't want to deal with because it requires more frequent attention during the first year.",
+      },
+    ],
+    switchReasons: [
+      "Prosper homeowners switch to us when their builder's recommended pool service turns out to be a basic cleaning crew that doesn't understand the automation system, doesn't manage plaster curing chemistry correctly, and can't troubleshoot the technology that came with the pool. We handle all of it — chemistry, cleaning, equipment, and technology.",
+      "The second reason is communication. Prosper homeowners with new pools have questions constantly during the first year — Is this haze normal? Why does the pH keep rising? Why is the salt cell showing an error? We answer these questions through our photo reports and direct communication. Your pool service should educate, not just clean.",
+      "The third reason is chemical transparency. New pool owners in Prosper are often shocked by the chemical costs their first service charges on top of the monthly rate. We include all chemicals in every plan — the price you see is the price you pay.",
+    ],
     faqs: [
       {
-        question: "How much does pool service cost in Prosper, TX?",
+        question: "How much does pool service cost in Prosper?",
         answer:
-          "Pool service in Prosper starts at $139/month for bi-weekly cleaning and $179/month for weekly service. Our Premium Care plan at $229/month includes equipment support and priority scheduling.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
       },
       {
-        question: "Do you serve Windsong Ranch in Prosper?",
+        question: "Do you include chemicals?",
         answer:
-          "Yes. Windsong Ranch is one of our core service areas in Prosper. We provide weekly pool cleaning, chemical balancing, and equipment inspections to numerous homes in the community.",
+          "Yes, all chemicals in every plan.",
       },
       {
-        question: "Can you maintain a pool with a spa or water features?",
+        question: "How quickly can you start?",
         answer:
-          "Absolutely. Many Prosper pools include spas, waterfalls, and other water features. Our technicians are experienced with complex pool systems and ensure all components receive proper care.",
+          "As soon as you fill out the quote form we get you scheduled.",
       },
       {
-        question: "Do you provide service year-round in Prosper?",
+        question: "Do you handle new pool startup?",
         answer:
-          "Yes. Pool care is needed year-round in North Texas. We provide seasonal adjustments to our service including winterization preparation and spring startup to keep your pool protected.",
+          "Yes. We manage the plaster curing period including pH control, brushing schedules, and calcium monitoring.",
+      },
+      {
+        question: "What Prosper neighborhoods do you serve?",
+        answer:
+          "All — Windsong Ranch, Star Trail, Whitley Place, Gentle Creek, and all surrounding areas.",
+      },
+      {
+        question: "What if my pool needs a repair?",
+        answer:
+          "We handle repairs in-house.",
+      },
+      {
+        question: "Do you manage pool automation systems?",
+        answer:
+          "Yes. Pentair IntelliCenter, Hayward OmniLogic, Jandy iAquaLink — we program, troubleshoot, and optimize all major systems.",
+      },
+      {
+        question: "What makes you different?",
+        answer:
+          "Automation expertise, new pool curing management, photo reports every visit, all chemicals included, in-house repairs.",
       },
     ],
     testimonials: [
@@ -515,9 +574,9 @@ export const cityContent: Record<string, CityContent> = {
   "the-colony": {
     id: "the-colony",
     metaTitle:
-      "Pool Service in The Colony, TX | Pool Cleaning | Hydra Pool Services",
+      "Pool Cleaning Service in The Colony, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Professional pool service in The Colony, TX near Lake Lewisville. Weekly cleaning & chemical balancing starting at $139/mo. Call (214) 233-6803 for a free quote.",
+      "The Colony pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Austin Waters, Stewart Peninsula, The Tribute & all Colony neighborhoods. Call 214-233-6803.",
     headline: "Pool Service in The Colony, TX",
     intro:
       "The Colony sits along the shores of Lake Lewisville, and the area's pools benefit from — and are challenged by — the local climate and environment. Hydra Pool Services provides consistent, reliable pool maintenance to The Colony homeowners, handling everything from weekly cleaning and chemical balancing to equipment inspections and repairs. Our goal is simple: keep your pool crystal clear so you can enjoy it without the hassle.",
@@ -534,29 +593,88 @@ export const cityContent: Record<string, CityContent> = {
       "Austin Waters",
       "Stewart Peninsula",
       "Cascades at The Colony",
-      "Tribute Lakeside",
+      "The Tribute",
       "The Village at The Colony",
+    ],
+    poolChallenges: [
+      "The Colony's proximity to Lewisville Lake creates a unique microclimate that affects pool maintenance differently than inland cities. Higher ambient humidity slows evaporation but accelerates corrosion on metal equipment components — electrical connections, bonding conductors, pump housings, and heater cabinets degrade faster in The Colony than in drier cities like Prosper or Parker. We inspect electrical and metal components more carefully on Colony pools because corrosion-related failures are more common here.",
+      "The lake environment also harbors cyanobacteria (black algae) that become airborne and settle into nearby pools. Pools in Austin Waters, Stewart Peninsula, and The Tribute are more susceptible to black algae introduction than pools 10 miles inland. Black algae is the most difficult pool algae to treat — it has protective caps and roots that penetrate plaster. We know the treatment protocol and watch for the early signs during every visit.",
+      "The Colony's established neighborhoods have pools ranging from 10 to 25 years old. Many are running original equipment — single-speed pumps, aging heaters, salt cells past their rated life, and automation systems that predate smartphone control. We help homeowners evaluate whether to repair or replace aging equipment, with honest assessments based on each component's actual condition rather than age alone.",
+      "Soil conditions in The Colony vary significantly by neighborhood. Properties closer to the lake sit on different fill material than properties on the inland side. Some areas experience more ground movement than others, and the resulting stress on pool shells and decks shows up as cracks, settlement, and plumbing joint failures over time. We document structural conditions at every visit.",
+    ],
+    visitIncludes: [
+      "Every weekly visit covers the full maintenance checklist — chemistry testing, surface cleaning, filter monitoring, and equipment inspection. For Colony pools, we add specific attention to metal corrosion points and black algae screening that inland pools don't typically need.",
+      "We test free chlorine, pH, alkalinity, and cyanuric acid at every visit and adjust on the spot. All chemicals are included in your monthly rate. Colony pools near the lake often need slightly different chemical approaches than inland pools — higher sanitizer maintenance to counteract the lake-environment biological load, and more attention to metal surfaces.",
+      "Surface cleaning includes brushing every wall and floor surface — critical in The Colony where black algae establishes in shaded, low-circulation areas first. Weekly brushing disrupts nascent black algae colonies before they can build the protective cap that makes them resistant to chlorine.",
+      "Equipment inspection is especially important on Colony pools where humidity accelerates corrosion. We check electrical connections for oxidation, bonding wires for green corrosion, pump housing bolts for rust, and union fittings for mineral buildup. After every visit, you receive a photo report documenting the pool condition and any observations.",
+    ],
+    neighborhoodDetails: [
+      {
+        name: "Austin Waters",
+        description:
+          "Austin Waters features established homes with pools built in the 2000s and early 2010s. The proximity to Lewisville Lake means higher humidity exposure and greater susceptibility to algae introduction. Equipment in these pools is 10–20 years old — we monitor each component and plan replacements before failures occur.",
+      },
+      {
+        name: "Stewart Peninsula",
+        description:
+          "Stewart Peninsula sits closest to the lake with the highest humidity exposure of any Colony neighborhood. Pools here experience faster equipment corrosion and more frequent black algae challenges. We adjust our service protocol accordingly — more thorough metal inspections and proactive algae screening.",
+      },
+      {
+        name: "The Tribute",
+        description:
+          "The Tribute is The Colony's premier community with upscale pool installations including automation, water features, and premium finishes. Many Tribute pools have complex systems that require technology management alongside traditional pool chemistry.",
+      },
+      {
+        name: "Main Street & SH-121 Corridor",
+        description:
+          "Neighborhoods along Main Street and the SH-121 corridor represent The Colony's mid-development period with a mix of pool ages and equipment configurations. These are standard residential pools that benefit most from consistent, reliable weekly attention.",
+      },
+    ],
+    switchReasons: [
+      "Colony homeowners switch to us when their previous service doesn't understand the lake-proximity challenges. Standard pool maintenance works fine 10 miles inland — but Colony pools need adjusted corrosion monitoring, black algae awareness, and humidity-adapted equipment maintenance that generic services don't provide.",
+      "The second reason is communication. We send photo reports after every visit showing pool condition and any equipment observations. Colony homeowners who've dealt with surprise equipment failures appreciate knowing that someone is actively monitoring their system.",
+      "The third reason is the usual — chemical transparency and repair capability. All chemicals included, no surprise charges. When equipment fails, we handle the repair in-house with full context of the pool's history and condition.",
     ],
     faqs: [
       {
-        question: "How much does pool cleaning cost in The Colony, TX?",
+        question: "How much does pool service cost in The Colony?",
         answer:
-          "Pool cleaning in The Colony starts at $139/month for bi-weekly service. Weekly cleaning is $179/month and Premium Care with equipment support is $229/month. All chemicals are included.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
       },
       {
-        question: "Do you service HOA pools in The Colony?",
+        question: "Do you include chemicals?",
         answer:
-          "Yes. We provide commercial pool maintenance for HOAs, apartment complexes, and community pools throughout The Colony. Contact us for a custom commercial quote.",
+          "Yes, all chemicals in every plan.",
       },
       {
-        question: "What areas of The Colony do you serve?",
+        question: "How quickly can you start?",
         answer:
-          "We serve all neighborhoods in The Colony including Austin Waters, Stewart Peninsula, Cascades, and communities near Lake Lewisville.",
+          "As soon as you fill out the quote form we get you scheduled.",
       },
       {
-        question: "Do you offer emergency pool repairs in The Colony?",
+        question: "Do you handle black algae?",
         answer:
-          "Yes. We offer responsive pool repair services for equipment failures, plumbing issues, and other urgent pool problems throughout The Colony, TX.",
+          "Yes. We know the full treatment protocol — stainless steel brushing, direct chlorine application, sustained shock, and follow-up monitoring.",
+      },
+      {
+        question: "What Colony neighborhoods do you serve?",
+        answer:
+          "All — Austin Waters, Stewart Peninsula, The Tribute, and all surrounding areas.",
+      },
+      {
+        question: "What if my pool needs a repair?",
+        answer:
+          "We handle repairs in-house.",
+      },
+      {
+        question: "Do you handle equipment corrosion issues?",
+        answer:
+          "Yes. We inspect electrical and metal components for humidity-related corrosion at every visit.",
+      },
+      {
+        question: "What makes you different?",
+        answer:
+          "Lake-proximity expertise, black algae treatment capability, corrosion monitoring, photo reports every visit, all chemicals included, in-house repairs.",
       },
     ],
     testimonials: [
@@ -850,9 +968,9 @@ export const cityContent: Record<string, CityContent> = {
   murphy: {
     id: "murphy",
     metaTitle:
-      "Pool Service in Murphy, TX | Pool Cleaning & Care | Hydra Pool Services",
+      "Pool Cleaning Service in Murphy, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Reliable pool service in Murphy, TX. Weekly pool cleaning, chemical balancing & equipment inspections starting at $139/mo. Call (214) 233-6803 for a free quote.",
+      "Murphy pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Maxwell Creek, Mustang Park & all Murphy. Call 214-233-6803.",
     headline: "Pool Service in Murphy, TX",
     intro:
       "Murphy may be one of the smaller cities in Collin County, but its pools deserve the same professional care as any neighborhood in DFW. Hydra Pool Services provides reliable weekly pool maintenance to Murphy homeowners, keeping your water crystal clear, your chemicals perfectly balanced, and your equipment in top condition. We treat every pool like our own.",
@@ -872,26 +990,85 @@ export const cityContent: Record<string, CityContent> = {
       "Mustang Park",
       "Murphy Marketplace area",
     ],
+    poolChallenges: [
+      "Murphy's compact, family-dense neighborhoods mean pools get heavy use from May through September. A pool that serves a family of five with weekend guests handles a bather load that demands more aggressive chlorine management than a pool that sits unused most weeks. We adjust chemical dosing based on actual usage patterns — not a static formula that assumes every pool sees the same activity.",
+      "Murphy sits in eastern Collin County where the clay soil is particularly expansive. The swell-and-shrink cycle with seasonal rainfall and drought stresses pool shells, cracks decks, and shifts equipment pad slabs. Pools built during Murphy's rapid growth in the 2005–2015 period are now entering the age where soil-related structural issues become visible. We document deck conditions and shell integrity at every visit.",
+      "The mature tree canopy in Maxwell Creek and older Murphy neighborhoods produces heavy leaf loads during fall and dense pollen during spring. Pools in these areas need more frequent filter cleaning and aggressive skimming during peak seasons. The organic load from decomposing leaves also increases chlorine demand — we increase sanitizer dosing during these periods to prevent algae from exploiting the chemistry gap.",
+      "Murphy's location between Allen and Wylie means it draws from the same NTMWD water supply, but mineral content can vary slightly by neighborhood based on distribution system routing. We test each pool's water individually rather than assuming uniform chemistry across the city.",
+    ],
+    visitIncludes: [
+      "Every weekly visit covers the full maintenance routine — chemistry testing, surface cleaning, filter monitoring, and equipment inspection. We measure free chlorine, pH, alkalinity, and cyanuric acid and make adjustments on the spot. All chemicals are included in your monthly rate — no separate invoices for shock, acid, or specialty chemicals.",
+      "Surface cleaning is thorough, not cosmetic. We skim the surface, brush every wall and floor surface including behind ladders and under coping lips, and vacuum settled debris. Murphy pools with heavy tree exposure get extra attention during fall when leaf loads can overwhelm a skimmer basket between visits.",
+      "Equipment inspection happens at every visit. We track pump performance, filter pressure trends, salt cell output, and heater condition from week to week. Murphy's family-heavy pool usage puts more hours on equipment than a lightly-used pool — bearings wear faster, filters load quicker, and salt cells work harder. Weekly monitoring catches degradation before it becomes failure.",
+      "After every visit, you receive a digital service report with photos. You know exactly what was done, what was found, and what your pool looks like — without having to be home during the visit.",
+    ],
+    neighborhoodDetails: [
+      {
+        name: "Maxwell Creek",
+        description:
+          "Maxwell Creek is Murphy's most established pool community with homes dating from the early 2000s. Pools here are 15–20 years old with mature landscaping that creates significant shade and leaf debris. Equipment is approaching or past its expected lifespan — we monitor each component and help homeowners plan replacements proactively.",
+      },
+      {
+        name: "Mustang Park",
+        description:
+          "Mustang Park features newer construction with modern pool builds. These pools have current-generation equipment — variable speed pumps, salt systems, and LED lighting. Maintenance is straightforward when done consistently, and the newer equipment responds well to proper weekly attention.",
+      },
+      {
+        name: "Murphy Heights",
+        description:
+          "Murphy Heights and surrounding neighborhoods represent Murphy's mid-development period — pools built between 2008 and 2015 with equipment entering the 10–15 year replacement window. Pump bearings, filter cartridges, and salt cells from this era are reaching end of life simultaneously. We track each component's condition and flag replacement timing.",
+      },
+      {
+        name: "Eastern Murphy",
+        description:
+          "Eastern Murphy near the Wylie border includes properties with slightly larger lots and more open exposure. These pools experience more wind-driven debris and faster evaporation than the sheltered interior neighborhoods.",
+      },
+    ],
+    switchReasons: [
+      "Murphy homeowners switch to us when they realize their pool needs maintenance, not just cleaning. Skimming leaves and adding chlorine keeps the surface clean — but it doesn't monitor the filter pressure trend that indicates a failing cartridge, or the pump sound that signals bearing wear, or the salt cell output that's declining month over month. We track all of this.",
+      "The second reason is reliability. Murphy is a tight-knit community where word travels fast. When a pool service skips visits or shows up inconsistently, neighbors notice. We show up on the same day every week with a photo report to prove it.",
+      "The third reason is chemical transparency. We include all chemicals in every plan. The monthly rate you see is the rate you pay — no add-ons for shock, acid, algaecide, or seasonal treatments.",
+    ],
     faqs: [
       {
-        question: "How much does pool service cost in Murphy, TX?",
+        question: "How much does pool service cost in Murphy?",
         answer:
-          "Pool service in Murphy starts at $139/month for bi-weekly cleaning. Weekly service is $179/month and Premium Care with equipment support is $229/month. All chemicals are included in every plan.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
       },
       {
-        question: "How often should I have my pool cleaned in Murphy?",
+        question: "Do you include chemicals?",
         answer:
-          "We recommend weekly service for the best results, especially during the hot Texas summer months. Bi-weekly service works for pools with lower usage or during the cooler season.",
+          "Yes, all chemicals in every plan.",
       },
       {
-        question: "Do you service both chlorine and saltwater pools in Murphy?",
+        question: "How quickly can you start?",
         answer:
-          "Yes. We service both traditional chlorine and saltwater pool systems in Murphy. For saltwater pools, we also monitor salt levels and clean the generator cell.",
+          "As soon as you fill out the quote form we get you scheduled.",
       },
       {
-        question: "Can you fix pool equipment issues in Murphy?",
+        question: "Do you service saltwater pools?",
         answer:
-          "Yes. We handle pump repairs, filter replacements, heater diagnostics, and other equipment repairs for Murphy pool owners. Our Premium Care plan includes equipment repair support.",
+          "Yes, all brands. Cell cleaning, salt monitoring, output adjustment, error diagnosis.",
+      },
+      {
+        question: "What Murphy neighborhoods do you serve?",
+        answer:
+          "All — Maxwell Creek, Mustang Park, Murphy Heights, and all surrounding areas.",
+      },
+      {
+        question: "What if my pool needs a repair?",
+        answer:
+          "We handle repairs in-house.",
+      },
+      {
+        question: "Do you offer one-time cleanings?",
+        answer:
+          "Yes, plus green pool recovery.",
+      },
+      {
+        question: "What makes you different?",
+        answer:
+          "Weekly equipment monitoring, photo reports, all chemicals included, in-house repairs.",
       },
     ],
     testimonials: [
