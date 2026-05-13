@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 export const metadata: Metadata = {
   title: "Card Saved Successfully | Hydra Pool Services",
@@ -20,7 +20,7 @@ export default async function PaymentSuccessPage({
 
   let verified = false;
   try {
-    const session = await stripe.checkout.sessions.retrieve(session_id);
+    const session = await getStripe().checkout.sessions.retrieve(session_id);
     verified = session.status === "complete";
   } catch {
     // Invalid or expired session

@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { siteConfig } from "@/lib/data/site";
 
 export async function POST() {
   try {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url;
 
+    const stripe = getStripe();
     const customer = await stripe.customers.create();
 
     const session = await stripe.checkout.sessions.create({
