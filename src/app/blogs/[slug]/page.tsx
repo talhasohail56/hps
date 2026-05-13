@@ -223,6 +223,23 @@ export default async function BlogPostPage({
         <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8 md:py-12">
           <Prose content={post.content} className="mx-auto" />
         </div>
+
+        {/* ---- Author bio ---- */}
+        <div className="mx-auto max-w-3xl border-t border-border-light px-4 py-10 sm:px-6 lg:px-8">
+          <div className="flex items-start gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-hydra-50">
+              <User className="h-6 w-6 text-hydra-600" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-navy">
+                John Smith, CPO-Certified Pool Technician
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-slate-light">
+                Servicing pools across Frisco, Plano, McKinney &amp; North DFW.
+              </p>
+            </div>
+          </div>
+        </div>
       </article>
 
       {/* ---- Related posts ---- */}
