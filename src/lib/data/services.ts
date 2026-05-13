@@ -361,9 +361,9 @@ const poolRepairServices: Service = {
   subtitle: "Expert Solutions for Pool Equipment",
   heroDescription:
     "Pools are meant for fun and relaxation, but when something breaks, stress quickly takes over. At Hydra Pool Services, we provide expert pool repair services to get your system running smoothly again. From small leaks and pump issues to full pool remodeling and filter replacements, we have the tools, the parts, and the know-how to bring your pool back to life.\n\nWe proudly serve North DFW, TX, including Frisco, Murphy, Allen, Plano, McKinney, and The Colony, TX, with fast and reliable pool repairs backed by friendly and experienced technicians.",
-  metaTitle: "Pool Repair Services | Hydra Pool Services",
+  metaTitle: "Pool Repair in Frisco & North DFW — Same-Week Service | Hydra",
   metaDescription:
-    "Expert pool repair services in North DFW. Pump repairs, filter replacement, heater fixes, plumbing, and more. Fast, reliable service with quality parts.",
+    "Pump failures, heater issues, leaks, filter problems — diagnosed and repaired by techs who service pools weekly and know your equipment. Frisco, Plano, McKinney, Allen. Call 214-233-6803.",
   sections: [
     {
       heading: "Our Pool Repair Process — Full Equipment Inspections Before Repairs",
@@ -481,9 +481,9 @@ const beadBlasting: Service = {
   subtitle: "Bring Your Pool Surfaces Back to Life",
   heroDescription:
     "Even the cleanest pool needs a deep refresh from time to time. Over the years, pool tiles and surfaces begin to show stains, calcium deposits, algae spots, and debris that regular pool cleaning cannot remove. That is where Hydra Pool Services comes in with our professional bead blasting service.\n\nUsing fine, eco-friendly glass beads, we restore tile, stone, and pool surfaces without scratching or damage. The result is a sparkling, fresh look that makes your pool appear brand new.\n\nIf you are in North DFW, TX, including Frisco, Murphy, Allen, Plano, McKinney, or The Colony, TX, our bead blasting experts are here to bring your pool back to life.",
-  metaTitle: "Bead Blasting for Pools | Hydra Pool Services",
+  metaTitle: "Pool Tile Bead Blasting — Frisco, Plano, McKinney | Hydra",
   metaDescription:
-    "Professional bead blasting service to remove calcium, stains, and algae from pool tiles. Eco-friendly glass beads, safe for all surfaces. Serving North DFW, TX.",
+    "Years of calcium scale and waterline buildup removed in one visit. Your tile looks new again. Safe for glass, porcelain, and stone tile. Serving North DFW. Call 214-233-6803.",
   sections: [
     {
       heading: "Why Choose Hydra for Pool Tile Cleaning and Bead Blasting",

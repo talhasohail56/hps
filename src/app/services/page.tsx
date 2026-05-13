@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   CheckCircle,
@@ -35,6 +36,16 @@ const iconMap: Record<string, ComponentType<LucideProps>> = {
   Sparkles,
   GraduationCap,
   FlaskConical,
+};
+
+/* ------------------------------------------------------------------ */
+/*  Metadata                                                           */
+/* ------------------------------------------------------------------ */
+
+export const metadata: Metadata = {
+  title: "Pool Services — Weekly Cleaning, Repairs & More | Hydra Pool Services",
+  description:
+    "Weekly cleaning from $120/mo, all chemicals included. Plus repairs, filter service, bead blasting, and salt cell maintenance. Serving Frisco, Plano, McKinney, Allen & North DFW. Free first 2 weeks.",
 };
 
 /* ------------------------------------------------------------------ */
