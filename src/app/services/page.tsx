@@ -43,9 +43,9 @@ const iconMap: Record<string, ComponentType<LucideProps>> = {
 /* ------------------------------------------------------------------ */
 
 export const metadata: Metadata = {
-  title: "Pool Services — Weekly Cleaning, Repairs & More | Hydra Pool Services",
+  title: "Pool Services — Weekly Cleaning, Repairs & More",
   description:
-    "Weekly cleaning from $120/mo, all chemicals included. Plus repairs, filter service, bead blasting, and salt cell maintenance. Serving Frisco, Plano, McKinney, Allen & North DFW. Free first 2 weeks.",
+    "Weekly cleaning from $139/mo, all chemicals included. Plus repairs, filter service, bead blasting, and salt cell maintenance. Serving Frisco, Plano, McKinney, Allen & North DFW. Free first 2 weeks.",
 };
 
 /* ------------------------------------------------------------------ */

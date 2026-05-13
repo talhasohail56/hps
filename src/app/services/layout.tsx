@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/lib/data/site";
 
 export const metadata: Metadata = {
-  title: "Pool Services in Frisco, TX & North DFW",
+  title: "Pool Services — Weekly Cleaning, Repairs & More",
   description:
-    "Pool cleaning, maintenance, repairs, bead blasting & more in Frisco, TX. Residential & commercial pool care from $120/mo. All chemicals included. Free first 2 weeks. Call (214) 233-6803.",
+    "Pool cleaning, maintenance, repairs, bead blasting & more in Frisco, TX. Residential & commercial pool care from $139/mo. All chemicals included. Free first 2 weeks. Call (214) 233-6803.",
   alternates: {
     canonical: `${siteConfig.url}/services`,
   },
   openGraph: {
-    title: "Pool Services | Hydra Pool Services",
+    title: "Pool Services — Weekly Cleaning, Repairs & More | Hydra Pool Services",
     description:
-      "Professional pool services in Frisco, TX and North DFW. Residential and commercial maintenance, repairs, bead blasting, and more.",
+      "Weekly cleaning from $139/mo, all chemicals included. Plus repairs, filter service, bead blasting, and salt cell maintenance. Serving Frisco, Plano, McKinney, Allen & North DFW.",
     url: `${siteConfig.url}/services`,
   },
 };
