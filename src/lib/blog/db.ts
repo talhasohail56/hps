@@ -126,7 +126,7 @@ async function writeDB(db: BlogDB): Promise<void> {
   }
 
   await fs.mkdir(path.dirname(LOCAL_PATH), { recursive: true });
-  await fs.writeFile(LOCAL_PATH, JSON.stringify(db, null, 2), "utf-8");
+  await fs.writeFile(LOCAL_PATH, JSON.stringify(db), "utf-8");
 }
 
 /* ------------------------------------------------------------------ */
