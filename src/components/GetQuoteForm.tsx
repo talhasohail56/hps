@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, Clock } from "lucide-react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { cn } from "@/lib/utils";
 import { trackLead } from "@/lib/analytics";
 
@@ -61,6 +62,7 @@ export function GetQuoteForm({ className }: GetQuoteFormProps) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   /* ---- Handlers ---- */
 
@@ -90,32 +92,47 @@ export function GetQuoteForm({ className }: GetQuoteFormProps) {
     return errs;
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-    setSubmitting(true);
-    try {
-      const res = await fetch("https://formspree.io/f/xbdkpwqr", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        trackLead({ source: "home_quote_form" });
-        setSubmitted(true);
-      } else {
-        setErrors({ name: "Something went wrong. Please try again." });
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      const validationErrors = validate();
+      if (Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors);
+        return;
       }
-    } catch {
-      setErrors({ name: "Network error. Please try again." });
-    } finally {
-      setSubmitting(false);
-    }
-  }
+
+      if (!executeRecaptcha) {
+        setErrors({ name: "reCAPTCHA not ready. Please try again." });
+        return;
+      }
+
+      setSubmitting(true);
+      try {
+        const recaptchaToken = await executeRecaptcha("form_submit");
+
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...form, recaptchaToken }),
+        });
+
+        if (res.ok) {
+          trackLead({ source: "home_quote_form" });
+          setSubmitted(true);
+        } else {
+          const data = await res.json().catch(() => null);
+          setErrors({
+            name: data?.error || "Something went wrong. Please try again.",
+          });
+        }
+      } catch {
+        setErrors({ name: "Network error. Please try again." });
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    [executeRecaptcha, form]
+  );
 
   /* ---- Render ---- */
 
