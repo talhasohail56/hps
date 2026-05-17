@@ -3,8 +3,9 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { CheckCircle, Droplets, Calendar, ClipboardCheck, Activity, Bell } from "lucide-react";
+import { CheckCircle, Droplets, Calendar, ClipboardCheck, Activity, Bell, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { siteConfig } from "@/lib/data/site";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
 import { NoiseOverlay } from "@/components/graphics/NoiseOverlay";
 import { GridOverlay } from "@/components/graphics/GridOverlay";
@@ -156,19 +157,20 @@ export function Hero() {
                 Get a Quote
               </button>
 
-              {/* Secondary — View Plans */}
-              <Link
-                href="/plans"
+              {/* Secondary — Call Now */}
+              <a
+                href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`}
                 className={cn(
-                  "inline-flex items-center justify-center rounded-xl border border-hydra-500 bg-white px-7 py-3.5 text-sm font-semibold text-hydra-600 shadow-sm",
+                  "inline-flex items-center justify-center gap-2 rounded-xl border border-hydra-500 bg-white px-7 py-3.5 text-sm font-semibold text-hydra-600 shadow-sm",
                   "transition-all duration-200 ease-out",
                   "hover:-translate-y-0.5 hover:shadow-md hover:bg-hydra-50/60",
                   "active:scale-[0.98]",
                   "focus-visible:ring-2 focus-visible:ring-hydra-500 focus-visible:ring-offset-2"
                 )}
               >
-                View Plans
-              </Link>
+                <Phone className="h-4 w-4" />
+                Call Now
+              </a>
             </motion.div>
 
             {/* Trust indicators */}

@@ -5,6 +5,7 @@ import { serviceAreas } from "@/lib/data/areas";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ChatLauncher } from "@/components/chat/ChatLauncher";
+import { StickyCallButton } from "@/components/StickyCallButton";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import { PostHogPageView } from "@/components/PostHogPageView";
 import { RouteChangeTracker } from "@/components/RouteChangeTracker";
@@ -246,6 +247,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <Navbar />
             <main>{children}</main>
             <Footer />
+            <StickyCallButton />
             <ChatLauncher />
           </ReCaptchaProvider>
         </PostHogProvider>

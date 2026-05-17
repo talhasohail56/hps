@@ -318,6 +318,50 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
+      {/* TESTIMONIALS (Google Reviews - Elfsight)                       */}
+      {/* ============================================================ */}
+      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-t border-border-light">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Section header */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={sectionFade}
+            className="text-center"
+          >
+            <p className="mb-3 text-sm font-semibold tracking-wider text-hydra-500 uppercase">
+              Testimonials
+            </p>
+            <h2 className="text-3xl font-bold text-navy md:text-4xl">
+              What Our Customers Say
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-slate">
+              Real reviews from homeowners we serve every week.
+            </p>
+          </motion.div>
+
+          {/* Elfsight Google Reviews widget */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={sectionFade}
+            className="elfsight-theme-wrapper mt-14"
+          >
+            <Script
+              src="https://static.elfsight.com/platform/platform.js"
+              strategy="lazyOnload"
+            />
+            <div
+              className="elfsight-app-0118d724-61e6-4d56-9cf9-59424e50bd4f"
+              data-elfsight-app-lazy
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* 3. PLANS & PRICING PREVIEW                                    */}
       {/* ============================================================ */}
       <section className="relative bg-white py-20 md:py-28 border-t border-border-light">
@@ -646,49 +690,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* 8. GOOGLE REVIEWS (Elfsight)                                    */}
-      {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-t border-border-light">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Section header */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={sectionFade}
-            className="text-center"
-          >
-            <p className="mb-3 text-sm font-semibold tracking-wider text-hydra-500 uppercase">
-              Testimonials
-            </p>
-            <h2 className="text-3xl font-bold text-navy md:text-4xl">
-              What Our Customers Say
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-slate">
-              Real reviews from homeowners we serve every week.
-            </p>
-          </motion.div>
-
-          {/* Elfsight Google Reviews widget */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={sectionFade}
-            className="elfsight-theme-wrapper mt-14"
-          >
-            <Script
-              src="https://static.elfsight.com/platform/platform.js"
-              strategy="lazyOnload"
-            />
-            <div
-              className="elfsight-app-0118d724-61e6-4d56-9cf9-59424e50bd4f"
-              data-elfsight-app-lazy
-            />
-          </motion.div>
-        </div>
-      </section>
 
       {/* ============================================================ */}
       {/* 9. FAQ                                                        */}
