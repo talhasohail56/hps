@@ -23,32 +23,50 @@ async function ghRead(): Promise<{ db: BlogDB; sha: string }> {
   });
 
   if (!res.ok) {
-    console.error("GitHub read error:", res.status, await res.text());
+    console.error("[blog] GitHub read error:", res.status, await res.text());
     return { db: { posts: [] }, sha: "" };
   }
 
   const json = await res.json();
 
-  // Files over 1 MB have empty content; fall back to the raw download URL.
+  // Files over 1 MB have empty content from Contents API.
+  // Use Git Blobs API instead of download_url to avoid CDN caching.
   let raw: string;
   if (json.content) {
     raw = Buffer.from(json.content, "base64").toString("utf-8");
-  } else if (json.download_url) {
-    const dl = await fetch(json.download_url, { cache: "no-store" });
-    raw = await dl.text();
+  } else if (json.sha) {
+    // Fetch via Git Blobs API — no CDN cache, always fresh
+    const blobUrl = `https://api.github.com/repos/${GH_REPO}/git/blobs/${json.sha}`;
+    const blobRes = await fetch(blobUrl, {
+      headers: {
+        Authorization: `Bearer ${GH_TOKEN}`,
+        Accept: "application/vnd.github.v3+json",
+      },
+      cache: "no-store",
+    });
+    if (!blobRes.ok) {
+      console.error("[blog] GitHub blob read error:", blobRes.status, await blobRes.text());
+      return { db: { posts: [] }, sha: json.sha };
+    }
+    const blob = await blobRes.json();
+    raw = Buffer.from(blob.content, "base64").toString("utf-8");
   } else {
-    console.error("GitHub: no content or download_url for", GH_FILE);
-    return { db: { posts: [] }, sha: json.sha ?? "" };
+    console.error("[blog] GitHub: no content or sha for", GH_FILE);
+    return { db: { posts: [] }, sha: "" };
   }
 
-  return { db: JSON.parse(raw), sha: json.sha };
+  const db: BlogDB = JSON.parse(raw);
+  console.log(`[blog] ghRead: ${db.posts.length} posts, sha=${json.sha.slice(0, 7)}`);
+  return { db, sha: json.sha };
 }
 
 async function ghWrite(db: BlogDB, sha: string): Promise<void> {
-  const content = Buffer.from(
-    JSON.stringify(db, null, 2),
-    "utf-8"
-  ).toString("base64");
+  const json = JSON.stringify(db, null, 2);
+  console.log(
+    `[blog] ghWrite: ${db.posts.length} posts, sha=${sha.slice(0, 7)}, size=${json.length} bytes`
+  );
+
+  const content = Buffer.from(json, "utf-8").toString("base64");
 
   const res = await fetch(GH_API, {
     method: "PUT",
@@ -66,9 +84,11 @@ async function ghWrite(db: BlogDB, sha: string): Promise<void> {
 
   if (!res.ok) {
     const body = await res.text();
-    console.error("GitHub write error:", res.status, body);
+    console.error("[blog] ghWrite error:", res.status, body);
     throw new Error("Failed to save to GitHub");
   }
+
+  console.log(`[blog] ghWrite: success, status=${res.status}`);
 }
 
 /* ------------------------------------------------------------------ */
@@ -120,7 +140,11 @@ async function writeDB(db: BlogDB): Promise<void> {
         "GITHUB_TOKEN is not set. Add it to your Vercel environment variables to enable blog editing."
       );
     }
+    console.log("[blog] writeDB: fetching current SHA before write...");
     const { sha } = await ghRead();
+    if (!sha) {
+      throw new Error("Failed to get current SHA from GitHub — cannot write");
+    }
     await ghWrite(db, sha);
     return;
   }
