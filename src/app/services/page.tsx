@@ -52,9 +52,72 @@ export const metadata: Metadata = {
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
+const siteUrl = "https://www.hydrapoolservices.com";
+
+const areaServed = [
+  "Frisco", "Plano", "McKinney", "Allen",
+  "Murphy", "The Colony", "Prosper", "Parker",
+].map((city) => ({ "@type": "City" as const, name: city }));
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    { "@type": "ListItem", position: 2, name: "Services", item: `${siteUrl}/services` },
+  ],
+};
+
+const serviceSchemaJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      name: "Pool Cleaning",
+      description: "Weekly and bi-weekly residential pool cleaning with all chemicals included.",
+      provider: { "@type": "LocalBusiness", name: "Hydra Pool Services" },
+      areaServed,
+      priceRange: "$$",
+    },
+    {
+      "@type": "Service",
+      name: "Pool Repair",
+      description: "Expert pool equipment repair including pumps, filters, heaters, plumbing, and automation systems.",
+      provider: { "@type": "LocalBusiness", name: "Hydra Pool Services" },
+      areaServed,
+      priceRange: "$$",
+    },
+    {
+      "@type": "Service",
+      name: "Bead Blasting",
+      description: "Professional bead blasting to remove calcium scale and restore pool tile to like-new condition.",
+      provider: { "@type": "LocalBusiness", name: "Hydra Pool Services" },
+      areaServed,
+      priceRange: "$$",
+    },
+    {
+      "@type": "Service",
+      name: "Commercial Pool Maintenance",
+      description: "Professional pool care for hotels, HOAs, gyms, and apartment complexes with compliance documentation.",
+      provider: { "@type": "LocalBusiness", name: "Hydra Pool Services" },
+      areaServed,
+      priceRange: "$$",
+    },
+  ],
+};
+
 export default function ServicesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchemaJsonLd) }}
+      />
+
       {/* ============================================================ */}
       {/*  1. HERO HEADER                                              */}
       {/* ============================================================ */}

@@ -798,7 +798,7 @@ export default function HomePage() {
               <div className="relative aspect-[4/3] overflow-hidden bg-hydra-50">
                 <Image
                   src="/pool-before.webp"
-                  alt="Pool before cleaning — murky water and debris"
+                  alt="Green pool before cleaning in Frisco TX"
                   width={960}
                   height={720}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
@@ -816,7 +816,7 @@ export default function HomePage() {
               <div className="relative aspect-[4/3] overflow-hidden bg-hydra-50">
                 <Image
                   src="/pool-after.webp"
-                  alt="Pool after cleaning — crystal clear water"
+                  alt="Crystal clear pool after Hydra Pool Services weekly maintenance"
                   width={960}
                   height={720}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"

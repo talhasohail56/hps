@@ -11,9 +11,23 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+    { "@type": "ListItem", position: 2, name: "Terms of Service", item: `${siteConfig.url}/terms` },
+  ],
+};
+
 export default function TermsOfServicePage() {
   return (
-    <article className="bg-white py-16 md:py-24">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <article className="bg-white py-16 md:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-extrabold tracking-tight text-navy sm:text-4xl">
           Terms of Service
@@ -358,5 +372,6 @@ export default function TermsOfServicePage() {
         </div>
       </div>
     </article>
+    </>
   );
 }

@@ -52,9 +52,23 @@ const contactCards = [
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+    { "@type": "ListItem", position: 2, name: "Contact", item: `${siteConfig.url}/contact` },
+  ],
+};
+
 export default function ContactPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* ============================================================ */}
       {/*  1. HERO HEADER                                              */}
       {/* ============================================================ */}

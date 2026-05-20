@@ -56,6 +56,19 @@ const staggerItem = {
   },
 };
 
+/* ------------------------------------------------------------------ */
+/*  JSON-LD: BreadcrumbList                                             */
+/* ------------------------------------------------------------------ */
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+    { "@type": "ListItem", position: 2, name: "Service Areas", item: `${siteConfig.url}/areas` },
+  ],
+};
+
 /* ================================================================== */
 /*  Page Component                                                      */
 /* ================================================================== */
@@ -65,6 +78,11 @@ export default function AreasPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* ============================================================ */}
       {/*  1. HERO HEADER                                               */}
       {/* ============================================================ */}
