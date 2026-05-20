@@ -159,6 +159,84 @@ export default function HomePage() {
     []
   );
 
+  const localBusinessJsonLd = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: "Hydra Pool Services",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Frisco",
+        addressRegion: "TX",
+        postalCode: "75034",
+        addressCountry: "US",
+      },
+      telephone: "(214) 233-6803",
+      url: siteConfig.url,
+      areaServed: [
+        "Frisco",
+        "Plano",
+        "McKinney",
+        "Allen",
+        "Murphy",
+        "The Colony",
+        "Prosper",
+        "Parker",
+      ].map((city) => ({ "@type": "City", name: city })),
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        bestRating: "5",
+        worstRating: "1",
+        reviewCount: "47",
+      },
+      priceRange: "$$",
+    }),
+    []
+  );
+
+  const homepageFaqJsonLd = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "How much does pool service cost in Frisco?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Weekly pool service in Frisco starts at $179/mo with all chemicals included. Bi-weekly service starts at $139/mo.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What’s included in weekly pool service?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Every visit includes water chemistry testing, chemical adjustment, surface skimming, brushing, vacuuming, basket emptying, filter check, and equipment inspection.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Do you include chemicals?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, all chemicals are included in every plan — chlorine, acid, stabilizer, shock, and any specialty chemicals your pool needs.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What areas do you serve?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "We serve Frisco, Plano, McKinney, Allen, Murphy, The Colony, Prosper, and Parker.",
+          },
+        },
+      ],
+    }),
+    []
+  );
+
   const howToJsonLd = useMemo(
     () => ({
       "@context": "https://schema.org",
@@ -186,6 +264,14 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageFaqJsonLd) }}
       />
 
       {/* ============================================================ */}
