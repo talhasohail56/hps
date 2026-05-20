@@ -45,6 +45,62 @@ export async function generateMetadata({
 }
 
 /* ------------------------------------------------------------------ */
+/*  City-specific deep-dive FAQs                                       */
+/* ------------------------------------------------------------------ */
+
+const cityDeepFaqs: Record<string, { question: string; answer: string }[]> = {
+  frisco: [
+    { question: "How much does pool cleaning cost in Frisco?", answer: "Weekly pool service in Frisco starts at $179/mo with all chemicals included. Bi-weekly starts at $139/mo. Both plans include water testing, chemical adjustment, surface cleaning, and equipment inspection every visit." },
+    { question: "How often should I service my pool in Frisco?", answer: "Weekly service is recommended year-round in Frisco. Bi-weekly can work October through March, but the summer heat, pollen, and UV intensity make weekly service essential from April through September." },
+    { question: "What pool problems are most common in Frisco?", answer: "Hard water scaling from Frisco's 150-250 ppm calcium tap water, high CYA from chlorine tab overuse, and heavy pollen loading in spring are the most common issues we treat. Starwood pools also face heavy tree debris and aging equipment." },
+    { question: "Do you service pools in Starwood and Phillips Creek Ranch?", answer: "Yes, we service pools throughout Frisco including Starwood, Phillips Creek Ranch, Richwoods, Hollyhock, Lawler Park, Newman Village, and all other Frisco neighborhoods." },
+    { question: "Do you include chemicals in your pool service?", answer: "Yes, all chemicals are included in every plan — liquid chlorine, muriatic acid, stabilizer, shock, and any specialty chemicals your pool needs. No hidden chemical fees." },
+  ],
+  plano: [
+    { question: "How much does pool service cost in Plano?", answer: "Weekly pool service in Plano starts at $179/mo with all chemicals included. Bi-weekly starts at $139/mo." },
+    { question: "How often should I service my pool in Plano?", answer: "Weekly service year-round is recommended. The combination of Plano's hard water, summer heat, and pollen season makes consistent weekly attention essential for clear water." },
+    { question: "What pool problems are common in Plano?", answer: "Hard water scaling, aging equipment in older Plano neighborhoods, and high CYA from years of chlorine tab use are the most common issues. Plano pools also face heavy pollen loading in spring." },
+    { question: "Do you offer pool repair in Plano?", answer: "Yes, we handle pump replacement, heater repair, salt cell replacement, filter issues, and leak detection across Plano." },
+  ],
+  mckinney: [
+    { question: "How much does pool cleaning cost in McKinney?", answer: "Weekly pool service in McKinney starts at $179/mo with all chemicals included. Bi-weekly starts at $139/mo." },
+    { question: "What makes pool maintenance different in McKinney?", answer: "McKinney's municipal water is harder than many homeowners realize, leading to faster calcium scaling on tile and equipment. Regular acid washing and calcium management are essential." },
+    { question: "Do you service pools in all McKinney neighborhoods?", answer: "Yes, we serve pools throughout McKinney including Craig Ranch, Stonebridge Ranch, Tucker Hill, Adriatica, and all surrounding areas." },
+    { question: "How do I know if my pool has a leak?", answer: "If your pool loses more than 1/4 inch per day, it may be a leak rather than evaporation. We offer leak detection services across McKinney." },
+  ],
+  allen: [
+    { question: "How much does pool service cost in Allen?", answer: "Weekly pool service in Allen starts at $179/mo with all chemicals included. Bi-weekly starts at $139/mo." },
+    { question: "What pool issues are common in Allen?", answer: "Heavy spring pollen, hard water from the NTMWD supply, and aging equipment in Allen's established neighborhoods are the most common issues we address." },
+    { question: "How long should I run my pool pump in Allen?", answer: "In summer, run your pump 10-12 hours per day. In winter, 4-6 hours is sufficient. During freezes, run it 24/7 to prevent equipment damage." },
+    { question: "Do you offer salt cell cleaning in Allen?", answer: "Yes, we clean salt cells every 3-4 months as part of our service. In Allen's hard water, quarterly cleaning extends cell life by 1-2 years." },
+  ],
+  murphy: [
+    { question: "How much does pool cleaning cost in Murphy?", answer: "Weekly pool service in Murphy starts at $179/mo with all chemicals included. Bi-weekly starts at $139/mo." },
+    { question: "What makes Murphy pools different to maintain?", answer: "Murphy's mature neighborhoods have heavy tree coverage, creating more debris, faster filter loading, and increased organic chlorine demand. Shaded pools also see more algae on walls." },
+    { question: "Do you handle pool equipment repair in Murphy?", answer: "Yes, we diagnose and repair pumps, heaters, salt cells, filters, and automation systems across Murphy." },
+    { question: "How do I prepare my Murphy pool for winter?", answer: "Keep the pump running during freezes, insulate exposed pipes, maintain 1-2 ppm chlorine, and reduce pump runtime to 4-6 hours on non-freeze days." },
+  ],
+  "the-colony": [
+    { question: "How much does pool service cost in The Colony?", answer: "Weekly pool service in The Colony starts at $179/mo with all chemicals included. Bi-weekly starts at $139/mo." },
+    { question: "How does living near Lewisville Lake affect my pool?", answer: "The Colony's proximity to Lewisville Lake means higher humidity, more algae pressure, and wind-blown debris. Pools near the lake need more aggressive chlorine management and skimming." },
+    { question: "What should I do if my Colony pool overflows after rain?", answer: "Lower the water level using the waste setting on your filter valve or a submersible pump. Check that the equipment pad isn't flooded and verify chemistry after the rain." },
+    { question: "Do you service commercial pools in The Colony?", answer: "Yes, we provide commercial pool maintenance for HOA pools, apartment complexes, and community pools across The Colony." },
+  ],
+  prosper: [
+    { question: "How much does pool cleaning cost in Prosper?", answer: "Weekly pool service in Prosper starts at $179/mo with all chemicals included. Bi-weekly starts at $139/mo." },
+    { question: "My Prosper pool is brand new — do I still need service?", answer: "Yes, new pools need more attention, not less. Fresh plaster releases calcium hydroxide that spikes pH daily, and new pool chemistry is unstable for the first 6-12 months." },
+    { question: "Should I convert my Prosper pool to saltwater?", answer: "Salt systems provide softer water but require more maintenance in North Texas hard water — quarterly cell cleaning, more frequent pH management, and proactive calcium control." },
+    { question: "What landscaping works best around a Prosper pool?", answer: "Low-debris, low-root plants like dwarf yaupon holly, gulf muhly grass, and lantana work well. Avoid live oaks and pecans directly over the pool — they drop too much debris." },
+  ],
+  parker: [
+    { question: "How much does pool service cost in Parker?", answer: "Weekly pool service in Parker starts at $179/mo with all chemicals included. Bi-weekly starts at $139/mo." },
+    { question: "How does Parker's well water affect my pool?", answer: "Parker properties on well water deal with higher mineral content — especially iron and calcium. This causes faster staining, more scaling, and requires more aggressive chemical management than municipal water." },
+    { question: "Do you service pools on large Parker lots?", answer: "Yes, we service pools on Parker's larger acreage properties. The bigger lots often mean more tree coverage and wind exposure, which we account for in our service approach." },
+    { question: "What's different about pool maintenance in Parker?", answer: "Well water mineral management, deer-resistant landscaping considerations, larger pools with more water volume, and storm exposure on open lots make Parker pools unique compared to suburban Frisco or Plano." },
+  ],
+};
+
+/* ------------------------------------------------------------------ */
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
@@ -144,6 +200,21 @@ export default async function CityPage({
     },
   };
 
+  const deepFaqs = cityDeepFaqs[city] ?? [];
+
+  const deepFaqJsonLd = deepFaqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: deepFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  } : null;
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -183,6 +254,12 @@ export default async function CityPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {deepFaqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(deepFaqJsonLd) }}
+        />
+      )}
 
       {/* ── Hero ── */}
       <section className="bg-gradient-to-b from-hydra-50/60 to-white py-20 md:py-28">
@@ -544,6 +621,35 @@ export default async function CityPage({
                   </Link>
                 ) : null
               )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Deep-dive FAQs (city-specific) ── */}
+      {deepFaqs.length > 0 && (
+        <section className="bg-white py-16 md:py-20 border-t border-border-light">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-2 text-sm text-slate-light">
+              Common questions from {area.name} pool owners.
+            </p>
+            <div className="mt-8 divide-y divide-border-light rounded-2xl border border-border-light">
+              {deepFaqs.map((faq) => (
+                <details key={faq.question} className="group">
+                  <summary className="flex cursor-pointer items-center justify-between px-6 py-5 text-sm font-semibold text-navy transition-colors hover:text-hydra-600">
+                    {faq.question}
+                    <ChevronRight className="h-4 w-4 shrink-0 text-hydra-400 transition-transform duration-200 group-open:rotate-90" />
+                  </summary>
+                  <div className="px-6 pb-5 pr-12">
+                    <p className="text-sm leading-relaxed text-slate-light">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </details>
+              ))}
             </div>
           </div>
         </section>
