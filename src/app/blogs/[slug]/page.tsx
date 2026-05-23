@@ -21,6 +21,20 @@ export async function generateStaticParams() {
 /*  Metadata                                                           */
 /* ------------------------------------------------------------------ */
 
+/* ---- Slugs to noindex (cannibalized / duplicate topics) ---- */
+const NOINDEX_SLUGS = new Set([
+  "how-often-shock-pool-prosper-tx",
+  "salt-pool-vs-chlorine-frisco-tx",
+  "pool-pump-run-time-per-day-allen-tx",
+  "variable-speed-pool-pump-worth-it-texas",
+  "pool-leak-detection-signs-north-dfw",
+  "pool-replastering-signs-cost-plano-tx",
+  "pool-maintenance-cost-texas",
+  "monthly-cost-pool-north-texas-prosper-tx",
+  "weekly-pool-service-vs-diy-frisco-tx",
+  "poor-pool-maintenance-increases-repair-costs",
+]);
+
 export async function generateMetadata({
   params,
 }: {
@@ -37,6 +51,9 @@ export async function generateMetadata({
   return {
     title,
     description,
+    ...(NOINDEX_SLUGS.has(post.slug)
+      ? { robots: { index: false, follow: true } }
+      : {}),
     alternates: {
       canonical: `${siteConfig.url}/blogs/${post.slug}`,
     },
