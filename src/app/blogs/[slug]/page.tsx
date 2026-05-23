@@ -33,6 +33,7 @@ const NOINDEX_SLUGS = new Set([
   "monthly-cost-pool-north-texas-prosper-tx",
   "weekly-pool-service-vs-diy-frisco-tx",
   "poor-pool-maintenance-increases-repair-costs",
+  "pool-service-little-elm-tx",
 ]);
 
 export async function generateMetadata({
