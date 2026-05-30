@@ -22,11 +22,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Pool Cleaning Frisco TX | 4.9 Stars, 47 Reviews | Free Trial",
+    default: "Pool Service Frisco TX | Weekly Cleaning from $139/mo | Hydra Pool Services",
     template: `%s | ${siteConfig.name}`,
   },
   description:
-    "Weekly pool cleaning in Frisco starting at $129/mo. All chemicals included, no contract. Serving Starwood, Phillips Creek, Richwoods, and all Frisco. First 2 weeks free.",
+    "Professional pool cleaning and maintenance in Frisco, TX starting at $139/mo. Weekly service, all chemicals included, no contracts. Serving Frisco, Plano, McKinney & North DFW. Free first 2 weeks. Call (214) 233-6803.",
   keywords: [
     "pool cleaning Frisco TX",
     "pool service Frisco",

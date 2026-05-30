@@ -52,9 +52,9 @@ export const cityContent: Record<string, CityContent> = {
   frisco: {
     id: "frisco",
     metaTitle:
-      "Pool Service in Frisco TX | Weekly from $179/mo | Free 2 Weeks",
+      "Pool Cleaning Frisco TX | 4.9 Stars, 47 Reviews | Free Trial",
     metaDescription:
-      "Frisco pool cleaning, chemical balancing, and equipment repair. All chemicals included. No contract. Try us free for 2 weeks. Serving Phillips Creek, Starwood, and all Frisco. Call 214-233-6803.",
+      "Weekly pool cleaning in Frisco starting at $129/mo. All chemicals included, no contract. Serving Starwood, Phillips Creek, Richwoods, and all Frisco. First 2 weeks free.",
     headline: "Pool Service in Frisco, TX",
     intro:
       "Frisco is our home base. As a locally owned pool service company headquartered right here in Frisco, we understand the unique needs of North Texas pools — from the intense summer heat that drives up chlorine demand to the occasional hailstorms that leave debris in your water. Our certified technicians serve neighborhoods across Frisco with weekly pool cleaning, water chemistry management, and equipment inspections that keep your pool swim-ready year-round.",
