@@ -3377,6 +3377,28 @@
       "createdAt": "2026-08-08T15:37:41.195Z",
       "updatedAt": "2026-08-08T15:37:41.195Z",
       "readingTime": 5
+    },
+    {
+      "id": "8056a6b3-9ac8-48bf-a309-daed320e9652",
+      "title": "Power Came Back On — But Your Pool Equipment Didn't Reset Right",
+      "slug": "power-outage-pool-equipment-frisco-tx",
+      "excerpt": "After a power outage, timers reset, schedules get wiped, and breakers trip. A 20-minute outage can turn your pool green in 72 hours if nobody checks.",
+      "content": "After a power outage in Frisco, your pool equipment doesn't just pick up where it left off. Timers reset, schedules get wiped, and equipment trips offline. We've shown up to pools running pumps 24 hours straight — or not running them at all — because a 20-minute outage scrambled everything and nobody checked.\n\n## What Actually Happens to Pool Equipment During an Outage\n\nWhen power cuts, everything stops — pump, salt cell, heater, automation system. That part is obvious. What isn't obvious is what happens when power comes back:\n\n**Timers lose their schedule.** Most pool timers in [Frisco](https://hydrapoolservices.com/areas/frisco) are either mechanical (the ones with pins you push in around a dial) or digital. Mechanical timers keep their schedule because the pins are physical — but the clock is now wrong by however long the outage lasted. Your pump might run from 10 AM to 6 PM instead of 8 AM to 4 PM. Digital timers and automation systems are worse — they can reset to factory defaults entirely, meaning your custom run times, chlorinator output percentages, and heater schedules are gone.\n\n**Equipment trips.** GFCI breakers protecting pool equipment can trip during the power surge when electricity returns. The pump breaker is the most common one to trip. Your pump looks fine sitting there, but it's not running because the breaker popped — and you won't know until the pool starts turning green 3-4 days later.\n\n**Salt cells stop generating.** If your salt chlorine generator was mid-cycle when power cut, it may not resume chlorine production when power returns. Some models need a manual restart. Others restart but default to a lower output percentage. Either way, your chlorine level drops and nobody notices until the water clouds up.\n\n**Automation systems lose connection.** Systems like [iAquaLink can lose their pairing entirely](https://hydrapoolservices.com/blogs/iaqualink-automation-unpairing-frisco-tx) after a power outage combined with a router restart. If your router and pool equipment come back at different times, the automation might not reconnect on its own.\n\n## What We Check First After an Outage\n\nWhen we arrive at a pool after a known outage, here's the priority order:\n\n**1. Breakers.** Walk to the breaker panel and verify every pool-related breaker is in the ON position. This catches 50% of post-outage problems instantly. If a breaker is tripped, flip it back and watch the equipment for 30 seconds to make sure it doesn't trip again.\n\n**2. Pump timer / schedule.** Check the current time on the timer versus real time. Reset the clock if it's off. For digital or automation systems, verify the run schedule matches what was programmed — pump run time, start/stop times, and speed settings on variable speed pumps.\n\n**3. Salt cell output.** Check the control board for the chlorine output percentage. If it reset to default (often 50%), bump it back to whatever the pool needs — typically 60-80% in Frisco summers.\n\n**4. Chemistry.** Test chlorine, pH, and CYA. If the pump was down for 12+ hours in summer heat, chlorine can drop to zero and algae can start within 24 hours. A quick shock might be needed to catch up.\n\n## The Real Risk: Nobody Checks\n\nThe problem isn't the outage itself — it's the 3-5 day gap between the outage and anyone noticing. In Frisco summers, a pool without chlorine generation and reduced pump run time can go from clear to green in 72 hours. That turns a 5-minute timer reset into a $200-350 green-to-clean recovery.\n\nIf your pool is on weekly service, we catch this on the next visit. But if the outage happens right after a service day, you've got nearly a week before anyone checks. That's why we tell customers: after any power outage, just glance at your equipment pad. If the pump is running and the timer clock is close to correct, you're fine. If it's silent when it should be running, text us.\n\n---\n\n*Hydra Pool Services monitors equipment schedules on every weekly visit across Frisco and 7 surrounding cities. [Start your free 2-week trial →](https://hydrapoolservices.com/contact)*",
+      "coverImage": "",
+      "author": "Hydra Pool Services",
+      "published": true,
+      "seoTitle": "Power Outage? Your Pool Equipment Didn't Reset Right",
+      "seoDescription": "Power outage resets pool timers, trips breakers, and wipes schedules. A 20-minute outage can turn a Frisco pool green in 72 hours if nobody checks.",
+      "tags": [
+        "power outage",
+        "pool equipment",
+        "frisco tx",
+        "timers"
+      ],
+      "publishedAt": "2026-08-11T09:03:21.202Z",
+      "createdAt": "2026-08-11T09:03:21.202Z",
+      "updatedAt": "2026-08-11T09:03:21.202Z",
+      "readingTime": 4
     }
   ]
 }
