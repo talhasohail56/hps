@@ -137,6 +137,11 @@ export default function PlansPage() {
                       <p className="mt-2 text-sm leading-relaxed text-slate-light">
                         {addOn.description}
                       </p>
+                      {addOn.note && (
+                        <p className="mt-2 inline-flex items-center rounded-full bg-hydra-50 px-2.5 py-1 text-xs font-medium text-hydra-700">
+                          {addOn.note}
+                        </p>
+                      )}
                     </div>
                     <div className="flex shrink-0 items-center gap-1 rounded-lg bg-hydra-50 px-3 py-1.5">
                       <DollarSign className="h-3.5 w-3.5 text-hydra-600" />
@@ -158,9 +163,11 @@ export default function PlansPage() {
       <section className="bg-white pb-4 pt-0" aria-label="Pricing disclaimer">
         <div className="mx-auto max-w-3xl px-5 sm:px-6 lg:px-8">
           <p className="text-center text-sm leading-relaxed text-slate-light">
-            All prices are starting rates and may vary based on pool size,
-            condition, and location. Contact us for a personalized quote. No
-            long-term contracts &mdash; cancel anytime with 30 days notice.
+            Bi-weekly and Weekly prices are starting rates and may vary based
+            on pool size, condition, and location. Premium Care is a flat
+            $299/mo regardless of pool size. Contact us for a personalized
+            quote. No long-term contracts &mdash; cancel anytime with 30 days
+            notice.
           </p>
         </div>
       </section>

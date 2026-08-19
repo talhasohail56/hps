@@ -124,7 +124,7 @@ export const cityContent: Record<string, CityContent> = {
       {
         question: "How much does weekly pool service cost in Frisco?",
         answer:
-          "Weekly service starts at $179/mo, bi-weekly from $139/mo, and Premium Care is $229/mo. All chemicals are included in every plan — no separate charges.",
+          "Weekly service starts at $179/mo, bi-weekly from $139/mo, and Premium Care is $299/mo. All chemicals are included in every plan — no separate charges.",
       },
       {
         question: "Do you include chemicals?",
@@ -243,7 +243,7 @@ export const cityContent: Record<string, CityContent> = {
       {
         question: "How much does pool service cost in Plano?",
         answer:
-          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $299/mo. All chemicals included.",
       },
       {
         question: "Do you include chemicals?",
@@ -359,7 +359,7 @@ export const cityContent: Record<string, CityContent> = {
       {
         question: "How much does pool service cost in McKinney?",
         answer:
-          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $299/mo. All chemicals included.",
       },
       {
         question: "Do you include chemicals?",
@@ -474,7 +474,7 @@ export const cityContent: Record<string, CityContent> = {
       {
         question: "How much does pool service cost in Prosper?",
         answer:
-          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $299/mo. All chemicals included.",
       },
       {
         question: "Do you include chemicals?",
@@ -588,7 +588,7 @@ export const cityContent: Record<string, CityContent> = {
       {
         question: "How much does pool service cost in The Colony?",
         answer:
-          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $299/mo. All chemicals included.",
       },
       {
         question: "Do you include chemicals?",
@@ -703,7 +703,7 @@ export const cityContent: Record<string, CityContent> = {
       {
         question: "How much does pool service cost in Allen?",
         answer:
-          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $299/mo. All chemicals included.",
       },
       {
         question: "Do you include chemicals?",
@@ -817,7 +817,7 @@ export const cityContent: Record<string, CityContent> = {
       {
         question: "How much does pool service cost in Parker?",
         answer:
-          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $299/mo. All chemicals included.",
       },
       {
         question: "Do you service well water pools?",
@@ -931,7 +931,7 @@ export const cityContent: Record<string, CityContent> = {
       {
         question: "How much does pool service cost in Murphy?",
         answer:
-          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $229/mo. All chemicals included.",
+          "Weekly starts at $179/mo, bi-weekly from $139/mo, Premium $299/mo. All chemicals included.",
       },
       {
         question: "Do you include chemicals?",

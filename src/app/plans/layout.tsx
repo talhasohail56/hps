@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/data/site";
 export const metadata: Metadata = {
   title: "Pool Service Plans & Pricing — From $139/mo",
   description:
-    "Pool service plans in Frisco, TX: Bi-weekly $139/mo, Weekly $179/mo, Premium Care $229/mo. All chemicals included, no contracts. Free first 2 weeks for new customers. Call (214) 233-6803.",
+    "Pool service plans in Frisco, TX: Bi-weekly $139/mo, Weekly $179/mo, Premium Care $299/mo. All chemicals included, no contracts. Free first 2 weeks for new customers. Call (214) 233-6803.",
   alternates: {
     canonical: `${siteConfig.url}/plans`,
   },
@@ -69,12 +69,12 @@ const pricingJsonLd = {
         "@type": "Offer",
         name: "Premium Care Pool Service",
         description:
-          "Full-service weekly care with equipment support, priority scheduling, cleaning, chemical balancing, and digital visit reports.",
-        price: "229",
+          "Full-service weekly care with equipment support, priority scheduling, filter cleaning, chemical balancing, and digital visit reports.",
+        price: "299",
         priceCurrency: "USD",
         priceSpecification: {
           "@type": "UnitPriceSpecification",
-          price: "229",
+          price: "299",
           priceCurrency: "USD",
           unitText: "MONTH",
         },

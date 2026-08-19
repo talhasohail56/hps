@@ -327,6 +327,11 @@ export default function ServicesPage() {
                   <p className="mt-3 text-sm leading-relaxed text-slate">
                     {addOn.description}
                   </p>
+                  {addOn.note && (
+                    <p className="mt-3 inline-flex items-center rounded-full bg-hydra-50 px-2.5 py-1 text-xs font-medium text-hydra-700">
+                      {addOn.note}
+                    </p>
+                  )}
 
                   {/* Price pill */}
                   <div className="mt-4">
