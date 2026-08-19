@@ -23,7 +23,8 @@ const OPTIONS: { value: Schedule; label: string; description: string }[] = [
   {
     value: "premium",
     label: "Premium Care",
-    description: "Weekly service + equipment support & priority scheduling",
+    description:
+      "$299/mo flat — weekly service + equipment support, priority scheduling & filter cleaning",
   },
 ];
 

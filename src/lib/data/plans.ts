@@ -19,6 +19,8 @@ export interface AddOn {
   name: string;
   description: string;
   price: string;
+  /** Optional callout, e.g. when a plan already covers this add-on. */
+  note?: string;
 }
 
 export const plans: Plan[] = [
@@ -64,8 +66,8 @@ export const plans: Plan[] = [
     id: "premium-care",
     name: "Premium Care",
     subtitle: "Full-service care with equipment support & priority scheduling",
-    price: 229,
-    priceLabel: "starting at",
+    price: 299,
+    priceLabel: "flat rate",
     featured: false,
     features: [
       { text: "Weekly pool cleaning", included: true },
@@ -76,6 +78,7 @@ export const plans: Plan[] = [
       { text: "Digital visit reports", included: true },
       { text: "Priority scheduling", included: true },
       { text: "Equipment repair support", included: true },
+      { text: "Filter cleaning included", included: true },
     ],
     cta: "Get Started",
   },
@@ -87,6 +90,7 @@ export const addOns: AddOn[] = [
     name: "One-time filter clean",
     description: "Deep clean of your pool filter — cartridge, DE, or sand",
     price: "$129",
+    note: "Included free with Premium Care",
   },
   {
     id: "green-to-clean",

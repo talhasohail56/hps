@@ -16,9 +16,10 @@ const PRICES: Record<Schedule, Record<PoolSize, number>> = {
     "30k+": 199,
   },
   premium: {
-    "10k-20k": 229,
-    "20k-30k": 249,
-    "30k+": 269,
+    // Flat rate — Premium Care is not tiered by pool size.
+    "10k-20k": 299,
+    "20k-30k": 299,
+    "30k+": 299,
   },
 };
 
