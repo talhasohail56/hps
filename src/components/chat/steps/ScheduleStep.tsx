@@ -10,9 +10,10 @@ interface ScheduleStepProps {
 
 const OPTIONS: { value: Schedule; label: string; description: string }[] = [
   {
-    value: "biweekly",
-    label: "Bi-weekly",
-    description: "Great for moderate-use pools",
+    value: "chemical",
+    label: "Chemical Only",
+    description:
+      "From $119/mo — chemicals, testing & balancing included; you handle the cleaning",
   },
   {
     value: "weekly",
@@ -32,9 +33,9 @@ export function ScheduleStep({ onSelect }: ScheduleStepProps) {
       <ChatMessage from="bot">
         <div className="flex items-center gap-2 mb-1 font-semibold">
           <CalendarDays className="h-4 w-4 text-hydra-600" />
-          Service Schedule
+          Service Plan
         </div>
-        <p>How often would you like us to service your pool?</p>
+        <p>Which plan works best for your pool?</p>
       </ChatMessage>
 
       <div className="flex flex-col gap-2 mt-1">

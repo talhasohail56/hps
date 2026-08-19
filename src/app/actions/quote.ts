@@ -12,7 +12,7 @@ import nodemailer from "nodemailer";
 const quoteSchema = z.object({
   photo: z.string().optional(),
   poolSize: z.enum(["10k-20k", "20k-30k", "30k+"]),
-  schedule: z.enum(["weekly", "biweekly", "premium"]),
+  schedule: z.enum(["weekly", "chemical", "premium"]),
   monthlyPrice: z.number().positive(),
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email"),
@@ -90,8 +90,14 @@ const POOL_LABELS: Record<string, string> = {
 
 function scheduleLabel(s: string): string {
   if (s === "premium") return "Premium Care";
-  if (s === "biweekly") return "Bi-weekly";
+  if (s === "chemical") return "Chemical Only";
+  if (s === "biweekly") return "Bi-weekly"; // legacy records
   return "Weekly";
+}
+
+function serviceLabel(s: string): string {
+  if (s === "chemical") return "Chemical Only Service";
+  return `${scheduleLabel(s)} Pool Cleaning`;
 }
 
 async function sendCustomerConfirmation(record: QuoteRecord) {
@@ -134,7 +140,7 @@ async function sendCustomerConfirmation(record: QuoteRecord) {
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #64748b; border-bottom: 1px solid #f1f5f9;">Service</td>
-            <td style="padding: 8px 0; text-align: right; border-bottom: 1px solid #f1f5f9;">${scheduleLabel(record.schedule)} Pool Cleaning</td>
+            <td style="padding: 8px 0; text-align: right; border-bottom: 1px solid #f1f5f9;">${serviceLabel(record.schedule)}</td>
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #64748b; border-bottom: 1px solid #f1f5f9;">Pool Size</td>
