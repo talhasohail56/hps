@@ -23,7 +23,43 @@ export interface AddOn {
   note?: string;
 }
 
+/**
+ * Canonical row order for the Compare Plans table. Kept explicit so the
+ * table order no longer depends on which plan happens to list a feature
+ * first — adding or reordering a plan can't shuffle the rows.
+ */
+export const featureOrder: string[] = [
+  "Chemical testing",
+  "Chemical balancing",
+  "Surface skimming",
+  "Tile and walls brushing",
+  "Basket Cleaning",
+  "Equipment inspection",
+  "Digital visit reports",
+  "Priority scheduling",
+  "Equipment repair support",
+  "Weekly pool cleaning",
+  "Filter cleaning included",
+];
+
 export const plans: Plan[] = [
+  {
+    id: "chemical-only",
+    name: "Chemical Only",
+    subtitle: "We handle the water, you handle the cleaning",
+    price: 119,
+    priceLabel: "starting at",
+    featured: false,
+    features: [
+      { text: "Chemical testing", included: true },
+      { text: "Chemical balancing", included: true },
+      { text: "Tile and walls brushing", included: true },
+      { text: "Basket Cleaning", included: true },
+      { text: "Equipment inspection", included: true },
+      { text: "Digital visit reports", included: true },
+    ],
+    cta: "Get Started",
+  },
   {
     id: "biweekly",
     name: "Bi-weekly",

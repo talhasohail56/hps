@@ -3,15 +3,24 @@
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { plans } from "@/lib/data/plans";
+import { plans, featureOrder } from "@/lib/data/plans";
 
-/** Collect every unique feature text across all plans, preserving order. */
-const allFeatures = plans.reduce<string[]>((acc, plan) => {
-  plan.features.forEach((f) => {
-    if (!acc.includes(f.text)) acc.push(f.text);
-  });
-  return acc;
-}, []);
+/**
+ * Rows follow the canonical order in plans.ts. Anything a plan lists that
+ * isn't in that list still shows up, appended at the end, so a new feature
+ * can never silently disappear from the table.
+ */
+const allFeatures = [
+  ...featureOrder,
+  ...plans.reduce<string[]>((acc, plan) => {
+    plan.features.forEach((f) => {
+      if (!featureOrder.includes(f.text) && !acc.includes(f.text)) {
+        acc.push(f.text);
+      }
+    });
+    return acc;
+  }, []),
+];
 
 /** Look up whether a given plan includes a specific feature. */
 function planHasFeature(planId: string, featureText: string): boolean {
@@ -27,19 +36,21 @@ function planHasFeature(planId: string, featureText: string): boolean {
 
 function DesktopTable() {
   return (
-    <div className="hidden overflow-hidden rounded-xl border border-border lg:block">
-      <table className="w-full border-collapse text-left">
+    // Four plan columns are tight below ~1100px, so the wrapper scrolls
+    // horizontally instead of crushing the columns.
+    <div className="hidden overflow-x-auto rounded-xl border border-border lg:block">
+      <table className="w-full min-w-[860px] border-collapse text-left">
         {/* Header */}
         <thead>
           <tr>
-            <th className="bg-surface px-6 py-4 text-sm font-medium text-slate-light">
+            <th className="bg-surface px-4 py-4 text-sm font-medium text-slate-light xl:px-6">
               Features
             </th>
             {plans.map((plan) => (
               <th
                 key={plan.id}
                 className={cn(
-                  "px-6 py-4 text-center text-sm font-semibold",
+                  "px-4 py-4 text-center text-sm font-semibold xl:px-6",
                   plan.featured
                     ? "bg-hydra-50 text-hydra-700"
                     : "bg-surface text-navy"
@@ -70,14 +81,14 @@ function DesktopTable() {
                 "border-t border-border-light"
               )}
             >
-              <td className="px-6 py-3.5 text-sm text-navy">{feature}</td>
+              <td className="px-4 py-3.5 text-sm text-navy xl:px-6">{feature}</td>
               {plans.map((plan) => {
                 const included = planHasFeature(plan.id, feature);
                 return (
                   <td
                     key={plan.id}
                     className={cn(
-                      "px-6 py-3.5 text-center",
+                      "px-4 py-3.5 text-center xl:px-6",
                       plan.featured && (idx % 2 === 0 ? "bg-hydra-50/40" : "bg-hydra-50/60")
                     )}
                   >
