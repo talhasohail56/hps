@@ -100,15 +100,117 @@ function serviceLabel(s: string): string {
   return `${scheduleLabel(s)} Pool Cleaning`;
 }
 
-async function sendCustomerConfirmation(record: QuoteRecord) {
+/* ------------------------------------------------------------------ */
+/*  Lead-capture fallbacks                                             */
+/* ------------------------------------------------------------------ */
+
+/*
+ * Grep this tag in Vercel logs to recover any lead whose Formspree alert
+ * failed. It is the last line of defence: on Vercel the quotes.json write
+ * is a no-op (read-only fs), so without this a failed alert loses the lead.
+ */
+const LEAD_FALLBACK_TAG = "LEAD_CAPTURE_FALLBACK";
+
+function logLeadFallback(record: QuoteRecord, reason: string) {
+  // `photo` can be a large base64 blob — omit it so the log stays readable.
+  const { photo, ...loggable } = record;
+  console.error(
+    `${LEAD_FALLBACK_TAG} reason=${reason} hasPhoto=${Boolean(photo)} ${JSON.stringify(loggable)}`
+  );
+}
+
+function getTransporter() {
   const user = process.env.GMAIL_USER;
   const pass = process.env.GMAIL_APP_PASSWORD;
-  if (!user || !pass) return;
+  if (!user || !pass) return null;
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: { user, pass },
+  return {
+    user,
+    transporter: nodemailer.createTransport({
+      service: "gmail",
+      auth: { user, pass },
+    }),
+  };
+}
+
+/*
+ * Backup owner alert, sent only when the Formspree notification fails.
+ * Goes to LEAD_NOTIFY_EMAIL if set, otherwise back to the Gmail account.
+ */
+async function sendOwnerBackupNotification(record: QuoteRecord) {
+  const mailer = getTransporter();
+  if (!mailer) return false;
+
+  const { user, transporter } = mailer;
+  const to = process.env.LEAD_NOTIFY_EMAIL || user;
+
+  const rows = [
+    ["Quote #", record.id],
+    ["Name", record.name],
+    ["Email", record.email],
+    ["Phone", record.phone],
+    ["Address", record.address],
+    ["Pool Size", POOL_LABELS[record.poolSize] || record.poolSize],
+    ["Schedule", scheduleLabel(record.schedule)],
+    ["Monthly Price", `$${record.monthlyPrice}`],
+    ["Submitted At", record.createdAt],
+  ]
+    .map(
+      ([label, value]) =>
+        `<tr><td style="padding: 6px 12px 6px 0; color: #64748b;">${label}</td><td style="padding: 6px 0; font-weight: 600;">${value}</td></tr>`
+    )
+    .join("");
+
+  await transporter.sendMail({
+    from: `"Hydra Pool Services" <${user}>`,
+    to,
+    replyTo: record.email,
+    subject: `[BACKUP] New Pool Quote — $${record.monthlyPrice}/mo (${record.name})`,
+    html: `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1e293b;">
+        <p style="font-size: 14px;">
+          The Formspree notification for this lead failed, so this backup was
+          sent instead. The lead details are below.
+        </p>
+        <table style="font-size: 13px; border-collapse: collapse;">${rows}</table>
+      </div>
+    `,
   });
+
+  return true;
+}
+
+/*
+ * Runs when the Formspree alert fails. Always logs the lead, and also tries
+ * the SMTP backup — so the lead survives even if both channels are degraded.
+ */
+async function handleFormspreeFailure(record: QuoteRecord, err: unknown) {
+  console.error(
+    `${LEAD_FALLBACK_TAG} Formspree notification failed for ${record.id}:`,
+    err
+  );
+
+  let backupSent = false;
+  try {
+    backupSent = await sendOwnerBackupNotification(record);
+  } catch (backupErr) {
+    console.error(
+      `${LEAD_FALLBACK_TAG} SMTP backup notification also failed for ${record.id}:`,
+      backupErr
+    );
+  }
+
+  logLeadFallback(
+    record,
+    backupSent ? "formspree-failed-smtp-backup-sent" : "formspree-failed-no-backup"
+  );
+}
+
+async function sendCustomerConfirmation(record: QuoteRecord) {
+  const mailer = getTransporter();
+  if (!mailer) return;
+
+  const { user, transporter } = mailer;
 
   const html = `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 560px; margin: 0 auto; color: #1e293b;">
@@ -216,11 +318,15 @@ export async function submitQuote(
       createdAt: new Date().toISOString(),
     };
 
-    // Send both emails in parallel for faster response
+    // Send both emails in parallel for faster response. Neither may reject:
+    // a notification problem must never cost us the lead or block persistence.
     await Promise.all([
-      notifyViaFormspree(record),
-      sendCustomerConfirmation(record).catch(() => {
+      notifyViaFormspree(record).catch((err) =>
+        handleFormspreeFailure(record, err)
+      ),
+      sendCustomerConfirmation(record).catch((err) => {
         // Don't fail the quote if Gmail errors
+        console.error(`Customer confirmation failed for ${record.id}:`, err);
       }),
     ]);
 
@@ -232,8 +338,11 @@ export async function submitQuote(
         db.quotes.push(record);
         await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2));
       });
-    } catch {
-      // Read-only filesystem on Vercel — that's fine, email was already sent
+    } catch (err) {
+      // Read-only filesystem on Vercel — expected there, and the alert above
+      // has already been delivered (or fallen back). Log it either way so a
+      // local write failure never goes unnoticed.
+      console.warn(`quotes.json write skipped for ${record.id}:`, err);
     }
 
     return { success: true as const, quoteId: id };
