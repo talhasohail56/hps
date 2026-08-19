@@ -526,7 +526,7 @@ export default function HomePage() {
           </motion.div>
 
           {/* Plan cards grid */}
-          <div className="mt-14 grid gap-6 md:grid-cols-3 md:gap-8">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 md:gap-8 xl:grid-cols-4 xl:gap-6">
             {plans.map((plan, i) => (
               <PlanCard key={plan.id} plan={plan} index={i} />
             ))}
