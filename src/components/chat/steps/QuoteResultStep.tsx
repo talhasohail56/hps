@@ -39,11 +39,18 @@ export function QuoteResultStep({
             <span className="text-sm font-medium text-slate-light">/mo</span>
           </p>
           <div className="mt-2 flex justify-center gap-4 text-xs text-slate-light">
-            <span>{schedule === "premium" ? "Premium Care" : schedule === "biweekly" ? "Bi-weekly" : "Weekly"}</span>
+            <span>{schedule === "premium" ? "Premium Care" : schedule === "chemical" ? "Chemical Only" : "Weekly"}</span>
             <span className="text-hydra-300">&#183;</span>
             <span>{POOL_LABELS[poolSize]}</span>
           </div>
         </div>
+
+        {schedule === "chemical" && (
+          <p className="mb-2 text-xs text-slate-light">
+            Chemical Only includes chemicals, water testing, and balancing on
+            every visit — cleaning is handled by you.
+          </p>
+        )}
 
         <div className="rounded-lg bg-hydra-50/60 px-3 py-2 mb-2">
           <p className="text-xs text-slate-light">
