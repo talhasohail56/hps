@@ -724,11 +724,11 @@ const chemicalOnlyService: Service = {
   shortDescription:
     "We appreciate customers who know and maintain their own pools, but sometimes it can get confusing. Or maybe the chemical costs are too high. We offer a chemical only service with the highest quality chemicals at a very discounted price.",
   description:
-    "We appreciate customers who know and maintain their own pools, but sometimes it can get confusing. Or maybe the chemical costs are too high. Nevertheless, we at Hydra Pool Services can help you. We offer a chemical only service where we can guarantee the highest quality of chemicals at a very discounted price. What's more, our technicians can come in weekly or bi-weekly to do a free chemical test and add the needed chemicals for you!",
+    "We appreciate customers who know and maintain their own pools, but sometimes it can get confusing. Or maybe the chemical costs are too high. Nevertheless, we at Hydra Pool Services can help you. We offer a chemical only service where we can guarantee the highest quality of chemicals at a very discounted price. What's more, our technicians can come in weekly to do a free chemical test and add the needed chemicals for you!",
   icon: "FlaskConical",
   bullets: [
     "Professional-grade chemicals at discounted prices",
-    "Weekly or bi-weekly chemical testing",
+    "Weekly chemical testing",
     "Free chemical balance adjustments",
   ],
   checklist: [
@@ -738,12 +738,12 @@ const chemicalOnlyService: Service = {
     "Detailed service notes",
     "Equipment quick-check",
   ],
-  frequency: "Weekly or bi-weekly",
+  frequency: "Weekly",
   bestFor:
     "DIY pool owners who want affordable chemical care without the full maintenance cost.",
   subtitle: "Clean Your Own Pool? Is The Chemical Cost Too High?",
   heroDescription:
-    "Many homeowners in North DFW, TX enjoy cleaning and caring for their pools on their own. Brushing, skimming, vacuuming, that part is fine. But when it comes to chemicals, things can get confusing and expensive. From chlorine prices to stabilizers and balancing products, the costs add up fast.\n\nThat is why Hydra Pool Services offers our Chemical Only Service. With this plan, you take care of the physical pool cleaning, and we handle the science behind the water. Our friendly and experienced technicians come weekly or bi-weekly to test your pool, adjust levels, and add only the highest quality chemicals at discounted prices.\n\nThe result is crystal-clear water, peace of mind, and professional pool care without the high chemical bills.",
+    "Many homeowners in North DFW, TX enjoy cleaning and caring for their pools on their own. Brushing, skimming, vacuuming, that part is fine. But when it comes to chemicals, things can get confusing and expensive. From chlorine prices to stabilizers and balancing products, the costs add up fast.\n\nThat is why Hydra Pool Services offers our Chemical Only Service. With this plan, you take care of the physical pool cleaning, and we handle the science behind the water. Our friendly and experienced technicians come weekly to test your pool, adjust levels, and add only the highest quality chemicals at discounted prices.\n\nThe result is crystal-clear water, peace of mind, and professional pool care without the high chemical bills.",
   metaTitle: "Chemical Only Pool Service | Hydra Pool Services",
   metaDescription:
     "Affordable chemical only pool service in North DFW. Professional-grade chemicals at discounted prices with free weekly testing and balancing. Save 20-30% on pool chemicals.",
@@ -784,7 +784,7 @@ const chemicalOnlyService: Service = {
         },
         {
           heading: "Flexible Weekly Service",
-          body: "Whether you want weekly or bi-weekly care, our friendly and experienced technicians will visit on schedule.",
+          body: "With reliable weekly care, our friendly and experienced technicians will visit on schedule.",
         },
         {
           heading: "DIY Freedom + Professional Support",
@@ -795,7 +795,7 @@ const chemicalOnlyService: Service = {
     {
       heading: "How Chemical Only Service Works",
       bullets: [
-        "Step 1: Schedule Your Plan — Choose weekly or bi-weekly visits",
+        "Step 1: Schedule Your Plan — We set up your weekly visits",
         "Step 2: Regular Testing and Chemical Service — We test and balance your water every visit",
         "Step 3: Service Logs and Communication — You receive notes and updates after every visit",
       ],
