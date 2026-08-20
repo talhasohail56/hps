@@ -743,7 +743,7 @@ const chemicalOnlyService: Service = {
     "DIY pool owners who want affordable chemical care without the full maintenance cost.",
   subtitle: "Clean Your Own Pool? Is The Chemical Cost Too High?",
   heroDescription:
-    "Many homeowners in North DFW, TX enjoy cleaning and caring for their pools on their own. Brushing, skimming, vacuuming, that part is fine. But when it comes to chemicals, things can get confusing and expensive. From chlorine prices to stabilizers and balancing products, the costs add up fast.\n\nThat is why Hydra Pool Services offers our Chemical Only Service. With this plan, you take care of the physical pool cleaning, and we handle the science behind the water. Our friendly and experienced technicians come weekly to test your pool, adjust levels, and add only the highest quality chemicals at discounted prices.\n\nThe result is crystal-clear water, peace of mind, and professional pool care without the high chemical bills.",
+    "Many homeowners in North DFW, TX enjoy cleaning and caring for their pools on their own. Brushing, skimming, vacuuming, that part is fine. But when it comes to chemicals, things can get confusing and expensive. From chlorine prices to stabilizers and balancing products, the costs add up fast.\n\nThat is why Hydra Pool Services offers our Chemical Only Service. With this plan, we handle the science behind your water — testing, balancing, and the professional-grade chemicals your pool needs. Our friendly and experienced technicians come weekly to test your pool, adjust levels, and add only the highest quality chemicals at discounted prices.\n\nThe result is crystal-clear water, peace of mind, and professional pool care without the high chemical bills.",
   metaTitle: "Chemical Only Pool Service | Hydra Pool Services",
   metaDescription:
     "Affordable chemical only pool service in North DFW. Professional-grade chemicals at discounted prices with free weekly testing and balancing. Save 20-30% on pool chemicals.",
@@ -787,8 +787,8 @@ const chemicalOnlyService: Service = {
           body: "With reliable weekly care, our friendly and experienced technicians will visit on schedule.",
         },
         {
-          heading: "DIY Freedom + Professional Support",
-          body: "You still enjoy cleaning your pool yourself, but you have Hydra's professional pool care to back you up.",
+          heading: "Professional Support, Your Way",
+          body: "You stay in control of your pool, with Hydra's professional pool care backing you up on water chemistry.",
         },
       ],
     },

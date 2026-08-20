@@ -48,7 +48,7 @@ export function QuoteResultStep({
         {schedule === "chemical" && (
           <p className="mb-2 text-xs text-slate-light">
             Chemical Only includes chemicals, water testing, and balancing on
-            every visit — cleaning is handled by you.
+            every visit.
           </p>
         )}
 
