@@ -13,7 +13,7 @@ const OPTIONS: { value: Schedule; label: string; description: string }[] = [
     value: "chemical",
     label: "Chemical Only",
     description:
-      "From $119/mo — chemicals, testing & balancing included; you handle the cleaning",
+      "From $119/mo — chemicals, testing & balancing included",
   },
   {
     value: "weekly",

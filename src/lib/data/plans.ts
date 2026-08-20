@@ -46,7 +46,7 @@ export const plans: Plan[] = [
   {
     id: "chemical-only",
     name: "Chemical Only",
-    subtitle: "We handle the water, you handle the cleaning",
+    subtitle: "We handle the water",
     price: 119,
     priceLabel: "starting at",
     featured: false,
