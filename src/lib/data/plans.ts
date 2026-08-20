@@ -130,7 +130,7 @@ export const addOns: AddOn[] = [
     id: "filter-clean",
     name: "One-time filter clean",
     description: "Deep clean of your pool filter — cartridge, DE, or sand",
-    price: "$129",
+    price: "$130",
     note: "Included free with Premium Care",
   },
   {
