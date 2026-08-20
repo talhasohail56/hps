@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Shield,
@@ -11,8 +11,16 @@ import {
   Eye,
   Server,
   FileCheck,
+  FileText,
+  Loader2,
+  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  AGREEMENT_TEXT,
+  AGREEMENT_VERSION,
+} from "@/lib/data/service-agreement";
+import { submitAgreementConsent } from "@/app/actions/consent";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
 import { NoiseOverlay } from "@/components/graphics/NoiseOverlay";
 import { GradientOrb } from "@/components/graphics/GradientOrb";
@@ -115,6 +123,93 @@ export default function PaymentsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  /* ---------------------------------------------------------------- */
+  /*  Service Agreement consent gate                                   */
+  /*                                                                   */
+  /*  Entirely separate from the Stripe flow below: it only decides    */
+  /*  whether the existing card-on-file button is enabled. Nothing     */
+  /*  here calls, wraps, or alters Stripe.                             */
+  /* ---------------------------------------------------------------- */
+  const [consentName, setConsentName] = useState("");
+  const [consentEmail, setConsentEmail] = useState("");
+  const [consentAddress, setConsentAddress] = useState("");
+  const [agreementChecked, setAgreementChecked] = useState(false);
+  const [consentSubmitting, setConsentSubmitting] = useState(false);
+  const [consentError, setConsentError] = useState<string | null>(null);
+  const [consentRecorded, setConsentRecorded] = useState(false);
+  const [consentModalOpen, setConsentModalOpen] = useState(false);
+
+  // Close on Escape and lock background scroll while the modal is open.
+  useEffect(() => {
+    if (!consentModalOpen) return;
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape" && !consentSubmitting && !isLoading) {
+        setConsentModalOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [consentModalOpen, consentSubmitting, isLoading]);
+
+  const consentFormComplete =
+    consentName.trim().length > 0 &&
+    consentEmail.trim().length > 0 &&
+    consentAddress.trim().length > 0 &&
+    agreementChecked;
+
+  async function handleAcceptAgreement(e: React.FormEvent) {
+    e.preventDefault();
+    if (!consentFormComplete || consentSubmitting) return;
+
+    setConsentSubmitting(true);
+    setConsentError(null);
+    try {
+      const result = await submitAgreementConsent({
+        name: consentName.trim(),
+        email: consentEmail.trim(),
+        address: consentAddress.trim(),
+      });
+
+      if (result.success) {
+        // Consent is recorded. Only now do we enter the existing, unmodified
+        // Stripe flow — the modal stays up so the customer sees the handoff.
+        setConsentRecorded(true);
+        await handleCardOnFile();
+      } else {
+        // Nothing recorded, so nothing is handed to Stripe: stay in the modal.
+        setConsentError(result.error);
+      }
+    } catch {
+      setConsentError(
+        "We could not record your acceptance. Please try again, or call (214) 233-6803."
+      );
+    } finally {
+      setConsentSubmitting(false);
+    }
+  }
+
+  /*
+   * The gate. Until consent is recorded a click opens the agreement modal
+   * and Stripe is never entered; afterwards it hands off to the existing,
+   * unmodified handler below.
+   */
+  function handleCardButtonClick() {
+    if (!consentRecorded) {
+      setConsentError(null);
+      setConsentModalOpen(true);
+      return;
+    }
+    handleCardOnFile();
+  }
+
   async function handleCardOnFile() {
     setIsLoading(true);
     setError(null);
@@ -186,7 +281,7 @@ export default function PaymentsPage() {
               <button
                 type="button"
                 disabled={isLoading}
-                onClick={handleCardOnFile}
+                onClick={handleCardButtonClick}
                 className={cn(
                   "inline-flex items-center justify-center gap-2 rounded-xl bg-hydra-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-hydra-500/25 cursor-pointer",
                   "transition-all duration-200 ease-out",
@@ -200,6 +295,17 @@ export default function PaymentsPage() {
                 {isLoading ? "Redirecting to Stripe..." : "Get Your Card on File"}
                 {!isLoading && <ArrowRight className="h-4 w-4" />}
               </button>
+              <p className="mt-3 text-sm text-slate-light">
+                {consentRecorded ? (
+                  <span className="inline-flex items-center gap-1.5 font-medium text-hydra-700">
+                    <CheckCircle className="h-3.5 w-3.5" />
+                    Service Agreement accepted &mdash; version{" "}
+                    {AGREEMENT_VERSION}
+                  </span>
+                ) : (
+                  <>You&apos;ll review and accept the Service Agreement first.</>
+                )}
+              </p>
               {error && (
                 <p className="mt-3 text-sm font-medium text-red-600">
                   {error}
@@ -448,7 +554,7 @@ export default function PaymentsPage() {
               <button
                 type="button"
                 disabled={isLoading}
-                onClick={handleCardOnFile}
+                onClick={handleCardButtonClick}
                 className={cn(
                   "inline-flex items-center justify-center gap-2 rounded-xl bg-hydra-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-hydra-500/25 cursor-pointer",
                   "transition-all duration-200 ease-out",
@@ -462,6 +568,17 @@ export default function PaymentsPage() {
                 {isLoading ? "Redirecting to Stripe..." : "Get Your Card on File"}
                 {!isLoading && <ArrowRight className="h-4 w-4" />}
               </button>
+              <p className="mt-3 text-sm text-slate-light">
+                {consentRecorded ? (
+                  <span className="inline-flex items-center gap-1.5 font-medium text-hydra-700">
+                    <CheckCircle className="h-3.5 w-3.5" />
+                    Service Agreement accepted &mdash; version{" "}
+                    {AGREEMENT_VERSION}
+                  </span>
+                ) : (
+                  <>You&apos;ll review and accept the Service Agreement first.</>
+                )}
+              </p>
               {error && (
                 <p className="mt-3 text-sm font-medium text-red-600">
                   {error}
@@ -476,6 +593,257 @@ export default function PaymentsPage() {
           </motion.div>
         </div>
       </section>
+      {/* ============================================================ */}
+      {/*  SERVICE AGREEMENT MODAL                                     */}
+      {/*                                                              */}
+      {/*  Opened by either card-on-file button. Presentation only —   */}
+      {/*  the consent action, email record and Stripe gate are        */}
+      {/*  unchanged, and Stripe is never entered from in here.        */}
+      {/* ============================================================ */}
+      {consentModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-navy/50 p-4 backdrop-blur-sm sm:items-center sm:p-6"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="service-agreement-title"
+          onClick={() => {
+            if (!consentSubmitting && !isLoading) setConsentModalOpen(false);
+          }}
+        >
+          <div
+            className="relative my-8 w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl sm:my-0 sm:p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setConsentModalOpen(false)}
+              disabled={consentSubmitting || isLoading}
+              aria-label="Close Service Agreement"
+              className="absolute right-4 top-4 rounded-full p-1.5 text-slate-light transition-colors hover:bg-surface hover:text-navy disabled:opacity-40"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+              <div className="mb-8 text-center">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-hydra-50">
+                  <FileText className="h-6 w-6 text-hydra-600" strokeWidth={1.75} />
+                </div>
+                <h2
+                  id="service-agreement-title"
+                  className="text-3xl font-bold tracking-tight text-navy sm:text-4xl"
+                >
+                  Service Agreement
+                </h2>
+                <p className="mt-3 text-base text-slate-light sm:text-lg">
+                  Please read the agreement in full and accept it before saving a
+                  card. Version {AGREEMENT_VERSION}.
+                </p>
+              </div>
+
+              {/* Full agreement — visible and scrollable, never hidden behind a link */}
+              <div
+                className="max-h-96 overflow-y-auto whitespace-pre-line rounded-xl border border-border bg-surface p-5 text-sm leading-relaxed text-slate sm:p-6"
+                tabIndex={0}
+                role="region"
+                aria-label="Service Agreement text"
+              >
+                {/* Rendered verbatim — whitespace-pre-line keeps the numbered
+                    clauses and paragraph breaks exactly as written. */}
+                {AGREEMENT_TEXT}
+              </div>
+
+              {consentRecorded ? (
+                <div className="mt-6 rounded-xl border border-hydra-200 bg-hydra-50/60 p-5">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle
+                      className="mt-0.5 h-5 w-5 shrink-0 text-hydra-600"
+                      strokeWidth={2}
+                    />
+                    <div>
+                      <p className="text-sm font-semibold text-navy">
+                        Agreement accepted — thank you, {consentName}.
+                      </p>
+                      <p className="mt-1 text-sm text-slate-light">
+                        We&apos;ve recorded your acceptance of version{" "}
+                        {AGREEMENT_VERSION} and emailed a copy to our office.
+                        {isLoading
+                          ? " Taking you to Stripe's secure checkout now..."
+                          : " You're being taken to Stripe's secure checkout."}
+                      </p>
+
+                      {/* If the handoff itself fails, the acceptance still
+                          stands — offer a retry straight into Stripe. */}
+                      {error && (
+                        <div className="mt-3 rounded-lg border border-red-200 bg-red-50 p-3">
+                          <p className="text-sm font-medium text-red-700">
+                            {error}
+                          </p>
+                          <p className="mt-1 text-xs text-red-600">
+                            Your acceptance was recorded. No card has been saved
+                            &mdash; retry below, or call (214) 233-6803.
+                          </p>
+                          <button
+                            type="button"
+                            onClick={handleCardOnFile}
+                            disabled={isLoading}
+                            className={cn(
+                              "mt-3 inline-flex items-center justify-center gap-2 rounded-lg bg-navy px-4 py-2 text-sm font-semibold text-white transition-all",
+                              "hover:brightness-110",
+                              isLoading && "cursor-wait opacity-60"
+                            )}
+                          >
+                            {isLoading && (
+                              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                            )}
+                            {isLoading
+                              ? "Redirecting to Stripe..."
+                              : "Retry card save"}
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleAcceptAgreement} className="mt-6">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="sm:col-span-1">
+                      <label
+                        htmlFor="consent-name"
+                        className="block text-sm font-medium text-navy"
+                      >
+                        Full name
+                      </label>
+                      <input
+                        id="consent-name"
+                        name="name"
+                        type="text"
+                        required
+                        autoComplete="name"
+                        value={consentName}
+                        onChange={(e) => setConsentName(e.target.value)}
+                        placeholder="John Doe"
+                        className="mt-1.5 w-full rounded-lg border border-border-light bg-white px-3.5 py-2.5 text-sm text-navy outline-none transition-colors focus:border-hydra-400 focus:ring-2 focus:ring-hydra-100"
+                      />
+                    </div>
+
+                    <div className="sm:col-span-1">
+                      <label
+                        htmlFor="consent-email"
+                        className="block text-sm font-medium text-navy"
+                      >
+                        Email address
+                      </label>
+                      <input
+                        id="consent-email"
+                        name="email"
+                        type="email"
+                        required
+                        autoComplete="email"
+                        value={consentEmail}
+                        onChange={(e) => setConsentEmail(e.target.value)}
+                        placeholder="john@example.com"
+                        className="mt-1.5 w-full rounded-lg border border-border-light bg-white px-3.5 py-2.5 text-sm text-navy outline-none transition-colors focus:border-hydra-400 focus:ring-2 focus:ring-hydra-100"
+                      />
+                    </div>
+
+                    <div className="sm:col-span-2">
+                      <label
+                        htmlFor="consent-address"
+                        className="block text-sm font-medium text-navy"
+                      >
+                        Service address
+                      </label>
+                      <input
+                        id="consent-address"
+                        name="address"
+                        type="text"
+                        required
+                        autoComplete="street-address"
+                        value={consentAddress}
+                        onChange={(e) => setConsentAddress(e.target.value)}
+                        placeholder="123 Main St, Frisco, TX 75034"
+                        className="mt-1.5 w-full rounded-lg border border-border-light bg-white px-3.5 py-2.5 text-sm text-navy outline-none transition-colors focus:border-hydra-400 focus:ring-2 focus:ring-hydra-100"
+                      />
+                    </div>
+                  </div>
+
+                  <label
+                    htmlFor="consent-agree"
+                    className="mt-5 flex cursor-pointer items-start gap-3 rounded-xl border border-border-light bg-white p-4"
+                  >
+                    <input
+                      id="consent-agree"
+                      name="agree"
+                      type="checkbox"
+                      required
+                      checked={agreementChecked}
+                      onChange={(e) => setAgreementChecked(e.target.checked)}
+                      className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-hydra-600"
+                    />
+                    <span className="text-sm font-medium text-navy">
+                      I have read and agree to the Hydra Pool Services Service
+                      Agreement.
+                    </span>
+                  </label>
+
+                  <button
+                    type="submit"
+                    disabled={
+                      !consentFormComplete || consentSubmitting || isLoading
+                    }
+                    className={cn(
+                      "mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-navy px-6 py-3.5 text-base font-semibold text-white transition-all duration-200 sm:w-auto",
+                      "hover:brightness-110 focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2",
+                      (!consentFormComplete || consentSubmitting || isLoading) &&
+                        "cursor-not-allowed opacity-50"
+                    )}
+                  >
+                    {(consentSubmitting || isLoading) && (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    )}
+                    {consentSubmitting
+                      ? "Recording acceptance..."
+                      : isLoading
+                        ? "Redirecting to Stripe..."
+                        : "Accept & Continue"}
+                  </button>
+
+                  {consentError && (
+                    <div className="mt-4 rounded-lg border border-red-200 bg-red-50 p-4">
+                      <p className="text-sm font-medium text-red-700">
+                        {consentError}
+                      </p>
+                      <p className="mt-1 text-xs text-red-600">
+                        Your card has not been saved and nothing was charged. You
+                        can retry above.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Stripe's own error, if the handoff itself fails. The
+                      acceptance is already recorded at this point. */}
+                  {!consentError && error && (
+                    <div className="mt-4 rounded-lg border border-red-200 bg-red-50 p-4">
+                      <p className="text-sm font-medium text-red-700">{error}</p>
+                      <p className="mt-1 text-xs text-red-600">
+                        Your acceptance was recorded. No card has been saved
+                        &mdash; you can retry, or call (214) 233-6803.
+                      </p>
+                    </div>
+                  )}
+
+                  <p className="mt-4 text-xs leading-relaxed text-slate-light">
+                    We record your name, email, service address, the time of
+                    acceptance, the agreement version, and your IP address. No
+                    payment details are collected on this page — those are entered
+                    only on Stripe&apos;s secure checkout in the next step.
+                  </p>
+                </form>
+              )}
+          </div>
+        </div>
+      )}
     </>
   );
 }
