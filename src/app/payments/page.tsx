@@ -132,7 +132,6 @@ export default function PaymentsPage() {
   /* ---------------------------------------------------------------- */
   const [consentName, setConsentName] = useState("");
   const [consentEmail, setConsentEmail] = useState("");
-  const [consentAddress, setConsentAddress] = useState("");
   const [agreementChecked, setAgreementChecked] = useState(false);
   const [consentSubmitting, setConsentSubmitting] = useState(false);
   const [consentError, setConsentError] = useState<string | null>(null);
@@ -162,7 +161,6 @@ export default function PaymentsPage() {
   const consentFormComplete =
     consentName.trim().length > 0 &&
     consentEmail.trim().length > 0 &&
-    consentAddress.trim().length > 0 &&
     agreementChecked;
 
   async function handleAcceptAgreement(e: React.FormEvent) {
@@ -175,7 +173,6 @@ export default function PaymentsPage() {
       const result = await submitAgreementConsent({
         name: consentName.trim(),
         email: consentEmail.trim(),
-        address: consentAddress.trim(),
       });
 
       if (result.success) {
@@ -602,7 +599,7 @@ export default function PaymentsPage() {
       {/* ============================================================ */}
       {consentModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-navy/50 p-4 backdrop-blur-sm sm:items-center sm:p-6"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-navy/50 p-4 backdrop-blur-sm sm:p-6"
           role="dialog"
           aria-modal="true"
           aria-labelledby="service-agreement-title"
@@ -611,7 +608,7 @@ export default function PaymentsPage() {
           }}
         >
           <div
-            className="relative my-8 w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl sm:my-0 sm:p-8"
+            className="relative flex max-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:max-h-[calc(100dvh-3rem)]"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -624,25 +621,28 @@ export default function PaymentsPage() {
               <X className="h-5 w-5" />
             </button>
 
-              <div className="mb-8 text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-hydra-50">
-                  <FileText className="h-6 w-6 text-hydra-600" strokeWidth={1.75} />
-                </div>
-                <h2
-                  id="service-agreement-title"
-                  className="text-3xl font-bold tracking-tight text-navy sm:text-4xl"
-                >
-                  Service Agreement
-                </h2>
-                <p className="mt-3 text-base text-slate-light sm:text-lg">
-                  Please read the agreement in full and accept it before saving a
-                  card. Version {AGREEMENT_VERSION}.
-                </p>
+            <div className="shrink-0 px-6 pb-5 pt-6 text-center sm:px-8 sm:pt-8">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-hydra-50">
+                <FileText className="h-6 w-6 text-hydra-600" strokeWidth={1.75} />
               </div>
+              <h2
+                id="service-agreement-title"
+                className="text-3xl font-bold tracking-tight text-navy sm:text-4xl"
+              >
+                Service Agreement
+              </h2>
+              <p className="mt-3 text-base text-slate-light sm:text-lg">
+                Please read the agreement in full and accept it before saving a
+                card. Version {AGREEMENT_VERSION}.
+              </p>
+            </div>
 
+            {/* Scroll region — the header above it never moves, so the title
+            cannot be pushed off the top of the viewport. */}
+            <div className="min-h-0 flex-1 overflow-y-auto px-6 pb-6 sm:px-8 sm:pb-8">
               {/* Full agreement — visible and scrollable, never hidden behind a link */}
               <div
-                className="max-h-96 overflow-y-auto whitespace-pre-line rounded-xl border border-border bg-surface p-5 text-sm leading-relaxed text-slate sm:p-6"
+                className="max-h-[38vh] min-h-[8rem] overflow-y-auto whitespace-pre-line rounded-xl border border-border bg-surface p-5 text-sm leading-relaxed text-slate sm:max-h-96 sm:p-6"
                 tabIndex={0}
                 role="region"
                 aria-label="Service Agreement text"
@@ -707,7 +707,7 @@ export default function PaymentsPage() {
               ) : (
                 <form onSubmit={handleAcceptAgreement} className="mt-6">
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="sm:col-span-1">
+                    <div>
                       <label
                         htmlFor="consent-name"
                         className="block text-sm font-medium text-navy"
@@ -727,7 +727,7 @@ export default function PaymentsPage() {
                       />
                     </div>
 
-                    <div className="sm:col-span-1">
+                    <div>
                       <label
                         htmlFor="consent-email"
                         className="block text-sm font-medium text-navy"
@@ -743,26 +743,6 @@ export default function PaymentsPage() {
                         value={consentEmail}
                         onChange={(e) => setConsentEmail(e.target.value)}
                         placeholder="john@example.com"
-                        className="mt-1.5 w-full rounded-lg border border-border-light bg-white px-3.5 py-2.5 text-sm text-navy outline-none transition-colors focus:border-hydra-400 focus:ring-2 focus:ring-hydra-100"
-                      />
-                    </div>
-
-                    <div className="sm:col-span-2">
-                      <label
-                        htmlFor="consent-address"
-                        className="block text-sm font-medium text-navy"
-                      >
-                        Service address
-                      </label>
-                      <input
-                        id="consent-address"
-                        name="address"
-                        type="text"
-                        required
-                        autoComplete="street-address"
-                        value={consentAddress}
-                        onChange={(e) => setConsentAddress(e.target.value)}
-                        placeholder="123 Main St, Frisco, TX 75034"
                         className="mt-1.5 w-full rounded-lg border border-border-light bg-white px-3.5 py-2.5 text-sm text-navy outline-none transition-colors focus:border-hydra-400 focus:ring-2 focus:ring-hydra-100"
                       />
                     </div>
@@ -834,13 +814,14 @@ export default function PaymentsPage() {
                   )}
 
                   <p className="mt-4 text-xs leading-relaxed text-slate-light">
-                    We record your name, email, service address, the time of
-                    acceptance, the agreement version, and your IP address. No
+                    We record your name, email, the time of acceptance, the
+                    agreement version, and your IP address. No
                     payment details are collected on this page — those are entered
                     only on Stripe&apos;s secure checkout in the next step.
                   </p>
                 </form>
               )}
+            </div>
           </div>
         </div>
       )}

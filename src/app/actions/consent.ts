@@ -12,7 +12,6 @@ import { AGREEMENT_VERSION } from "@/lib/data/service-agreement";
 const consentSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email"),
-  address: z.string().min(3, "Service address is required"),
 });
 
 export type ConsentInput = z.infer<typeof consentSchema>;
@@ -20,7 +19,6 @@ export type ConsentInput = z.infer<typeof consentSchema>;
 interface ConsentRecord {
   name: string;
   email: string;
-  address: string;
   agreementVersion: string;
   acceptedAt: string;
   ip: string;
@@ -81,7 +79,6 @@ async function notifyViaFormspree(record: ConsentRecord) {
       "Submission Type": "Service Agreement Accepted",
       Name: record.name,
       Email: record.email,
-      "Service Address": record.address,
       "Agreement Version": record.agreementVersion,
       "Accepted At": record.acceptedAt,
       "IP Address": record.ip,
@@ -106,7 +103,6 @@ async function notifyViaGmail(record: ConsentRecord) {
   const rows = [
     ["Name", record.name],
     ["Email", record.email],
-    ["Service Address", record.address],
     ["Agreement Version", record.agreementVersion],
     ["Accepted At", record.acceptedAt],
     ["IP Address", record.ip],
