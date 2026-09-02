@@ -101,15 +101,29 @@ export function GetQuoteForm({ className }: GetQuoteFormProps) {
         return;
       }
 
-      if (!executeRecaptcha) {
-        setErrors({ name: "reCAPTCHA not ready. Please try again." });
-        return;
+      setSubmitting(true);
+
+      /* Spam verification is best-effort. If it is unavailable — no
+       * provider mounted, no site key, Google blocked — we submit
+       * without a token rather than lose the lead. The server decides
+       * what to do with an unverified submission. */
+      let recaptchaToken: string | undefined;
+      try {
+        if (executeRecaptcha) {
+          recaptchaToken = await executeRecaptcha("form_submit");
+        } else {
+          console.error(
+            "[GetQuoteForm] reCAPTCHA unavailable (no provider mounted) — submitting without a token"
+          );
+        }
+      } catch (err) {
+        console.error(
+          "[GetQuoteForm] reCAPTCHA execution failed — submitting without a token:",
+          err
+        );
       }
 
-      setSubmitting(true);
       try {
-        const recaptchaToken = await executeRecaptcha("form_submit");
-
         const res = await fetch("/api/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -120,13 +134,22 @@ export function GetQuoteForm({ className }: GetQuoteFormProps) {
           trackLead({ source: "home_quote_form" });
           setSubmitted(true);
         } else {
+          // The server answered — report what it actually said rather
+          // than guessing at a cause.
           const data = await res.json().catch(() => null);
           setErrors({
-            name: data?.error || "Something went wrong. Please try again.",
+            name:
+              data?.error ||
+              `Server error (${res.status}). Please try again, or call (214) 233-6803.`,
           });
         }
-      } catch {
-        setErrors({ name: "Network error. Please try again." });
+      } catch (err) {
+        // Only a genuinely failed request reaches here now.
+        console.error("[GetQuoteForm] request to /api/contact failed:", err);
+        setErrors({
+          name:
+            "Could not reach our server. Please check your connection and try again, or call (214) 233-6803.",
+        });
       } finally {
         setSubmitting(false);
       }
