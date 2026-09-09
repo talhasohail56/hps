@@ -60,7 +60,7 @@ export function FAQ({ faqs }: FAQProps) {
                   className="overflow-hidden"
                 >
                   <p className="pb-5 pr-12 text-sm leading-relaxed text-slate sm:text-base">
-                    {faq.answer}
+                    {faq.displayAnswer ?? faq.answer}
                   </p>
                 </motion.div>
               )}

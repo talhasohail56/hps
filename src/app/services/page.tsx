@@ -19,7 +19,7 @@ import type { ComponentType } from "react";
 
 import { cn } from "@/lib/utils";
 import { services } from "@/lib/data/services";
-import { addOns } from "@/lib/data/plans";
+import { addOns, formatAddOnPrice } from "@/lib/data/plans";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
 import { NoiseOverlay } from "@/components/graphics/NoiseOverlay";
 import { GradientOrb } from "@/components/graphics/GradientOrb";
@@ -341,7 +341,7 @@ export default function ServicesPage() {
                       )}
                     >
                       <DollarSign className="h-4 w-4" strokeWidth={2} />
-                      {addOn.price}
+                      {formatAddOnPrice(addOn.price)}
                     </span>
                   </div>
                 </div>
