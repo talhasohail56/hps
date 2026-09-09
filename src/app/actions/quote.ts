@@ -126,7 +126,7 @@ async function sendCustomerConfirmation(record: QuoteRecord) {
         <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 10px; padding: 20px; text-align: center; margin-bottom: 20px;">
           <p style="margin: 0 0 4px; font-size: 13px; color: #64748b;">Estimated Monthly Price</p>
           <p style="margin: 0; font-size: 32px; font-weight: 800; color: #0369a1;">
-            $${record.monthlyPrice}<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span>
+            $${record.monthlyPrice}<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo + tax</span>
           </p>
           <p style="margin: 8px 0 0; font-size: 12px; color: #64748b;">
             ${scheduleLabel(record.schedule)} &middot; ${POOL_LABELS[record.poolSize] || record.poolSize}

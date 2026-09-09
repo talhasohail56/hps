@@ -1,7 +1,10 @@
 export interface FAQ {
   id: string;
   question: string;
+  /** Feeds the FAQPage JSON-LD — keep prices clean, no tax wording. */
   answer: string;
+  /** Shown to customers on the page instead of `answer` when present. */
+  displayAnswer?: string;
 }
 
 export const faqs: FAQ[] = [
@@ -46,6 +49,8 @@ export const faqs: FAQ[] = [
     question: "How much does pool service cost in Frisco, TX?",
     answer:
       "Pool service in the Frisco and North DFW area starts at $139 per month for bi-weekly cleaning. Weekly service is $179 per month, and our Premium Care plan with equipment support and priority scheduling is $299 per month. All chemicals are included in every plan — you never pay extra for chlorine, acid, or balancers.",
+    displayAnswer:
+      "Pool service in the Frisco and North DFW area starts at $139 per month plus tax for bi-weekly cleaning. Weekly service is $179 per month plus tax, and our Premium Care plan with equipment support and priority scheduling is $299 per month plus tax. All chemicals are included in every plan — you never pay extra for chlorine, acid, or balancers.",
   },
   {
     id: "8",

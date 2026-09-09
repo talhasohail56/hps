@@ -125,6 +125,14 @@ export const plans: Plan[] = [
   },
 ];
 
+/**
+ * Customer-facing form of an add-on price. Real prices are quoted exclusive
+ * of tax; non-numeric entries such as "Quote required" pass through as-is.
+ */
+export function formatAddOnPrice(price: string): string {
+  return /\$\d/.test(price) ? `${price} + tax` : price;
+}
+
 export const addOns: AddOn[] = [
   {
     id: "filter-clean",

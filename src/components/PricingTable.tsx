@@ -63,7 +63,7 @@ function DesktopTable() {
                     <span className="font-semibold text-navy">
                       ${plan.price}
                     </span>
-                    /mo
+                    /mo + tax
                   </div>
                 )}
               </th>
@@ -148,7 +148,7 @@ function MobileCards() {
               <p className="mt-0.5 text-sm text-slate-light">
                 {plan.priceLabel}{" "}
                 <span className="font-semibold text-navy">${plan.price}</span>
-                /mo
+                /mo + tax
               </p>
             )}
           </div>

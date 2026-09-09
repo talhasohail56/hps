@@ -13,7 +13,7 @@ const OPTIONS: { value: Schedule; label: string; description: string }[] = [
     value: "chemical",
     label: "Chemical Only",
     description:
-      "From $119/mo — chemicals, testing & balancing included",
+      "From $119/mo + tax — chemicals, testing & balancing included",
   },
   {
     value: "weekly",
@@ -24,7 +24,7 @@ const OPTIONS: { value: Schedule; label: string; description: string }[] = [
     value: "premium",
     label: "Premium Care",
     description:
-      "$299/mo flat — weekly service + equipment support, priority scheduling & filter cleaning",
+      "Flat $299/mo + tax — weekly service, equipment support, priority scheduling & filter cleaning",
   },
 ];
 

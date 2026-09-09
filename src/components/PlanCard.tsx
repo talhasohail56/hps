@@ -52,7 +52,9 @@ export function PlanCard({ plan }: PlanCardProps) {
               <span className="text-xl align-top">$</span>
               {price}
             </span>
-            <span className="text-sm font-medium text-slate-light">/mo</span>
+            <span className="text-sm font-medium text-slate-light">
+              /mo + tax
+            </span>
           </>
         ) : (
           <span className="text-2xl font-bold text-navy">{priceLabel}</span>

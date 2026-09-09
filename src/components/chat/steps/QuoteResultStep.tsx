@@ -36,7 +36,9 @@ export function QuoteResultStep({
         <div className="rounded-xl bg-white border border-border-light p-4 mb-3">
           <p className="text-center text-3xl font-extrabold text-hydra-600">
             ${monthlyPrice}
-            <span className="text-sm font-medium text-slate-light">/mo</span>
+            <span className="text-sm font-medium text-slate-light">
+              /mo + tax
+            </span>
           </p>
           <div className="mt-2 flex justify-center gap-4 text-xs text-slate-light">
             <span>{schedule === "premium" ? "Premium Care" : schedule === "chemical" ? "Chemical Only" : "Weekly"}</span>

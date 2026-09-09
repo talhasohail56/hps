@@ -1,6 +1,6 @@
 import { ArrowRight, Sparkles, DollarSign } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { plans, addOns } from "@/lib/data/plans";
+import { plans, addOns, formatAddOnPrice } from "@/lib/data/plans";
 import { PlanCard } from "@/components/PlanCard";
 import { PricingTable } from "@/components/PricingTable";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
@@ -146,7 +146,7 @@ export default function PlansPage() {
                     <div className="flex shrink-0 items-center gap-1 rounded-lg bg-hydra-50 px-3 py-1.5">
                       <DollarSign className="h-3.5 w-3.5 text-hydra-600" />
                       <span className="text-sm font-semibold text-hydra-700">
-                        {addOn.price.replace(/^\$/, "").replace(/^Starting at \$/, "")}
+                        {formatAddOnPrice(addOn.price)}
                       </span>
                     </div>
                   </div>
@@ -165,9 +165,9 @@ export default function PlansPage() {
           <p className="text-center text-sm leading-relaxed text-slate-light">
             Bi-weekly and Weekly prices are starting rates and may vary based
             on pool size, condition, and location. Premium Care is a flat
-            $299/mo regardless of pool size. Contact us for a personalized
-            quote. No long-term contracts &mdash; cancel anytime with 30 days
-            notice.
+            $299/mo + tax regardless of pool size. All prices exclude sales
+            tax. Contact us for a personalized quote. No long-term contracts
+            &mdash; cancel anytime with 30 days notice.
           </p>
         </div>
       </section>
