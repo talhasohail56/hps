@@ -11,7 +11,7 @@ import nodemailer from "nodemailer";
 
 const quoteSchema = z.object({
   photo: z.string().optional(),
-  poolSize: z.enum(["10k-20k", "20k-30k", "30k+"]),
+  poolSize: z.enum(["0-10k", "10k-20k", "20k+"]),
   schedule: z.enum(["weekly", "chemical", "premium"]),
   monthlyPrice: z.number().positive(),
   name: z.string().min(1, "Name is required"),
@@ -83,7 +83,10 @@ async function notifyViaFormspree(record: QuoteRecord) {
 /* ------------------------------------------------------------------ */
 
 const POOL_LABELS: Record<string, string> = {
+  "0-10k": "0 – 10,000 gal",
   "10k-20k": "10,000 – 20,000 gal",
+  "20k+": "20,000+ gal",
+  // Legacy tier keys still present on older quotes.json records.
   "20k-30k": "20,000 – 30,000 gal",
   "30k+": "30,000+ gal",
 };

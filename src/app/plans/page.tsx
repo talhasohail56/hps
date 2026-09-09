@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { plans, addOns, formatAddOnPrice } from "@/lib/data/plans";
 import { PlanCard } from "@/components/PlanCard";
 import { PricingTable } from "@/components/PricingTable";
+import { TierTable } from "@/components/TierTable";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
 import { NoiseOverlay } from "@/components/graphics/NoiseOverlay";
 import { GradientOrb } from "@/components/graphics/GradientOrb";
@@ -75,6 +76,28 @@ export default function PlansPage() {
               <PlanCard key={plan.id} plan={plan} index={index} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/*  2b. PRICING BY POOL SIZE                                    */}
+      {/* ============================================================ */}
+      <section
+        className="bg-white py-16 md:py-24 border-t border-border-light"
+        aria-label="Pricing by pool size"
+      >
+        <div className="mx-auto max-w-4xl px-5 sm:px-6 lg:px-8">
+          <FadeIn className="mb-10 text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+              Pricing by Pool Size
+            </h2>
+            <p className="mt-3 text-base text-slate-light sm:text-lg">
+              Monthly price for each plan at your pool&apos;s size. Not sure of
+              your gallons? We&apos;ll confirm on the first visit.
+            </p>
+          </FadeIn>
+
+          <TierTable />
         </div>
       </section>
 
@@ -163,8 +186,9 @@ export default function PlansPage() {
       <section className="bg-white pb-4 pt-0" aria-label="Pricing disclaimer">
         <div className="mx-auto max-w-3xl px-5 sm:px-6 lg:px-8">
           <p className="text-center text-sm leading-relaxed text-slate-light">
-            Bi-weekly and Weekly prices are starting rates and may vary based
-            on pool size, condition, and location. Premium Care is a flat
+            Chemical Only, Bi-weekly, and Weekly prices are starting rates and
+            may vary based on pool size, condition, and location. Premium Care
+            is a flat
             $299/mo + tax regardless of pool size. All prices exclude sales
             tax. Contact us for a personalized quote. No long-term contracts
             &mdash; cancel anytime with 30 days notice.

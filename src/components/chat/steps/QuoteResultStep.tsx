@@ -3,6 +3,7 @@
 import { CheckCircle, Phone, RotateCcw } from "lucide-react";
 import { ChatMessage } from "../ChatMessage";
 import type { Schedule, PoolSize } from "../types";
+import { POOL_SIZE_LABELS, SCHEDULE_LABELS } from "../pricing";
 
 interface QuoteResultStepProps {
   monthlyPrice: number;
@@ -11,12 +12,6 @@ interface QuoteResultStepProps {
   quoteId: string;
   onReset: () => void;
 }
-
-const POOL_LABELS: Record<PoolSize, string> = {
-  "10k-20k": "10k – 20k gal",
-  "20k-30k": "20k – 30k gal",
-  "30k+": "30k+ gal",
-};
 
 export function QuoteResultStep({
   monthlyPrice,
@@ -41,9 +36,9 @@ export function QuoteResultStep({
             </span>
           </p>
           <div className="mt-2 flex justify-center gap-4 text-xs text-slate-light">
-            <span>{schedule === "premium" ? "Premium Care" : schedule === "chemical" ? "Chemical Only" : "Weekly"}</span>
+            <span>{SCHEDULE_LABELS[schedule]}</span>
             <span className="text-hydra-300">&#183;</span>
-            <span>{POOL_LABELS[poolSize]}</span>
+            <span>{POOL_SIZE_LABELS[poolSize]}</span>
           </div>
         </div>
 
