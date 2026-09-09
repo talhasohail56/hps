@@ -3,16 +3,15 @@
 import { Droplets } from "lucide-react";
 import { ChatMessage } from "../ChatMessage";
 import type { PoolSize } from "../types";
+import { POOL_SIZES, POOL_SIZE_LABELS } from "../pricing";
 
 interface PoolSizeStepProps {
   onSelect: (size: PoolSize) => void;
 }
 
-const OPTIONS: { value: PoolSize; label: string }[] = [
-  { value: "10k-20k", label: "10,000 – 20,000 gal" },
-  { value: "20k-30k", label: "20,000 – 30,000 gal" },
-  { value: "30k+", label: "30,000+ gal" },
-];
+const OPTIONS: { value: PoolSize; label: string }[] = POOL_SIZES.map(
+  (value) => ({ value, label: POOL_SIZE_LABELS[value] })
+);
 
 export function PoolSizeStep({ onSelect }: PoolSizeStepProps) {
   return (

@@ -13,7 +13,7 @@ import {
   type ContactDetails,
   type InquiryDetails,
 } from "./types";
-import { getMonthlyPrice } from "./pricing";
+import { getMonthlyPrice, POOL_SIZE_LABELS } from "./pricing";
 import { submitQuote } from "@/app/actions/quote";
 import { submitInquiry } from "@/app/actions/inquiry";
 import { trackLead } from "@/lib/analytics";
@@ -270,11 +270,7 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
             <BackButton onClick={handleBack} />
             <StepIndicator currentStep="schedule" />
             <ChatMessage from="user">
-              Pool size:{" "}
-              {state.poolSize === "30k+"
-                ? "30,000+ gal"
-                : state.poolSize?.replace("k", ",000").replace("-", " – ") +
-                  " gal"}
+              Pool size: {state.poolSize && POOL_SIZE_LABELS[state.poolSize]}
             </ChatMessage>
             <ScheduleStep onSelect={handleSchedule} />
           </>

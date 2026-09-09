@@ -2,6 +2,8 @@
 /*  Chat widget types & reducer                                        */
 /* ------------------------------------------------------------------ */
 
+import type { PoolSizeTier } from "@/lib/data/pricing-tiers";
+
 export type ServiceType = "cleaning" | "repair" | "question";
 
 export type Step =
@@ -15,7 +17,7 @@ export type Step =
   | "inquirySubmitting"
   | "inquiryResult";
 
-export type PoolSize = "10k-20k" | "20k-30k" | "30k+";
+export type PoolSize = PoolSizeTier;
 export type Schedule = "weekly" | "chemical" | "premium";
 
 export interface ContactDetails {
