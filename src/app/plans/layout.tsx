@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pool Service Plans & Pricing | Hydra Pool Services",
     description:
-      "Affordable pool service plans in Frisco, TX. All chemicals included. Get $100 off your first month.",
+      "Affordable pool service plans in Frisco, TX. All chemicals included. Free first 2 weeks for new customers.",
     url: `${siteConfig.url}/plans`,
   },
 };

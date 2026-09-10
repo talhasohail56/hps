@@ -76,7 +76,7 @@ const residentialPoolMaintenance: Service = {
     "At Hydra Pool Services, we know your home swimming pool is more than just water. It is your private escape, your backyard centerpiece, and a place for family and friends to come together. But owning a pool should feel like joy, not a chore. Our Residential Pool Maintenance service is designed to give you complete peace of mind, crystal-clear water, and professional pool care every single week.\n\nNo matter what it is that you need taken care of, whether it's pool cleaning, pool repairs, or a customized maintenance plan, our friendly and experienced technicians are here to take the stress out of swimming pool care.",
   metaTitle: "Residential Pool Maintenance | Hydra Pool Services",
   metaDescription:
-    "Professional weekly residential pool maintenance in North DFW. Brushing, vacuuming, chemical balancing, and equipment inspections. Get $100 off your first month.",
+    "Professional weekly residential pool maintenance in North DFW. Brushing, vacuuming, chemical balancing, and equipment inspections. Free first 2 weeks for new customers.",
   sections: [
     {
       heading: "Why Choose Hydra for Residential Pool Maintenance",
@@ -182,9 +182,9 @@ const residentialPoolMaintenance: Service = {
         "We offer a full range of services including pool remodeling, tile cleaning, pool draining, and pool inspections. Contact us for a free assessment and we will recommend the best solution for your pool.",
     },
   ],
-  ctaHeading: "Get $100 Off Your First Month",
+  ctaHeading: "New to Hydra? Start With a Free Visit",
   ctaBody:
-    "Are you new to Hydra? Right now you can get $100 off your first month of residential pool maintenance in the DFW area. Schedule a free visit, get a professional inspection, and enjoy your first month with a discount.",
+    "Schedule a free, no-obligation visit and we'll inspect your pool, test the water, and walk you through a plan that fits your schedule and budget — no contracts, cancel anytime.",
   ctaClosing:
     "Your home deserves professional pool care. Hydra Pool Services brings reliable weekly service, experienced technicians, and customized maintenance plans that deliver crystal-clear water and total peace of mind. Stop worrying about your pool. Let Hydra handle the hard work so you can enjoy every swim.",
 };
@@ -323,11 +323,11 @@ const commercialPoolMaintenance: Service = {
         "Yes. We service both chlorine and saltwater commercial pool systems across North DFW.",
     },
   ],
-  ctaHeading: "Get $100 Off Your First Month",
+  ctaHeading: "New to Hydra? Start With a Free Visit",
   ctaBody:
-    "Right now, new businesses in North DFW, TX can claim $100 off the first month of service. Whether you manage a hotel in Frisco, an apartment complex in McKinney, or a fitness center in Plano, Hydra Pool Services is ready to take the hassle out of your commercial pool care.",
+    "Managing a hotel, apartment complex, or fitness center pool in North DFW? Book a free site visit and we'll assess your equipment, compliance needs, and service schedule — then take the hassle off your plate.",
   ctaClosing:
-    "Commercial pools are a big responsibility, but with Hydra you do not have to manage them alone. Our professional pool care, weekly service, and customized maintenance plans give you peace of mind and keep your pool running smoothly. Contact us now and claim your $100 credit toward your first month.",
+    "Commercial pools are a big responsibility, but with Hydra you do not have to manage them alone. Our professional pool care, weekly service, and customized maintenance plans give you peace of mind and keep your pool running smoothly. Contact us to schedule a free site visit.",
 };
 
 /* ================================================================== */
@@ -444,9 +444,9 @@ const poolRepairServices: Service = {
         "Absolutely. Many repair customers choose to add weekly maintenance to prevent future issues and protect their investment. Ask about our customized maintenance plans.",
     },
   ],
-  ctaHeading: "Get $100 Off Your First Month",
+  ctaHeading: "New to Hydra? Start With a Free Visit",
   ctaBody:
-    "New customers in North DFW, TX get $100 off the first month of pool service when they sign up for Hydra. That includes inspection, repair recommendations, and ongoing swimming pool care.",
+    "Book a free visit and our technicians will diagnose the problem, give you honest repair recommendations, and set you up with ongoing care so it doesn't happen again.",
   ctaClosing:
     "When equipment breaks, your pool does not have to stay down. Hydra Pool Services offers reliable pool repairs, weekly service, and professional pool care across North DFW, TX. Our friendly and experienced technicians bring peace of mind and crystal-clear water back to your pool.",
 };
@@ -566,9 +566,9 @@ const beadBlasting: Service = {
         "Yes. We handle large-scale bead blasting for hotels, gyms, HOAs, and apartment complexes with minimal downtime for your guests and residents.",
     },
   ],
-  ctaHeading: "Get $100 Off Your First Month",
+  ctaHeading: "New to Hydra? Start With a Free Visit",
   ctaBody:
-    "New to Hydra? Get $100 off your first month of pool service when you schedule with us. Our team will inspect your pool, recommend bead blasting if needed, and provide a clear, honest quote.",
+    "Schedule a free visit and our team will inspect your pool, recommend bead blasting if it's the right fix, and give you a clear, honest quote — no pressure.",
   ctaClosing:
     "Bring your pool back to life with Hydra's bead blasting service. Our friendly and experienced technicians deliver professional pool care that restores surfaces, removes calcium, and leaves your pool sparkling. Serving North DFW, Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
 };
@@ -707,9 +707,9 @@ const poolSchool: Service = {
         "Pool School is designed primarily for residential pool owners, but the knowledge and principles apply to any pool system.",
     },
   ],
-  ctaHeading: "Get $100 Off Your First Month",
+  ctaHeading: "New to Hydra? Start With a Free Visit",
   ctaBody:
-    "Are you new to Hydra? We offer $100 off your first month of service for homeowners who decide to sign up after Pool School. Even if you choose to handle things on your own, you will leave our class with practical knowledge and confidence.",
+    "Book a free visit and we'll test your water, check your equipment, and show you exactly what your pool needs. Whether you keep things DIY or hand them off to us, you'll leave Pool School with practical knowledge and confidence.",
   ctaClosing:
     "Being a first-time pool owner in North DFW, TX does not have to feel overwhelming. With Hydra's Pool School, you will learn the skills you need for crystal-clear water, safe swimming, and long-lasting equipment. Whether you stay DIY or switch to Hydra's professional pool care, you will always have peace of mind knowing your pool is in good hands.",
 };
@@ -845,9 +845,9 @@ const chemicalOnlyService: Service = {
         "Yes. We service both chlorine and saltwater systems across all of North DFW, TX.",
     },
   ],
-  ctaHeading: "Get $100 Off Your First Month",
+  ctaHeading: "New to Hydra? Start With a Free Visit",
   ctaBody:
-    "New to Hydra? Get $100 off your first month of pool service when you sign up in North DFW, TX. We will perform a full water test, balance your pool, and provide honest pricing.",
+    "Book a free visit and we'll perform a full water test, balance your pool, and give you straightforward pricing on our Chemical Only Service.",
   ctaClosing:
     "Tired of spending too much money on pool chemicals? Let Hydra handle it. With our Chemical Only Service, you get the right balance every time, discounted products, and friendly and experienced technicians who care about your pool. Serving North DFW, Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
 };
