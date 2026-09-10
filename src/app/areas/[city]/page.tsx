@@ -6,6 +6,8 @@ import { siteConfig } from "@/lib/data/site";
 import { serviceAreas } from "@/lib/data/areas";
 import { cityContent } from "@/lib/data/city-content";
 import { services } from "@/lib/data/services";
+import { plans } from "@/lib/data/plans";
+import { TierTable } from "@/components/TierTable";
 
 /* ------------------------------------------------------------------ */
 /*  Static params for all cities                                       */
@@ -363,8 +365,13 @@ export default async function CityPage({
       </section>
 
       {/* ── Pricing ── */}
+      {/*
+        Driven entirely by the shared plan and tier data (the same sources
+        /plans uses), so a price change there updates every city page. No
+        prices are hardcoded here.
+      */}
       <section className="bg-white py-16 md:py-20 border-t border-border-light">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">
             Pool Service Plans in {area.name}, TX
           </h2>
@@ -372,14 +379,10 @@ export default async function CityPage({
             All plans include chemicals, equipment inspections, and digital service reports.
           </p>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {[
-              { name: "Bi-weekly", price: 139, desc: "Essential bi-weekly cleaning" },
-              { name: "Weekly", price: 179, desc: "Complete weekly service", featured: true },
-              { name: "Premium Care", price: 299, desc: "Weekly + equipment support" },
-            ].map((plan) => (
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {plans.map((plan) => (
               <div
-                key={plan.name}
+                key={plan.id}
                 className={`rounded-xl border p-5 text-center ${
                   plan.featured
                     ? "border-hydra-400 bg-hydra-50/50 shadow-md"
@@ -392,16 +395,32 @@ export default async function CityPage({
                   </span>
                 )}
                 <p className="text-sm font-semibold text-navy">{plan.name}</p>
-                <p className="mt-1 text-3xl font-extrabold text-hydra-600">
-                  ${plan.price}
-                  <span className="text-sm font-medium text-slate-light">
-                    /mo + tax
-                  </span>
-                </p>
-                <p className="mt-1 text-xs text-slate-light">{plan.desc}</p>
+                {plan.price !== null && (
+                  <p className="mt-1">
+                    <span className="block text-[11px] font-medium text-slate-light">
+                      {plan.priceLabel}
+                    </span>
+                    <span className="text-3xl font-extrabold text-hydra-600">
+                      ${plan.price}
+                    </span>
+                    <span className="text-sm font-medium text-slate-light">
+                      /mo + tax
+                    </span>
+                  </p>
+                )}
+                <p className="mt-1 text-xs text-slate-light">{plan.subtitle}</p>
               </div>
             ))}
           </div>
+
+          <h3 className="mt-12 text-lg font-semibold text-navy">
+            Pricing by pool size
+          </h3>
+          <p className="mt-1 mb-5 text-sm text-slate-light">
+            Monthly price for each plan at your pool&apos;s size. Not sure of
+            your gallons? We&apos;ll confirm on the first visit.
+          </p>
+          <TierTable />
 
           <div className="mt-6 text-center">
             <Link
