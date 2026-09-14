@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Blog | ${siteConfig.name}`,
     description: `Pool care tips, maintenance guides, and industry insights from ${siteConfig.name}.`,
+    images: [{ url: siteConfig.ogImage, width: 1290, height: 720, alt: siteConfig.ogImageAlt }],
   },
 };
 

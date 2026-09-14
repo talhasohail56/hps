@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       "Learn about Hydra Pool Services — professional pool care serving Frisco, TX and North DFW.",
     url: `${siteConfig.url}/about`,
+    images: [{ url: siteConfig.ogImage, width: 1290, height: 720, alt: siteConfig.ogImageAlt }],
   },
 };
 

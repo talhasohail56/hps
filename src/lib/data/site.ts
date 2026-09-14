@@ -12,6 +12,13 @@ export const siteConfig = {
     nextdoor: "https://nextdoor.com/hydrapoolservices",
   },
   url: "https://www.hydrapoolservices.com",
+  /*
+   * Default social-share image. 1290x720 (16:9) — above the 1200px minimum
+   * width for a large summary card. Overridden per-page where a more
+   * specific image exists (blog posts use their cover image).
+   */
+  ogImage: "/pool-2.jpg",
+  ogImageAlt: "Hydra Pool Services — weekly pool care in Frisco, TX",
   contentUpdatedAt: "2026-04-23",
   description:
     "Hydra Pool Services provides premium weekly pool cleaning, water chemistry balancing, and equipment maintenance in Frisco, TX and surrounding DFW communities.",

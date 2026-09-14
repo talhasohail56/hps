@@ -7,6 +7,7 @@ import {
   getPostBySlug,
   getPublishedPosts,
 } from "@/lib/blog/db";
+import { isNoindexed } from "@/lib/blog/noindex";
 import { siteConfig } from "@/lib/data/site";
 import { Prose } from "@/components/Prose";
 
@@ -20,21 +21,6 @@ export async function generateStaticParams() {
 /* ------------------------------------------------------------------ */
 /*  Metadata                                                           */
 /* ------------------------------------------------------------------ */
-
-/* ---- Slugs to noindex (cannibalized / duplicate topics) ---- */
-const NOINDEX_SLUGS = new Set([
-  "how-often-shock-pool-prosper-tx",
-  "salt-pool-vs-chlorine-frisco-tx",
-  "pool-pump-run-time-per-day-allen-tx",
-  "variable-speed-pool-pump-worth-it-texas",
-  "pool-leak-detection-signs-north-dfw",
-  "pool-replastering-signs-cost-plano-tx",
-  "pool-maintenance-cost-texas",
-  "monthly-cost-pool-north-texas-prosper-tx",
-  "weekly-pool-service-vs-diy-frisco-tx",
-  "poor-pool-maintenance-increases-repair-costs",
-  "pool-service-little-elm-tx",
-]);
 
 export async function generateMetadata({
   params,
@@ -52,7 +38,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    ...(NOINDEX_SLUGS.has(post.slug)
+    ...(isNoindexed(post.slug)
       ? { robots: { index: false, follow: true } }
       : {}),
     alternates: {
@@ -67,13 +53,22 @@ export async function generateMetadata({
       publishedTime: post.publishedAt || undefined,
       modifiedTime: post.updatedAt,
       authors: ["John Smith"],
-      ...(post.coverImage ? { images: [{ url: post.coverImage }] } : {}),
+      images: post.coverImage
+        ? [{ url: post.coverImage }]
+        : [
+            {
+              url: siteConfig.ogImage,
+              width: 1290,
+              height: 720,
+              alt: siteConfig.ogImageAlt,
+            },
+          ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      ...(post.coverImage ? { images: [post.coverImage] } : {}),
+      images: [post.coverImage || siteConfig.ogImage],
     },
   };
 }

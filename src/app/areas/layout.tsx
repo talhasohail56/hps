@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       "Professional pool care across North DFW — Frisco, Plano, McKinney, Allen, Murphy, Prosper, and more.",
     url: `${siteConfig.url}/areas`,
+    images: [{ url: siteConfig.ogImage, width: 1290, height: 720, alt: siteConfig.ogImageAlt }],
   },
 };
 
