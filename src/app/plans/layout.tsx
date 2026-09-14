@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       "Affordable pool service plans in Frisco, TX. All chemicals included. Free first 2 weeks for new customers.",
     url: `${siteConfig.url}/plans`,
+    images: [{ url: siteConfig.ogImage, width: 1290, height: 720, alt: siteConfig.ogImageAlt }],
   },
 };
 

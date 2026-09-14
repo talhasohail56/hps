@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       "Weekly cleaning from $139/mo, all chemicals included. Plus repairs, filter service, bead blasting, and salt cell maintenance. Serving Frisco, Plano, McKinney, Allen & North DFW.",
     url: `${siteConfig.url}/services`,
+    images: [{ url: siteConfig.ogImage, width: 1290, height: 720, alt: siteConfig.ogImageAlt }],
   },
 };
 

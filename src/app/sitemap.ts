@@ -3,6 +3,7 @@ import { siteConfig } from "@/lib/data/site";
 import { services } from "@/lib/data/services";
 import { serviceAreas } from "@/lib/data/areas";
 import { getPublishedPosts } from "@/lib/blog/db";
+import { isNoindexed } from "@/lib/blog/noindex";
 
 export const revalidate = 3600;
 
@@ -61,12 +62,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${baseUrl}/blogs/${post.slug}`,
-    lastModified: postDate(post),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+  // Noindexed posts must never be submitted for indexing — doing so is what
+  // produces the "Submitted URL marked noindex" coverage error in GSC.
+  const blogPages: MetadataRoute.Sitemap = posts
+    .filter((post) => !isNoindexed(post.slug))
+    .map((post) => ({
+      url: `${baseUrl}/blogs/${post.slug}`,
+      lastModified: postDate(post),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
 
   return [...staticPages, ...servicePages, ...areaPages, ...blogPages];
 }

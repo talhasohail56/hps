@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       "Get a free pool maintenance quote. Call (214) 233-6803 or schedule online. Serving Frisco, TX and North DFW.",
     url: `${siteConfig.url}/contact`,
+    images: [{ url: siteConfig.ogImage, width: 1290, height: 720, alt: siteConfig.ogImageAlt }],
   },
 };
 

@@ -72,6 +72,7 @@ export async function generateMetadata({
       description: service.metaDescription,
       url: `${siteConfig.url}/services/${slug}`,
       type: "website",
+      images: [{ url: siteConfig.ogImage, width: 1290, height: 720, alt: siteConfig.ogImageAlt }],
     },
   };
 }

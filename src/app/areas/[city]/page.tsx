@@ -40,6 +40,7 @@ export async function generateMetadata({
       url: `${siteConfig.url}/areas/${city}`,
       siteName: siteConfig.name,
       type: "website",
+      images: [{ url: siteConfig.ogImage, width: 1290, height: 720, alt: siteConfig.ogImageAlt }],
     },
   };
 }
@@ -126,10 +127,17 @@ export default async function CityPage({
     .map((id) => serviceAreas.find((a) => a.id === id))
     .filter(Boolean);
 
+  const deepFaqs = cityDeepFaqs[city] ?? [];
+
+  /*
+   * One FAQPage per URL: both accordions on this page (the city FAQs and the
+   * deep-dive FAQs) are folded into a single block. Two FAQPage blocks on one
+   * URL are contradictory and Google advises against it.
+   */
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: content.faqs.map((faq) => ({
+    mainEntity: [...content.faqs, ...deepFaqs].map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
@@ -207,21 +215,6 @@ export default async function CityPage({
     },
   };
 
-  const deepFaqs = cityDeepFaqs[city] ?? [];
-
-  const deepFaqJsonLd = deepFaqs.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: deepFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  } : null;
-
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -261,12 +254,6 @@ export default async function CityPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      {deepFaqJsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(deepFaqJsonLd) }}
-        />
-      )}
 
       {/* ── Hero ── */}
       <section className="bg-gradient-to-b from-hydra-50/60 to-white py-20 md:py-28">
