@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/data/site";
 import { serviceAreas } from "@/lib/data/areas";
 import { cityContent } from "@/lib/data/city-content";
 import { services } from "@/lib/data/services";
-import { plans } from "@/lib/data/plans";
+import { plans, type Plan } from "@/lib/data/plans";
 import { TierTable } from "@/components/TierTable";
 
 /* ------------------------------------------------------------------ */
@@ -168,44 +168,30 @@ export default async function CityPage({
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: `Pool Service Plans in ${area.name}, TX`,
-      itemListElement: [
-        {
+      /*
+       * Built from the same `plans` array the cards on this page render, so
+       * the markup can never advertise a different set of plans, or different
+       * prices, than a visitor actually sees. This previously listed three
+       * hardcoded offers and silently missed Chemical Only.
+       *
+       * Prices here are the bare monthly figure. Structured data takes a
+       * plain number, so the "+ tax" wording stays in the visible copy only —
+       * the same split we used for the FAQ answers.
+       */
+      itemListElement: plans
+        .filter((plan): plan is Plan & { price: number } => plan.price !== null)
+        .map((plan) => ({
           "@type": "Offer",
-          name: "Bi-weekly Pool Service",
-          price: "139",
+          name: `${plan.name} Pool Service`,
+          price: String(plan.price),
           priceCurrency: "USD",
           priceSpecification: {
             "@type": "UnitPriceSpecification",
-            price: "139",
+            price: String(plan.price),
             priceCurrency: "USD",
             unitText: "MONTH",
           },
-        },
-        {
-          "@type": "Offer",
-          name: "Weekly Pool Service",
-          price: "179",
-          priceCurrency: "USD",
-          priceSpecification: {
-            "@type": "UnitPriceSpecification",
-            price: "179",
-            priceCurrency: "USD",
-            unitText: "MONTH",
-          },
-        },
-        {
-          "@type": "Offer",
-          name: "Premium Care Pool Service",
-          price: "299",
-          priceCurrency: "USD",
-          priceSpecification: {
-            "@type": "UnitPriceSpecification",
-            price: "299",
-            priceCurrency: "USD",
-            unitText: "MONTH",
-          },
-        },
-      ],
+        })),
     },
   };
 
