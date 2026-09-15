@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Send } from "lucide-react";
+import { useRef, useState } from "react";
+import { Loader2, Send } from "lucide-react";
 import { ChatMessage } from "../ChatMessage";
 import type { InquiryDetails, ServiceType } from "../types";
 
@@ -31,6 +31,18 @@ export function InquiryStep({ serviceType, onSubmit }: InquiryStepProps) {
   });
   const [errors, setErrors] = useState<Partial<Record<keyof InquiryDetails, string>>>({});
 
+  /*
+   * Local submit guard — same reasoning as DetailsStep. The parent advances
+   * the step on submit, but AnimatePresence (mode="wait") keeps this
+   * component mounted while it animates out, leaving the button clickable.
+   * It has to be local state for the same reason: this step only renders
+   * while the reducer says "inquiry", so a parent-supplied flag could never
+   * be true here. The ref blocks a same-tick second click, the state renders
+   * the disabled attribute.
+   */
+  const submittedRef = useRef(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   function validate(): boolean {
     const errs: typeof errors = {};
     if (!form.name.trim()) errs.name = "Name is required";
@@ -45,7 +57,11 @@ export function InquiryStep({ serviceType, onSubmit }: InquiryStepProps) {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (validate()) onSubmit(form);
+    if (submittedRef.current) return;
+    if (!validate()) return;
+    submittedRef.current = true;
+    setIsSubmitting(true);
+    onSubmit(form);
   }
 
   const inputClass =
@@ -110,10 +126,20 @@ export function InquiryStep({ serviceType, onSubmit }: InquiryStepProps) {
 
         <button
           type="submit"
-          className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-hydra-600 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-hydra-700"
+          disabled={isSubmitting}
+          className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-hydra-600 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-hydra-700 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          <Send className="h-3.5 w-3.5" />
-          Send Message
+          {isSubmitting ? (
+            <>
+              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              Sending…
+            </>
+          ) : (
+            <>
+              <Send className="h-3.5 w-3.5" />
+              Send Message
+            </>
+          )}
         </button>
       </form>
     </>
