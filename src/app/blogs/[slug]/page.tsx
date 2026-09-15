@@ -10,6 +10,7 @@ import {
 import { isNoindexed } from "@/lib/blog/noindex";
 import { siteConfig } from "@/lib/data/site";
 import { Prose } from "@/components/Prose";
+import { BlogPostCta } from "@/components/BlogPostCta";
 
 export const revalidate = 3600;
 
@@ -253,6 +254,9 @@ export default async function BlogPostPage({
             </div>
           </div>
         </div>
+
+        {/* ---- End-of-article CTA ---- */}
+        <BlogPostCta />
       </article>
 
       {/* ---- Related posts ---- */}
