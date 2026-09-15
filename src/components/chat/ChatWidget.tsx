@@ -148,6 +148,23 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
   const [state, dispatch] = useReducer(chatReducer, initialChatState, loadState);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  /*
+   * Submission lock.
+   *
+   * AnimatePresence (mode="wait") keeps the outgoing step mounted until its
+   * exit animation finishes, so that step's submit button is still in the DOM
+   * and still clickable after the reducer has already moved on. A second
+   * click in that window used to run the whole submit path again: a duplicate
+   * lead record, a duplicate notification email, and a second generate_lead
+   * event in GA4. The steps disable their own buttons, but this ref is the
+   * authoritative guard — checked and set synchronously, so it also catches
+   * two clicks landing in the same tick, before React can re-render.
+   *
+   * It is released whenever the flow returns to a form the customer can
+   * retry from, so a failed submission is never permanently locked out.
+   */
+  const submitLockRef = useRef(false);
+
   // Persist state
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -178,24 +195,35 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
       const price = getMonthlyPrice(state.schedule!, state.poolSize!);
       dispatch({ type: "SET_PRICE", price });
 
-      const result = await submitQuote({
-        poolSize: state.poolSize!,
-        schedule: state.schedule!,
-        monthlyPrice: price,
-        name: details.name,
-        email: details.email,
-        phone: details.phone,
-        address: details.address,
-      });
-
-      if (result.success) {
-        trackLead({
-          source: "chat_pool_quote",
-          value: price * 12,
+      try {
+        const result = await submitQuote({
+          poolSize: state.poolSize!,
+          schedule: state.schedule!,
+          monthlyPrice: price,
+          name: details.name,
+          email: details.email,
+          phone: details.phone,
+          address: details.address,
         });
-        dispatch({ type: "SET_QUOTE_ID", quoteId: result.quoteId });
-      } else {
-        dispatch({ type: "SET_ERROR", error: result.error });
+
+        if (result.success) {
+          trackLead({
+            source: "chat_pool_quote",
+            value: price * 12,
+          });
+          dispatch({ type: "SET_QUOTE_ID", quoteId: result.quoteId });
+        } else {
+          submitLockRef.current = false;
+          dispatch({ type: "SET_ERROR", error: result.error });
+        }
+      } catch {
+        // A thrown request used to strand the widget on the submitting step
+        // with the lock still held. Surface it and let the customer retry.
+        submitLockRef.current = false;
+        dispatch({
+          type: "SET_ERROR",
+          error: "Something went wrong sending your quote. Please try again.",
+        });
       }
     },
     [state.poolSize, state.schedule]
@@ -203,6 +231,8 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
 
   const handleDetails = useCallback(
     (details: ContactDetails) => {
+      if (submitLockRef.current) return;
+      submitLockRef.current = true;
       dispatch({ type: "SET_DETAILS", details });
       doSubmitQuote(details);
     },
@@ -211,20 +241,26 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
 
   const doSubmitInquiry = useCallback(
     async (details: InquiryDetails) => {
-      const result = await submitInquiry({
-        serviceType: state.serviceType as "repair" | "question",
-        ...details,
-      });
-
-      if (result.success) {
-        trackLead({
-          source:
-            state.serviceType === "repair"
-              ? "chat_repair_inquiry"
-              : "chat_question_inquiry",
+      try {
+        const result = await submitInquiry({
+          serviceType: state.serviceType as "repair" | "question",
+          ...details,
         });
-        dispatch({ type: "SET_STEP", step: "inquiryResult" });
-      } else {
+
+        if (result.success) {
+          trackLead({
+            source:
+              state.serviceType === "repair"
+                ? "chat_repair_inquiry"
+                : "chat_question_inquiry",
+          });
+          dispatch({ type: "SET_STEP", step: "inquiryResult" });
+        } else {
+          submitLockRef.current = false;
+          dispatch({ type: "SET_STEP", step: "inquiry" });
+        }
+      } catch {
+        submitLockRef.current = false;
         dispatch({ type: "SET_STEP", step: "inquiry" });
       }
     },
@@ -233,6 +269,8 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
 
   const handleInquiry = useCallback(
     (details: InquiryDetails) => {
+      if (submitLockRef.current) return;
+      submitLockRef.current = true;
       dispatch({ type: "SET_INQUIRY", inquiry: details });
       doSubmitInquiry(details);
     },
@@ -240,10 +278,12 @@ export function ChatWidget({ onClose }: ChatWidgetProps) {
   );
 
   const handleBack = useCallback(() => {
+    submitLockRef.current = false;
     dispatch({ type: "GO_BACK" });
   }, []);
 
   const handleReset = useCallback(() => {
+    submitLockRef.current = false;
     localStorage.removeItem(STORAGE_KEY);
     dispatch({ type: "RESET" });
   }, []);

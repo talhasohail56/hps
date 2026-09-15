@@ -1,16 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { UserCircle, Loader2 } from "lucide-react";
 import { ChatMessage } from "../ChatMessage";
 import type { ContactDetails } from "../types";
 
 interface DetailsStepProps {
   onSubmit: (details: ContactDetails) => void;
-  submitting?: boolean;
 }
 
-export function DetailsStep({ onSubmit, submitting }: DetailsStepProps) {
+export function DetailsStep({ onSubmit }: DetailsStepProps) {
   const [form, setForm] = useState<ContactDetails>({
     name: "",
     email: "",
@@ -18,6 +17,22 @@ export function DetailsStep({ onSubmit, submitting }: DetailsStepProps) {
     address: "",
   });
   const [errors, setErrors] = useState<Partial<Record<keyof ContactDetails, string>>>({});
+
+  /*
+   * Local submit guard.
+   *
+   * The parent advances the chat step as soon as the form is handed over, but
+   * AnimatePresence (mode="wait") keeps this component mounted until its exit
+   * animation finishes — so the button below stays in the DOM and stays
+   * clickable after the step has already moved on. This has to be local
+   * state: the step is only rendered while the reducer says "details", so any
+   * `submitting` prop the parent could pass is provably always false (the
+   * compiler rejects the comparison), and an exiting child keeps its old
+   * props anyway. The ref blocks a second click in the same tick, before
+   * React re-renders; the state drives the rendered disabled attribute.
+   */
+  const submittedRef = useRef(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function validate(): boolean {
     const errs: typeof errors = {};
@@ -33,7 +48,11 @@ export function DetailsStep({ onSubmit, submitting }: DetailsStepProps) {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (validate()) onSubmit(form);
+    if (submittedRef.current) return;
+    if (!validate()) return;
+    submittedRef.current = true;
+    setIsSubmitting(true);
+    onSubmit(form);
   }
 
   const inputClass =
@@ -109,10 +128,10 @@ export function DetailsStep({ onSubmit, submitting }: DetailsStepProps) {
 
         <button
           type="submit"
-          disabled={submitting}
-          className="w-full rounded-full bg-hydra-600 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-hydra-700 disabled:opacity-60"
+          disabled={isSubmitting}
+          className="w-full rounded-full bg-hydra-600 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-hydra-700 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {submitting ? (
+          {isSubmitting ? (
             <span className="inline-flex items-center gap-2">
               <Loader2 className="h-4 w-4 animate-spin" />
               Generating Quote…

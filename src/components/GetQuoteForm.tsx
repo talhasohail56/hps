@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, Clock } from "lucide-react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
@@ -61,6 +61,14 @@ export function GetQuoteForm({ className }: GetQuoteFormProps) {
   const [form, setForm] = useState<FormState>(initialForm);
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState(false);
+
+  /*
+   * `submitting` is state, so it is still false in this tick's closure when a
+   * second click lands before React re-renders — the disabled attribute alone
+   * cannot stop a same-tick double click. The ref is checked and set
+   * synchronously, so only one request (and one generate_lead) can go out.
+   */
+  const inFlightRef = useRef(false);
   const [submitted, setSubmitted] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
 
@@ -95,12 +103,14 @@ export function GetQuoteForm({ className }: GetQuoteFormProps) {
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
+      if (inFlightRef.current) return;
       const validationErrors = validate();
       if (Object.keys(validationErrors).length > 0) {
         setErrors(validationErrors);
         return;
       }
 
+      inFlightRef.current = true;
       setSubmitting(true);
 
       /* Spam verification is best-effort. If it is unavailable — no
@@ -136,6 +146,7 @@ export function GetQuoteForm({ className }: GetQuoteFormProps) {
         } else {
           // The server answered — report what it actually said rather
           // than guessing at a cause.
+          inFlightRef.current = false;
           const data = await res.json().catch(() => null);
           setErrors({
             name:
@@ -146,11 +157,16 @@ export function GetQuoteForm({ className }: GetQuoteFormProps) {
       } catch (err) {
         // Only a genuinely failed request reaches here now.
         console.error("[GetQuoteForm] request to /api/contact failed:", err);
+        inFlightRef.current = false;
         setErrors({
           name:
             "Could not reach our server. Please check your connection and try again, or call (214) 233-6803.",
         });
       } finally {
+        // Note: the ref is released on the failure paths above, never here.
+        // On success this form is swapped for the confirmation panel through
+        // AnimatePresence, which keeps it mounted while it animates out — so
+        // the ref must stay latched or that outgoing form could submit again.
         setSubmitting(false);
       }
     },
