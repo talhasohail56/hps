@@ -1,4 +1,5 @@
 import type { ServiceArea } from "./areas";
+import { ENTRY_PRICE, planEntryPrice } from "./pricing-tiers";
 
 export interface CityFAQ {
   question: string;
@@ -54,10 +55,12 @@ export interface CityContent {
 export const cityContent: Record<string, CityContent> = {
   frisco: {
     id: "frisco",
-    metaTitle:
-      "Pool Cleaning Frisco TX | 4.9 Stars, 47 Reviews | Free Trial",
-    metaDescription:
-      "Weekly pool cleaning in Frisco starting at $129/mo. All chemicals included, no contract. Serving Starwood, Phillips Creek, Richwoods, and all Frisco. First 2 weeks free.",
+    metaTitle: `Pool Cleaning Frisco TX | Weekly from $${planEntryPrice(
+      "weekly"
+    )}/mo | Free Trial`,
+    metaDescription: `Weekly pool cleaning in Frisco from $${planEntryPrice(
+      "weekly"
+    )}/mo, or Chemical Only from $${ENTRY_PRICE}/mo. All chemicals included, no contract. Serving Starwood, Phillips Creek, Richwoods, and all Frisco. First 2 weeks free.`,
     headline: "Pool Service in Frisco, TX",
     intro:
       "Frisco is our home base. As a locally owned pool service company headquartered right here in Frisco, we understand the unique needs of North Texas pools — from the intense summer heat that drives up chlorine demand to the occasional hailstorms that leave debris in your water. Our certified technicians serve neighborhoods across Frisco with weekly pool cleaning, water chemistry management, and equipment inspections that keep your pool swim-ready year-round.",

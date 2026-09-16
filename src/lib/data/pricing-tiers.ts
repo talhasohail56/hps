@@ -39,3 +39,23 @@ export const TIERED_PLAN_KEYS: TieredPlanKey[] = ["chemical", "biweekly", "weekl
 
 /** Premium Care is a flat rate — the same price at every pool size. */
 export const PREMIUM_CARE_FLAT_PRICE = 299;
+
+/**
+ * Entry (smallest-pool) monthly price for one tiered plan.
+ *
+ * Marketing copy quotes plans as "from $X", which is always the 0–10k tier.
+ * Deriving it here keeps titles and meta descriptions from drifting out of
+ * step with the tables the way they have before.
+ */
+export function planEntryPrice(plan: TieredPlanKey): number {
+  return Math.min(...Object.values(TIERED_PLAN_PRICES[plan]));
+}
+
+/**
+ * Lowest advertised monthly price anywhere on the site, across every plan and
+ * every pool size. This is the only number that may be quoted as the site-wide
+ * "starting at" figure.
+ */
+export const ENTRY_PRICE: number = Math.min(
+  ...TIERED_PLAN_KEYS.map(planEntryPrice)
+);

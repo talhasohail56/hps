@@ -1,3 +1,9 @@
+import {
+  ENTRY_PRICE,
+  planEntryPrice,
+  PREMIUM_CARE_FLAT_PRICE,
+} from "./pricing-tiers";
+
 export interface FAQ {
   id: string;
   question: string;
@@ -48,9 +54,17 @@ export const faqs: FAQ[] = [
     id: "7",
     question: "How much does pool service cost in Frisco, TX?",
     answer:
-      "Pool service in the Frisco and North DFW area starts at $139 per month for bi-weekly cleaning. Weekly service is $179 per month, and our Premium Care plan with equipment support and priority scheduling is $299 per month. All chemicals are included in every plan — you never pay extra for chlorine, acid, or balancers.",
+      `Pool service in the Frisco and North DFW area starts at $${ENTRY_PRICE} per month for Chemical Only service. Bi-weekly cleaning starts at $${planEntryPrice(
+        "biweekly"
+      )} per month, weekly service at $${planEntryPrice(
+        "weekly"
+      )} per month, and our Premium Care plan with equipment support and priority scheduling is $${PREMIUM_CARE_FLAT_PRICE} per month. All chemicals are included in every plan — you never pay extra for chlorine, acid, or balancers.`,
     displayAnswer:
-      "Pool service in the Frisco and North DFW area starts at $139 per month plus tax for bi-weekly cleaning. Weekly service is $179 per month plus tax, and our Premium Care plan with equipment support and priority scheduling is $299 per month plus tax. All chemicals are included in every plan — you never pay extra for chlorine, acid, or balancers.",
+      `Pool service in the Frisco and North DFW area starts at $${ENTRY_PRICE} per month plus tax for Chemical Only service. Bi-weekly cleaning starts at $${planEntryPrice(
+        "biweekly"
+      )} per month plus tax, weekly service at $${planEntryPrice(
+        "weekly"
+      )} per month plus tax, and our Premium Care plan with equipment support and priority scheduling is $${PREMIUM_CARE_FLAT_PRICE} per month plus tax. All chemicals are included in every plan — you never pay extra for chlorine, acid, or balancers.`,
   },
   {
     id: "8",

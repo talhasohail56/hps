@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import {
   CheckCircle,
@@ -38,15 +37,9 @@ const iconMap: Record<string, ComponentType<LucideProps>> = {
   FlaskConical,
 };
 
-/* ------------------------------------------------------------------ */
-/*  Metadata                                                           */
-/* ------------------------------------------------------------------ */
-
-export const metadata: Metadata = {
-  title: "Pool Services — Weekly Cleaning, Repairs & More",
-  description:
-    "Weekly cleaning from $139/mo, all chemicals included. Plus repairs, filter service, bead blasting, and salt cell maintenance. Serving Frisco, Plano, McKinney, Allen & North DFW. Free first 2 weeks.",
-};
+/* Metadata for this route lives in layout.tsx — see the note there. Declaring
+ * it in both files meant the layout's copy was silently dead, and the two
+ * versions drifted apart. */
 
 /* ------------------------------------------------------------------ */
 /*  Page                                                               */
