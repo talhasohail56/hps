@@ -144,13 +144,6 @@ const localBusinessJsonLd = {
     "@type": "ImageObject",
     url: `${siteConfig.url}/logo.png`,
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    bestRating: "5",
-    worstRating: "1",
-    ratingCount: "50",
-  },
   contactPoint: {
     "@type": "ContactPoint",
     telephone: siteConfig.phone,
