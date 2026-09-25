@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { CheckCircle, Droplets, Calendar, ClipboardCheck, Activity, Bell, Phone } from "lucide-react";
+import { CheckCircle, Calendar, ClipboardCheck, Camera, Bell, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/data/site";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
@@ -242,14 +242,14 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* Water balance status */}
+              {/* Service status */}
               <div className="mt-3 flex items-center gap-2 rounded-lg bg-emerald-50/70 px-3 py-2">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
                 </span>
                 <p className="text-sm font-medium text-emerald-700">
-                  Water Balance: Optimal
+                  Service Complete
                 </p>
               </div>
 
@@ -286,7 +286,12 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* ---- Water Balance mini card ---- */}
+            {/* ---- Service Report mini card ---- */}
+            {/*
+              Deliberately shows only that a timestamped report was sent, with
+              photos. It must not advertise chemical readings: we confirm the
+              visit happened, we do not publish water chemistry figures.
+            */}
             <motion.div
               variants={cardEntrance}
               className={cn(
@@ -295,59 +300,38 @@ export function Hero() {
             >
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-hydra-50">
-                  <Droplets className="h-4 w-4 text-hydra-500" />
+                  <Camera className="h-4 w-4 text-hydra-500" />
                 </div>
                 <p className="text-sm font-semibold text-navy">
-                  Water Balance
+                  Service Report
                 </p>
               </div>
 
               <div className="mt-4 space-y-3">
-                {/* Chlorine */}
-                <div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-medium text-slate">Chlorine</span>
-                    <span className="font-semibold text-emerald-600">
-                      3.0 ppm
-                    </span>
-                  </div>
-                  <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
-                    <div
-                      className="h-full rounded-full bg-emerald-400"
-                      style={{ width: "75%" }}
-                    />
-                  </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-medium text-slate">Status</span>
+                  <span className="font-semibold text-emerald-600">
+                    Complete
+                  </span>
                 </div>
 
-                {/* pH */}
-                <div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-medium text-slate">pH Level</span>
-                    <span className="font-semibold text-hydra-600">7.4</span>
-                  </div>
-                  <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
-                    <div
-                      className="h-full rounded-full bg-hydra-400"
-                      style={{ width: "68%" }}
-                    />
-                  </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-medium text-slate">Completed</span>
+                  <span className="font-semibold text-navy">
+                    Jan 28, 10:42 AM
+                  </span>
                 </div>
 
-                {/* Alkalinity */}
-                <div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-medium text-slate">Alkalinity</span>
-                    <span className="font-semibold text-violet-600">
-                      100 ppm
-                    </span>
-                  </div>
-                  <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
-                    <div
-                      className="h-full rounded-full bg-violet-400"
-                      style={{ width: "62%" }}
-                    />
-                  </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-medium text-slate">Photos</span>
+                  <span className="font-semibold text-hydra-600">
+                    4 attached
+                  </span>
                 </div>
+
+                <p className="border-t border-border-light pt-2.5 text-[0.65rem] leading-relaxed text-slate-light">
+                  Sent to your inbox after every visit
+                </p>
               </div>
             </motion.div>
 
@@ -374,16 +358,16 @@ export function Hero() {
 
               <div className="mt-3 rounded-lg bg-surface px-3 py-2.5">
                 <p className="text-xs leading-relaxed text-slate">
-                  Pool looking great. Adjusted chlorine levels slightly.
-                  Backwashed filter. All equipment running smoothly &mdash; see
-                  you next week!
+                  Pool looking great. Skimmed, brushed, and backwashed the
+                  filter. All equipment running smoothly &mdash; see you next
+                  week!
                 </p>
               </div>
 
               <div className="mt-3 flex items-center gap-1.5">
-                <Activity className="h-3.5 w-3.5 text-hydra-400" />
+                <Camera className="h-3.5 w-3.5 text-hydra-400" />
                 <p className="text-[0.65rem] font-medium text-slate-light">
-                  Chemical report attached
+                  4 photos attached
                 </p>
               </div>
             </motion.div>
@@ -461,66 +445,42 @@ export function Hero() {
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
                   </span>
                   <p className="text-xs font-medium text-emerald-700">
-                    Water Balance: Optimal
+                    Service Complete
                   </p>
                 </div>
               </motion.div>
 
-              {/* Mobile — Water balance mini card */}
+              {/* Mobile — Service report mini card */}
               <motion.div
                 variants={fadeUpSlow}
                 className="flex-1 rounded-2xl border border-border-light bg-white/80 p-4 shadow-lg shadow-hydra-500/5 backdrop-blur-sm"
               >
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-hydra-50">
-                    <Droplets className="h-4 w-4 text-hydra-500" />
+                    <Camera className="h-4 w-4 text-hydra-500" />
                   </div>
                   <p className="text-sm font-semibold text-navy">
-                    Water Balance
+                    Service Report
                   </p>
                 </div>
                 <div className="mt-3 space-y-2.5">
-                  <div>
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-medium text-slate">Chlorine</span>
-                      <span className="font-semibold text-emerald-600">
-                        3.0 ppm
-                      </span>
-                    </div>
-                    <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
-                      <div
-                        className="h-full rounded-full bg-emerald-400"
-                        style={{ width: "75%" }}
-                      />
-                    </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-medium text-slate">Status</span>
+                    <span className="font-semibold text-emerald-600">
+                      Complete
+                    </span>
                   </div>
-                  <div>
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-medium text-slate">pH Level</span>
-                      <span className="font-semibold text-hydra-600">7.4</span>
-                    </div>
-                    <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
-                      <div
-                        className="h-full rounded-full bg-hydra-400"
-                        style={{ width: "68%" }}
-                      />
-                    </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-medium text-slate">Completed</span>
+                    <span className="font-semibold text-navy">
+                      Jan 28, 10:42 AM
+                    </span>
                   </div>
-                  <div>
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-medium text-slate">
-                        Alkalinity
-                      </span>
-                      <span className="font-semibold text-violet-600">
-                        100 ppm
-                      </span>
-                    </div>
-                    <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
-                      <div
-                        className="h-full rounded-full bg-violet-400"
-                        style={{ width: "62%" }}
-                      />
-                    </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-medium text-slate">Photos</span>
+                    <span className="font-semibold text-hydra-600">
+                      4 attached
+                    </span>
                   </div>
                 </div>
               </motion.div>
