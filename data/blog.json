@@ -3729,6 +3729,28 @@
       "createdAt": "2026-09-29T16:00:08.865Z",
       "updatedAt": "2026-09-29T16:00:08.865Z",
       "readingTime": 4
+    },
+    {
+      "id": "960ea5ff-bdd5-44d8-b6eb-803b13350440",
+      "title": "We Found a Salt Cell Installed Backwards — The Flow Was Running the Wrong Way",
+      "slug": "salt-cell-installed-backwards-frisco-tx",
+      "excerpt": "A Frisco salt system wasn't sanitizing — not because of chemistry, but because the cell was plumbed backwards against its flow direction. The owner was chasing the wrong problem.",
+      "content": "On one Frisco pool we found a salt cell that had been installed backwards — mounted so the water was flowing through it in the wrong direction. The homeowner had been wondering why their salt system wasn't keeping the pool sanitized properly. The cell was fine. The installation was wrong. And a salt cell plumbed against its intended flow direction doesn't do its job, no matter how good the cell or how perfect the chemistry.\n\n## Salt Cells Have a Direction\n\nA salt cell isn't a symmetrical part you can throw on the pipe either way. Many cells are designed with a specific flow direction — water is meant to enter one end and exit the other, and the cell's internal design, the position of the plates, and the flow sensor all assume water is moving through it the correct way. Some cells have an arrow or a marking indicating flow direction for exactly this reason.\n\nInstall it backwards and a few things go wrong:\n\n**The flow sensor may not read correctly.** Salt cells rely on a flow switch to confirm water is moving before they start generating chlorine — a safety feature so the cell doesn't fire dry. With flow running the wrong way through the cell, that sensor can misread, causing the cell to either not generate when it should or behave erratically.\n\n**Chlorine production suffers.** The cell isn't operating under the conditions it was designed for. Output drops, and the pool doesn't get the sanitizer it needs even though the system looks like it's running.\n\n**The homeowner chases the wrong problem.** This is the frustrating part. The pool isn't staying clean, so the owner adds more salt, tinkers with the output percentage, tests and retests the water — chasing a chemistry problem that isn't a chemistry problem. It's an installation problem. No amount of adjusting settings fixes a cell that's plumbed backwards.\n\n## How This Happens\n\nUsually it's a rushed or inexperienced install. Whoever put the system in didn't check the flow direction marking, or didn't know it mattered, and plumbed the cell in whichever way was convenient for the pipe layout. It powers on, the light comes on, it *looks* installed correctly — so nobody questions it. The problem only surfaces later as chronic under-sanitization that doesn't match the settings.\n\nWe've also seen it after equipment swaps, where someone replaced a cell and reinstalled it in the wrong orientation without noticing the original flow direction.\n\n## Why It Takes Field Experience to Catch\n\nThis is the kind of problem that's invisible unless you know to look for it. The system powers on. The display works. Salt level reads fine. Chemistry testing shows low chlorine, which points a homeowner (and even some techs) toward chemistry adjustments — more salt, higher output, shocking the pool. All of that treats the symptom.\n\nCatching the real cause means looking at the physical installation and knowing that flow direction matters — checking the cell's orientation against its flow marking and confirming water moves through it the right way. Once we spotted it on this pool, the fix was straightforward: reinstall the cell in the correct orientation so flow ran the right way. The system started sanitizing properly, and the \"chemistry problem\" the owner had been fighting disappeared.\n\n## If Your Salt Pool Isn't Staying Clean\n\nIf you have a salt system and the pool won't hold sanitizer despite good salt levels and reasonable settings, don't assume it's only chemistry. Things worth checking:\n\n- **The cell's flow direction** — is it installed matching any arrow or flow marking on the housing?\n- **The flow sensor** — is the system registering flow correctly, or throwing flow errors?\n- **The cell's condition** — is it [scaled up with calcium](https://hydrapoolservices.com/blogs/salt-cell-brands-frisco-water-frisco-tx) from Frisco's hard water, which also kills output?\n- **Whether output actually matches the setting** — a cell that's misinstalled or failing won't produce what the display claims\n\nA salt system that won't sanitize is sometimes a bad cell, sometimes a scaled cell, and sometimes — like this pool — a perfectly good cell installed the wrong way around. Knowing the difference saves you from throwing salt and chemicals at an installation problem.\n\n---\n\n*Hydra Pool Services diagnoses salt systems by looking at the whole install, not just the water, across Frisco and 7 surrounding cities. [Start your free 2-week trial →](https://hydrapoolservices.com/contact)*",
+      "coverImage": "",
+      "author": "Hydra Pool Services",
+      "published": true,
+      "seoTitle": "Salt Cell Installed Backwards? Here's Why Your Pool Won't Stay Clean",
+      "seoDescription": "A Frisco salt cell plumbed against its flow direction stopped sanitizing the pool. Not a chemistry problem — an install problem. How to spot a backwards cell.",
+      "tags": [
+        "salt cell",
+        "installation",
+        "frisco tx",
+        "pool equipment"
+      ],
+      "publishedAt": "2026-10-01T21:07:44.419Z",
+      "createdAt": "2026-10-01T21:07:44.419Z",
+      "updatedAt": "2026-10-01T21:07:44.419Z",
+      "readingTime": 4
     }
   ]
 }
