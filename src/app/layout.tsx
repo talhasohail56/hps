@@ -235,8 +235,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           Conversions are fired from trackLead() in src/lib/analytics.ts, on the
           same success path as generate_lead, so the two cannot diverge.
 
-          debug: true logs pixel activity to the browser console. It is on
-          deliberately while the install is being verified.
+          debug is off now that the install is verified: lead_created was
+          received in the OpenAI Ads Manager Event Stream and the Quote
+          Request conversion is live. Set it back to true to log pixel
+          activity to the browser console while testing.
         */}
         <Script
           id="openai-pixel"
@@ -253,7 +255,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   var f = d.getElementsByTagName(s)[0];
   f.parentNode.insertBefore(js, f);
 })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
-oaiq("init", { pixelId: "RHCtGesudAnYtkhoKLJmao", debug: true });`,
+oaiq("init", { pixelId: "RHCtGesudAnYtkhoKLJmao", debug: false });`,
           }}
         />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
