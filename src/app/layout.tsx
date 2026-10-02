@@ -223,6 +223,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-NMB4HG4Z');`,
           }}
         />
+        {/*
+          OpenAI (ChatGPT Ads) measurement pixel.
+
+          This is OpenAI's documented installer. It synchronously defines a
+          `window.oaiq` stub that queues calls, then async-loads the SDK — so a
+          conversion fired before the SDK lands is buffered, not lost. That stub
+          is the part that matters for ordering, which is why `afterInteractive`
+          is safe here and keeps the pixel off the critical render path.
+
+          Conversions are fired from trackLead() in src/lib/analytics.ts, on the
+          same success path as generate_lead, so the two cannot diverge.
+
+          debug: true logs pixel activity to the browser console. It is on
+          deliberately while the install is being verified.
+        */}
+        <Script
+          id="openai-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function (w, d, s, u) {
+  if (w.oaiq) return;
+  var q = function () { q.q.push(arguments); };
+  q.q = [];
+  w.oaiq = q;
+  var js = d.createElement(s);
+  js.async = true;
+  js.src = u;
+  var f = d.getElementsByTagName(s)[0];
+  f.parentNode.insertBefore(js, f);
+})(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+oaiq("init", { pixelId: "RHCtGesudAnYtkhoKLJmao", debug: true });`,
+          }}
+        />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />

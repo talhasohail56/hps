@@ -3,6 +3,34 @@ import { sendGTMEvent } from "@next/third-parties/google";
 // GA4-recommended event names (generate_lead, etc.) so the events show up
 // under the canonical reports without extra config in GA4 / GTM.
 
+declare global {
+  interface Window {
+    /** Stub queue defined by the OpenAI pixel snippet in the root layout. */
+    oaiq?: (...args: unknown[]) => void;
+  }
+}
+
+/*
+ * OpenAI (ChatGPT Ads) conversion.
+ *
+ * `lead_created` is OpenAI's standard event for this action. Standard events
+ * work as conversion goals for campaign optimisation; a custom event would
+ * need manual configuration to be usable the same way.
+ *
+ * Fired only from trackLead() below, which every call site reaches solely
+ * inside a success guard. Keeping it here rather than at the call sites is
+ * what stops it drifting away from generate_lead.
+ *
+ * The guard covers two real cases: a server-side import, and the pixel being
+ * blocked or not yet initialised. It is not a load-order workaround — the
+ * snippet's stub queues calls made before the SDK arrives.
+ */
+function trackOpenAILead() {
+  if (typeof window === "undefined" || typeof window.oaiq !== "function") return;
+
+  window.oaiq("measure", "lead_created", { type: "customer_action" });
+}
+
 type LeadSource =
   | "home_quote_form"
   | "chat_pool_quote"
@@ -20,6 +48,9 @@ export function trackLead(params: {
     value: params.value,
     currency: params.currency ?? "USD",
   });
+
+  // Same success path, same guard — the two conversions cannot diverge.
+  trackOpenAILead();
 }
 
 type ClickSurface =
