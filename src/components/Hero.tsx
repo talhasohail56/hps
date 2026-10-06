@@ -132,7 +132,7 @@ export function Hero() {
                   First 2 weeks on us &mdash; completely free
                 </p>
                 <p className="text-xs text-slate-light">
-                  Cancel anytime. No payment on file required.
+                  Cancel anytime.
                 </p>
               </div>
             </motion.button>
