@@ -129,10 +129,10 @@ export function Hero() {
               </span>
               <div>
                 <p className="text-sm font-semibold text-navy">
-                  First 2 weeks on us &mdash; completely free
+                  First 2 weeks FREE on full service
                 </p>
                 <p className="text-xs text-slate-light">
-                  Cancel anytime.
+                  Bi-weekly, Weekly or Premium Care. Cancel anytime.
                 </p>
               </div>
             </motion.button>
