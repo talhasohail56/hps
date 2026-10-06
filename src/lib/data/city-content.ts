@@ -70,7 +70,7 @@ export const cityContent: Record<string, CityContent> = {
       "Headquartered in Frisco — fastest response times in the area",
       "All chemicals included in every service plan",
       "Digital visit reports with photos after each service",
-      "No long-term contracts — cancel anytime with 30 days notice",
+      "No contracts, cancel anytime before your next billing date",
       "Free first 2 weeks for new customers",
     ],
     neighborhoods: [

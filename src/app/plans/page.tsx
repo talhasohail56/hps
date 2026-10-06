@@ -190,8 +190,8 @@ export default function PlansPage() {
             may vary based on pool size, condition, and location. Premium Care
             is a flat
             $299/mo + tax regardless of pool size. All prices exclude sales
-            tax. Contact us for a personalized quote. No long-term contracts
-            &mdash; cancel anytime with 30 days notice.
+            tax. Contact us for a personalized quote. No contracts, cancel
+            anytime before your next billing date.
           </p>
         </div>
       </section>
