@@ -17,7 +17,7 @@ const WEEKLY_FROM = planEntryPrice("weekly");
 export const metadata: Metadata = {
   title: "Pool Services — Weekly Cleaning, Repairs & More",
   description:
-    `Pool cleaning, maintenance, repairs, bead blasting & more in Frisco, TX. Residential & commercial pool care from $${ENTRY_PRICE}/mo. All chemicals included. Free first 2 weeks. Call (214) 233-6803.`,
+    `Pool cleaning, maintenance, repairs, bead blasting & more in Frisco, TX. Residential & commercial pool care from $${ENTRY_PRICE}/mo. All chemicals included. Free first 2 weeks on full service. Call (214) 233-6803.`,
   alternates: {
     canonical: `${siteConfig.url}/services`,
   },

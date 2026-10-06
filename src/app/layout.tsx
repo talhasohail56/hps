@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description:
-    "Professional pool cleaning and maintenance in Frisco, TX starting at $119/mo. Weekly service, all chemicals included, no contracts. Serving Frisco, Plano, McKinney & North DFW. Free first 2 weeks. Call (214) 233-6803.",
+    "Professional pool cleaning and maintenance in Frisco, TX starting at $119/mo. Weekly service, all chemicals included, no contracts. Serving Frisco, Plano, McKinney & North DFW. Free first 2 weeks on full service. Call (214) 233-6803.",
   keywords: [
     "pool cleaning Frisco TX",
     "pool service Frisco",

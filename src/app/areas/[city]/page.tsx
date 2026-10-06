@@ -664,7 +664,7 @@ export default async function CityPage({
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-light">
             Get a free, no-obligation quote today. Your first 2 weeks are on us
-            — completely free. No contracts, no hidden fees.
+            on full-service plans. No contracts, no hidden fees.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link

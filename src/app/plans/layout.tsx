@@ -19,14 +19,14 @@ export const metadata: Metadata = {
       "biweekly"
     )}, Weekly $${planEntryPrice(
       "weekly"
-    )}, Premium Care $${PREMIUM_CARE_FLAT_PRICE}. All chemicals included, no contracts. Free first 2 weeks. Call (214) 233-6803.`,
+    )}, Premium Care $${PREMIUM_CARE_FLAT_PRICE}. All chemicals included, no contracts. Free first 2 weeks on full service. Call (214) 233-6803.`,
   alternates: {
     canonical: `${siteConfig.url}/plans`,
   },
   openGraph: {
     title: "Pool Service Plans & Pricing | Hydra Pool Services",
     description:
-      "Affordable pool service plans in Frisco, TX. All chemicals included. Free first 2 weeks for new customers.",
+      "Affordable pool service plans in Frisco, TX. All chemicals included. Free first 2 weeks on full-service plans.",
     url: `${siteConfig.url}/plans`,
     images: [{ url: siteConfig.ogImage, width: 1290, height: 720, alt: siteConfig.ogImageAlt }],
   },

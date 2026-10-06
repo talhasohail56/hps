@@ -60,7 +60,7 @@ export const cityContent: Record<string, CityContent> = {
     )}/mo | Free Trial`,
     metaDescription: `Weekly pool cleaning in Frisco from $${planEntryPrice(
       "weekly"
-    )}/mo, or Chemical Only from $${ENTRY_PRICE}/mo. All chemicals included, no contract. Serving Starwood, Phillips Creek, Richwoods, and all Frisco. First 2 weeks free.`,
+    )}/mo, or Chemical Only from $${ENTRY_PRICE}/mo. All chemicals included, no contract. Serving Starwood, Phillips Creek, Richwoods, and all Frisco. First 2 weeks free on full service.`,
     headline: "Pool Service in Frisco, TX",
     intro:
       "Frisco is our home base. As a locally owned pool service company headquartered right here in Frisco, we understand the unique needs of North Texas pools — from the intense summer heat that drives up chlorine demand to the occasional hailstorms that leave debris in your water. Our certified technicians serve neighborhoods across Frisco with weekly pool cleaning, water chemistry management, and equipment inspections that keep your pool swim-ready year-round.",
@@ -71,7 +71,7 @@ export const cityContent: Record<string, CityContent> = {
       "All chemicals included in every service plan",
       "Digital visit reports with photos after each service",
       "No contracts, cancel anytime before your next billing date",
-      "Free first 2 weeks for new customers",
+      "Free first 2 weeks on full-service plans",
     ],
     neighborhoods: [
       "Phillips Creek Ranch",
