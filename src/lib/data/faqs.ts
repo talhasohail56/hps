@@ -76,6 +76,6 @@ export const faqs: FAQ[] = [
     id: "9",
     question: "Do you offer a free trial or introductory offer?",
     answer:
-      "Yes. New customers get their first 2 weeks of pool service completely free. There are no hidden fees. No contracts, cancel anytime before your next billing date.",
+      "Yes. New customers on a full-service plan (Bi-weekly, Weekly or Premium Care) get their first 2 weeks free. The free trial does not apply to Chemical Only. There are no hidden fees. No contracts, cancel anytime before your next billing date.",
   },
 ];

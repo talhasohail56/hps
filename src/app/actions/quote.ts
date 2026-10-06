@@ -104,6 +104,14 @@ function serviceLabel(s: string): string {
 }
 
 async function sendCustomerConfirmation(record: QuoteRecord) {
+  // The free first 2 weeks applies to full-service plans only. Chemical Only
+  // does not get it, so the line is left out of that email entirely.
+  // "biweekly" is not offered by the chatbot today; it is listed because it is
+  // a full-service plan and older records carry it.
+  const trialLine = ["weekly", "premium", "biweekly"].includes(record.schedule)
+    ? " Your first 2 weeks are on us — completely free!"
+    : "";
+
   const user = process.env.GMAIL_USER;
   const pass = process.env.GMAIL_APP_PASSWORD;
   if (!user || !pass) return;
@@ -158,7 +166,7 @@ async function sendCustomerConfirmation(record: QuoteRecord) {
         <div style="background: #f8fafc; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
           <p style="margin: 0; font-size: 13px; color: #475569;">
             <strong>What happens next?</strong><br/>
-            Our team will review your quote and reach out within 24 hours to finalize your service plan. Your first 2 weeks are on us — completely free!
+            Our team will review your quote and reach out within 24 hours to finalize your service plan.${trialLine}
           </p>
         </div>
 
