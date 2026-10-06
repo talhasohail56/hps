@@ -166,27 +166,31 @@ export default function TermsOfServicePage() {
             </h2>
             <p className="mt-3">
               There are no long-term contracts. You may cancel your service plan
-              at any time with 30 days written notice by contacting us via
-              phone, email, or our{" "}
+              at any time by contacting us via phone, email, or our{" "}
               <Link
                 href="/contact"
                 className="font-medium text-hydra-600 hover:underline"
               >
                 contact page
               </Link>
-              .
+              . To avoid being charged for the next service month, let us know
+              before your next billing date.
             </p>
             <ul className="mt-3 list-disc space-y-1 pl-5">
               <li>
                 Service will continue through the end of the current billing
-                period after notice is received.
+                period after notice is received. If you cancel after a month has
+                been billed, you may choose to have us complete the remaining
+                service for that month or hold the unused balance as service
+                credit for 12 months.
               </li>
               <li>
                 Refunds for services already rendered are not available.
               </li>
               <li>
-                Prepaid amounts for undelivered future services will be refunded
-                on a prorated basis.
+                We do not issue cash refunds for a billed month. If Hydra Pool
+                Services ends service partway through a billed month, we will
+                refund the unused portion of that month.
               </li>
               <li>
                 One-time service fees (repairs, bead blasting, etc.) are

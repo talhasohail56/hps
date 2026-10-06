@@ -42,7 +42,7 @@ export const faqs: FAQ[] = [
     id: "5",
     question: "How do billing and payments work?",
     answer:
-      "We keep billing simple and transparent. You'll receive a monthly invoice with a clear breakdown. We accept credit cards and ACH payments, and there are no hidden fees or long-term contracts. You can cancel anytime with 30 days notice.",
+      "We keep billing simple and transparent. You'll receive a monthly invoice with a clear breakdown. We accept credit cards and ACH payments, and there are no hidden fees. No contracts, cancel anytime before your next billing date.",
   },
   {
     id: "6",
@@ -76,6 +76,6 @@ export const faqs: FAQ[] = [
     id: "9",
     question: "Do you offer a free trial or introductory offer?",
     answer:
-      "Yes. New customers get their first 2 weeks of pool service completely free. There are no contracts and no hidden fees. You can cancel anytime with 30 days notice.",
+      "Yes. New customers get their first 2 weeks of pool service completely free. There are no hidden fees. No contracts, cancel anytime before your next billing date.",
   },
 ];

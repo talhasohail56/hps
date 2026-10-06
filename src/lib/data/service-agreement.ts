@@ -6,7 +6,7 @@
  * Bump this whenever the agreement wording changes. It is recorded with
  * every acceptance so we can always tell which text a customer agreed to.
  */
-export const AGREEMENT_VERSION = "v1-2026-08-20";
+export const AGREEMENT_VERSION = "v2-2026-10-06";
 
 /**
  * The legally reviewed Service Agreement, verbatim. Do not reword, reflow,
@@ -43,7 +43,7 @@ Terms and Conditions:
 
 6. Weather: On days when weather prevents full service, only a chemical service and emptying of baskets will be performed.
 
-7. Termination: Service may be terminated at will by either party with no advance notice.
+7. Termination: Either party may terminate service at any time. To avoid being charged for the next service month, the customer must notify us before the next billing date. If the customer cancels after a month has been billed, we will, at the customer's choice, either complete the remaining service for that month or hold the unused balance as service credit for 12 months. We do not issue cash refunds for a billed month. If Hydra Pool Services ends service partway through a billed month, we will refund the unused portion of that month. If we fail to perform or make a billing error, we will correct it by redoing the service or issuing a credit.
 
 8. Pets: The homeowner/resident is responsible for containing and restraining their pets.
 
