@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { CheckCircle, Calendar, ClipboardCheck, Camera, Bell, Phone } from "lucide-react";
+import { CheckCircle, Calendar, ClipboardCheck, Camera, Bell, Phone, Snowflake } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/data/site";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
@@ -118,21 +118,21 @@ export function Hero() {
               your pool stays swim-ready every day.
             </motion.p>
 
-            {/* Free trial offer — opens chatbot on click */}
+            {/* New-customer offer — opens chatbot on click */}
             <motion.button
               variants={fadeUp}
               onClick={() => window.dispatchEvent(new CustomEvent("open-chat"))}
               className="mt-8 inline-flex items-center gap-3 rounded-xl border border-hydra-200 bg-hydra-50/60 px-5 py-3 text-left transition-all duration-200 hover:border-hydra-300 hover:shadow-md cursor-pointer"
             >
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-hydra-500 text-xs font-bold text-white">
-                14
+                <Snowflake className="h-4 w-4" aria-hidden="true" />
               </span>
               <div>
                 <p className="text-sm font-semibold text-navy">
-                  First 2 weeks FREE on full service
+                  FREE winterization check-up
                 </p>
                 <p className="text-xs text-slate-light">
-                  Bi-weekly, Weekly or Premium Care
+                  When you sign up by Dec 31
                 </p>
               </div>
             </motion.button>
