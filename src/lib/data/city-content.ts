@@ -57,10 +57,10 @@ export const cityContent: Record<string, CityContent> = {
     id: "frisco",
     metaTitle: `Pool Cleaning Frisco TX | Weekly from $${planEntryPrice(
       "weekly"
-    )}/mo | Free Trial`,
+    )}/mo`,
     metaDescription: `Weekly pool cleaning in Frisco from $${planEntryPrice(
       "weekly"
-    )}/mo, or Chemical Only from $${ENTRY_PRICE}/mo. All chemicals included, no contract. Serving Starwood, Phillips Creek, Richwoods, and all Frisco. First 2 weeks free on full service.`,
+    )}/mo, or Chemical Only from $${ENTRY_PRICE}/mo. All chemicals included, no contract. Serving Starwood, Phillips Creek, Richwoods, and all Frisco. Free winterization check-up on sign-up.`,
     headline: "Pool Service in Frisco, TX",
     intro:
       "Frisco is our home base. As a locally owned pool service company headquartered right here in Frisco, we understand the unique needs of North Texas pools — from the intense summer heat that drives up chlorine demand to the occasional hailstorms that leave debris in your water. Our certified technicians serve neighborhoods across Frisco with weekly pool cleaning, water chemistry management, and equipment inspections that keep your pool swim-ready year-round.",
@@ -71,7 +71,7 @@ export const cityContent: Record<string, CityContent> = {
       "All chemicals included in every service plan",
       "Digital visit reports with photos after each service",
       "No contracts, cancel anytime before your next billing date",
-      "Free first 2 weeks on full-service plans",
+      "Free winterization check-up on sign-up",
     ],
     neighborhoods: [
       "Phillips Creek Ranch",
@@ -185,7 +185,7 @@ export const cityContent: Record<string, CityContent> = {
     metaTitle:
       "Pool Cleaning Service in Plano, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Plano pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Willow Bend, Deerfield, Kings Ridge & all Plano neighborhoods. Call 214-233-6803.",
+      "Plano pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free winterization check-up on sign-up. Serving Willow Bend, Deerfield, Kings Ridge & all Plano neighborhoods. Call 214-233-6803.",
     headline: "Pool Service in Plano, TX",
     intro:
       "Plano homeowners deserve a pool that is always ready for a swim. Hydra Pool Services provides professional weekly pool cleaning and maintenance across West Plano, the Legacy corridor, and surrounding communities. With hot Texas summers pushing pool chemistry to its limits, our technicians ensure your water stays balanced, your equipment runs efficiently, and your pool surfaces stay clean week after week.",
@@ -304,7 +304,7 @@ export const cityContent: Record<string, CityContent> = {
     metaTitle:
       "Pool Cleaning Service in McKinney, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "McKinney pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Craig Ranch, Stonebridge Ranch, Adriatica & all McKinney. Call 214-233-6803.",
+      "McKinney pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free winterization check-up on sign-up. Serving Craig Ranch, Stonebridge Ranch, Adriatica & all McKinney. Call 214-233-6803.",
     headline: "Pool Service in McKinney, TX",
     intro:
       "McKinney is one of the fastest-growing cities in Texas, and with new homes come new pools that need expert care. Hydra Pool Services brings professional pool maintenance to McKinney's master-planned communities including Stonebridge Ranch, Craig Ranch, and beyond. Whether you have a new build or an established pool, our weekly service keeps your water safe, clean, and crystal clear.",
@@ -422,7 +422,7 @@ export const cityContent: Record<string, CityContent> = {
     metaTitle:
       "Pool Cleaning Service in Prosper, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Prosper pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Windsong Ranch, Star Trail, Whitley Place & all Prosper. Call 214-233-6803.",
+      "Prosper pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free winterization check-up on sign-up. Serving Windsong Ranch, Star Trail, Whitley Place & all Prosper. Call 214-233-6803.",
     headline: "Pool Service in Prosper, TX",
     intro:
       "Prosper's master-planned communities feature some of the most beautiful residential pools in North Texas. Hydra Pool Services provides premium pool cleaning and maintenance to Prosper homeowners who want their backyard oasis to stay in perfect condition. From Windsong Ranch to Star Trail, our weekly service ensures your pool water is balanced, your surfaces are clean, and your equipment runs at peak performance.",
@@ -539,7 +539,7 @@ export const cityContent: Record<string, CityContent> = {
     metaTitle:
       "Pool Cleaning Service in The Colony, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "The Colony pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Austin Waters, Stewart Peninsula, The Tribute & all Colony neighborhoods. Call 214-233-6803.",
+      "The Colony pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free winterization check-up on sign-up. Serving Austin Waters, Stewart Peninsula, The Tribute & all Colony neighborhoods. Call 214-233-6803.",
     headline: "Pool Service in The Colony, TX",
     intro:
       "The Colony sits along the shores of Lake Lewisville, and the area's pools benefit from — and are challenged by — the local climate and environment. Hydra Pool Services provides consistent, reliable pool maintenance to The Colony homeowners, handling everything from weekly cleaning and chemical balancing to equipment inspections and repairs. Our goal is simple: keep your pool crystal clear so you can enjoy it without the hassle.",
@@ -655,7 +655,7 @@ export const cityContent: Record<string, CityContent> = {
     metaTitle:
       "Pool Cleaning Service in Allen, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Allen pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Twin Creeks, Montgomery Farm, Watters Creek & all Allen. Call 214-233-6803.",
+      "Allen pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free winterization check-up on sign-up. Serving Twin Creeks, Montgomery Farm, Watters Creek & all Allen. Call 214-233-6803.",
     headline: "Pool Service in Allen, TX",
     intro:
       "Allen is home to established neighborhoods with beautiful pools that deserve expert care. Hydra Pool Services provides weekly pool cleaning and maintenance to Allen homeowners, from Twin Creeks to Montgomery Farm and beyond. Our technicians keep your water chemistry balanced, your pool surfaces clean, and your equipment running smoothly — so your pool is always ready for family and friends.",
@@ -772,7 +772,7 @@ export const cityContent: Record<string, CityContent> = {
     metaTitle:
       "Pool Cleaning Service in Parker, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Parker's local pool service — weekly cleaning, chemical balancing, and equipment maintenance for well water and municipal water pools. All chemicals included. Free first 2 weeks. Call 214-233-6803.",
+      "Parker's local pool service — weekly cleaning, chemical balancing, and equipment maintenance for well water and municipal water pools. All chemicals included. Free winterization check-up on sign-up. Call 214-233-6803.",
     headline: "Pool Service in Parker, TX",
     intro:
       "Parker's larger lots, well water systems, and rural-adjacent properties create pool maintenance challenges you won't find in the surrounding suburbs. Hard well water with elevated calcium and iron, deer browsing your landscaping, and equipment pads exposed to open-field wind require a pool service that understands the specifics — not a company running the same playbook they use in Plano or McKinney.",
@@ -888,7 +888,7 @@ export const cityContent: Record<string, CityContent> = {
     metaTitle:
       "Pool Cleaning Service in Murphy, TX | Weekly from $179/mo | Hydra Pool Services",
     metaDescription:
-      "Murphy pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free first 2 weeks. Serving Maxwell Creek, Mustang Park & all Murphy. Call 214-233-6803.",
+      "Murphy pool service — weekly cleaning, chemical balancing, and equipment maintenance. All chemicals included. Free winterization check-up on sign-up. Serving Maxwell Creek, Mustang Park & all Murphy. Call 214-233-6803.",
     headline: "Pool Service in Murphy, TX",
     intro:
       "Murphy may be one of the smaller cities in Collin County, but its pools deserve the same professional care as any neighborhood in DFW. Hydra Pool Services provides reliable weekly pool maintenance to Murphy homeowners, keeping your water crystal clear, your chemicals perfectly balanced, and your equipment in top condition. We treat every pool like our own.",

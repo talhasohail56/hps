@@ -663,8 +663,9 @@ export default async function CityPage({
             Ready for Crystal-Clear Water in {area.name}?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-light">
-            Get a free, no-obligation quote today. Your first 2 weeks are on us
-            on full-service plans. No contracts, no hidden fees.
+            Get a free, no-obligation quote today. New customers on any plan
+            get a free winterization check-up when they sign up by December
+            31, 2026. No contracts, no hidden fees.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link

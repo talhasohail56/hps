@@ -76,7 +76,7 @@ const residentialPoolMaintenance: Service = {
     "At Hydra Pool Services, we know your home swimming pool is more than just water. It is your private escape, your backyard centerpiece, and a place for family and friends to come together. But owning a pool should feel like joy, not a chore. Our Residential Pool Maintenance service is designed to give you complete peace of mind, crystal-clear water, and professional pool care every single week.\n\nNo matter what it is that you need taken care of, whether it's pool cleaning, pool repairs, or a customized maintenance plan, our friendly and experienced technicians are here to take the stress out of swimming pool care.",
   metaTitle: "Residential Pool Maintenance | Hydra Pool Services",
   metaDescription:
-    "Professional weekly residential pool maintenance in North DFW. Brushing, vacuuming, chemical balancing, and equipment inspections. Free first 2 weeks for new customers.",
+    "Professional weekly residential pool maintenance in North DFW. Brushing, vacuuming, chemical balancing, and equipment inspections. Free winterization check-up on sign-up.",
   sections: [
     {
       heading: "Why Choose Hydra for Residential Pool Maintenance",
