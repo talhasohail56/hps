@@ -15,7 +15,10 @@ export interface ServiceSection {
 
 export interface ServiceFAQ {
   question: string;
+  /** Feeds the FAQPage JSON-LD — keep prices clean, no tax wording. */
   answer: string;
+  /** Shown to customers on the page instead of `answer` when present. */
+  displayAnswer?: string;
 }
 
 export interface Service {
@@ -40,6 +43,11 @@ export interface Service {
   ctaHeading: string;
   ctaBody: string;
   ctaClosing: string;
+  /** Overrides the CTA box's primary button label for this service. */
+  ctaButtonLabel?: string;
+
+  /** Fixed price in USD, before tax. Feeds the Service JSON-LD offer. */
+  price?: number;
 }
 
 /* ================================================================== */
@@ -76,7 +84,7 @@ const residentialPoolMaintenance: Service = {
     "At Hydra Pool Services, we know your home swimming pool is more than just water. It is your private escape, your backyard centerpiece, and a place for family and friends to come together. But owning a pool should feel like joy, not a chore. Our Residential Pool Maintenance service is designed to give you complete peace of mind, crystal-clear water, and professional pool care every single week.\n\nNo matter what it is that you need taken care of, whether it's pool cleaning, pool repairs, or a customized maintenance plan, our friendly and experienced technicians are here to take the stress out of swimming pool care.",
   metaTitle: "Residential Pool Maintenance | Hydra Pool Services",
   metaDescription:
-    "Professional weekly residential pool maintenance in North DFW. Brushing, vacuuming, chemical balancing, and equipment inspections. Free winterization check-up on sign-up.",
+    "Professional weekly residential pool maintenance in North DFW. Brushing, vacuuming, chemical balancing, and equipment inspections. Free winterization check-up + filter clean on sign-up.",
   sections: [
     {
       heading: "Why Choose Hydra for Residential Pool Maintenance",
@@ -452,125 +460,85 @@ const poolRepairServices: Service = {
 };
 
 /* ================================================================== */
-/*  4. Bead Blasting                                                   */
+/*  4. Pool Winterization                                              */
 /* ================================================================== */
 
-const beadBlasting: Service = {
-  id: "bead-blasting",
-  title: "Bead Blasting",
+/** Pool winterization price in USD, before tax. */
+export const WINTERIZATION_PRICE = 95;
+
+const NEW_CUSTOMER_OFFER =
+  "New customers on any plan get a free winterization check-up plus a free filter clean when they sign up by December 31, 2026.";
+
+const poolWinterization: Service = {
+  id: "pool-winterization",
+  title: "Pool Winterization",
   shortDescription:
-    "Over time, pool tiles and surfaces can become stained by calcium buildup, algae, and debris. Our bead blasting service uses fine, eco-friendly glass beads to gently and effectively clean pool surfaces without causing damage.",
+    `Get your pool ready for the colder months. Pool winterization from Hydra Pool Services is $${WINTERIZATION_PRICE} + tax, available across Frisco and North DFW.`,
   description:
-    "Over time, pool tiles and surfaces can become stained by calcium buildup, algae, and debris. Our bead blasting service uses fine, eco-friendly glass beads to gently and effectively clean pool surfaces without causing damage. The result? A refreshed, sparkling pool that looks brand new.",
-  icon: "Sparkles",
+    `Get your pool ready for the colder months. Pool winterization from Hydra Pool Services is $${WINTERIZATION_PRICE} + tax, available across Frisco and North DFW. Call or message us to schedule.`,
+  icon: "Snowflake",
+  // TODO(owner): replace with the three headline things winterization
+  // includes. Kept general on purpose — inclusions have not been confirmed.
   bullets: [
-    "Eco-friendly glass bead cleaning",
-    "Removes calcium, algae, and stains",
-    "Safe for tile and stone surfaces",
+    `$${WINTERIZATION_PRICE} + tax`,
+    "Friendly, experienced technicians",
+    "Serving Frisco and all of North DFW",
   ],
+  // TODO(owner): this renders under "What's Included" on /services. Replace
+  // with the real list of what winterization includes once confirmed.
   checklist: [
-    "Pre-cleaning inspection of surfaces",
-    "Eco-friendly glass bead application",
-    "Gentle tile and surface restoration",
-    "Filter cleaning and water care",
-    "Post-treatment inspection",
+    `Pool winterization service for $${WINTERIZATION_PRICE} + tax`,
+    "Performed by a Hydra Pool Services technician",
+    "Available across Frisco and North DFW",
   ],
-  frequency: "Every 2–3 years",
-  bestFor:
-    "Pools with calcium buildup, stains, or aging tile that need a deep refresh.",
-  subtitle: "Bring Your Pool Surfaces Back to Life",
+  frequency: "Seasonal",
+  bestFor: "Pool owners who want their pool ready for winter.",
+  subtitle: `Get Your Pool Ready for Winter — $${WINTERIZATION_PRICE} + tax`,
+  // The first paragraph also feeds the Service JSON-LD description, so it
+  // stays free of prices and tax wording.
   heroDescription:
-    "Even the cleanest pool needs a deep refresh from time to time. Over the years, pool tiles and surfaces begin to show stains, calcium deposits, algae spots, and debris that regular pool cleaning cannot remove. That is where Hydra Pool Services comes in with our professional bead blasting service.\n\nUsing fine, eco-friendly glass beads, we restore tile, stone, and pool surfaces without scratching or damage. The result is a sparkling, fresh look that makes your pool appear brand new.\n\nIf you are in North DFW, TX, including Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, or The Colony, TX, our bead blasting experts are here to bring your pool back to life.",
-  metaTitle: "Pool Tile Bead Blasting — Frisco, Plano, McKinney | Hydra",
+    "Hydra Pool Services offers pool winterization for pool owners in Frisco and across North DFW, to help get your pool ready for the colder months.\n\nWe serve Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
+  metaTitle: `Pool Winterization Frisco TX — $${WINTERIZATION_PRICE} + tax | Hydra`,
   metaDescription:
-    "Years of calcium scale and waterline buildup removed in one visit. Your tile looks new again. Safe for glass, porcelain, and stone tile. Serving North DFW. Call 214-233-6803.",
+    `Pool winterization in Frisco, Plano & North DFW for $${WINTERIZATION_PRICE} + tax. New customers: free winterization check-up + filter clean on sign-up. Call (214) 233-6803.`,
   sections: [
     {
-      heading: "Why Choose Hydra for Pool Tile Cleaning and Bead Blasting",
-      body: "Hydra Pool Services is trusted across North DFW, TX for one reason. We make your pool look its best while protecting the surfaces you invested in. Unlike harsh scrubbing, bead blasting gently removes calcium buildup and stubborn stains.",
-      bullets: [
-        "Friendly and Experienced Technicians who know how to safely restore tile and stone",
-        "Professional Pool Care that goes beyond just brushing",
-        "Customized Maintenance Plans that can include regular tile cleaning to keep surfaces spotless",
-      ],
+      heading: "Pool Winterization Pricing",
+      body: `Pool winterization is $${WINTERIZATION_PRICE} + tax.`,
     },
-    {
-      heading: "The Bead Blasting Process",
-      bullets: [
-        "Step 1: Pre-Cleaning Inspection",
-        "Step 2: Eco-Friendly Glass Beads",
-        "Step 3: Gentle Tile Cleaning and Surface Restoration",
-        "Step 4: Filter Cleaning and Water Care",
-      ],
-    },
-    {
-      heading: "Benefits",
-      bullets: [
-        "Crystal-Clear Water and Sparkling Surfaces — Your pool will look brand new",
-        "Professional Pool Care That Protects — Surfaces are cleaned without scratching or damage",
-        "Peace of Mind — Eco-friendly process safe for your pool and the environment",
-        "Increases Property Value — A clean pool makes your home or commercial property more attractive",
-      ],
-    },
-    {
-      heading: "Bead Blasting as Part of Your Pool Maintenance",
-      body: "Hydra recommends bead blasting as part of ongoing pool maintenance. Most pools in North DFW, TX need this service every 2-3 years depending on water hardness. Including bead blasting in your weekly service plan ensures stains do not return quickly.\n\nWe combine bead blasting with:",
-      bullets: [
-        "Weekly Service Visits for brushing, skimming, and vacuuming",
-        "Pool Opening and Closing to keep your pool ready each season",
-        "Pool Repairs if equipment issues are found during inspections",
-        "Pool Remodels and Pool Remodeling for a complete refresh if your pool is aging",
-      ],
-    },
-    {
-      heading: "Commercial Pool Bead Blasting in Plano, TX and North DFW",
-      body: "Hydra also offers bead blasting for commercial service clients. Hotels, gyms, HOAs, and apartment complexes often struggle with high-use pools that stain faster. Our team handles large-scale bead blasting projects quickly, minimizing downtime for your guests and residents.\n\nDetailed service logs are provided for every visit, giving property managers complete peace of mind.",
-    },
-    {
-      heading: "Areas We Serve",
-      bullets: [
-        "Frisco, TX",
-        "Murphy, TX",
-        "Allen, TX",
-        "Plano, TX",
-        "McKinney, TX",
-        "The Colony, TX",
-        "The greater North DFW, TX area",
-      ],
-    },
+    // TODO(owner): add a "What's Included" section here with the list of
+    // what winterization includes, e.g.
+    // { heading: "What's Included", bullets: ["…", "…"] },
   ],
   faqs: [
     {
-      question: "What is bead blasting for pools?",
+      question: "How much does pool winterization cost?",
+      answer: `Pool winterization with Hydra Pool Services is $${WINTERIZATION_PRICE}.`,
+      displayAnswer: `Pool winterization with Hydra Pool Services is $${WINTERIZATION_PRICE} + tax.`,
+    },
+    // TODO(owner): add "What does pool winterization include?" once the
+    // inclusions are confirmed.
+    {
+      question: "Where do you offer pool winterization?",
       answer:
-        "Bead blasting uses fine, eco-friendly glass beads to remove calcium buildup, stains, and algae from pool tiles and surfaces without causing damage.",
+        "We offer pool winterization in Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
     },
     {
-      question: "Is bead blasting safe for my pool tile?",
-      answer:
-        "Yes. Glass bead blasting is gentle on tile, stone, and pool surfaces. Unlike harsh scrubbing methods, it cleans without scratching or damaging your surfaces.",
+      question: "Do you have a new-customer offer?",
+      answer: `Yes. ${NEW_CUSTOMER_OFFER}`,
     },
     {
-      question: "How often should bead blasting be done?",
+      question: "How do I book pool winterization?",
       answer:
-        "Most pools in North DFW need bead blasting every 2-3 years depending on water hardness and calcium buildup levels.",
-    },
-    {
-      question: "Do you include bead blasting in weekly service?",
-      answer:
-        "Bead blasting is a separate service, but it can be combined with your weekly maintenance plan for ongoing surface care and prevention.",
-    },
-    {
-      question: "Can you do bead blasting for commercial pools?",
-      answer:
-        "Yes. We handle large-scale bead blasting for hotels, gyms, HOAs, and apartment complexes with minimal downtime for your guests and residents.",
+        "Call (214) 233-6803 or contact us online and our team will get you scheduled.",
     },
   ],
-  ctaHeading: "New to Hydra? Start With a Free Visit",
-  ctaBody:
-    "Schedule a free visit and our team will inspect your pool, recommend bead blasting if it's the right fix, and give you a clear, honest quote — no pressure.",
+  ctaHeading: "New-Customer Offer",
+  ctaBody: `New customers get a free winterization check-up and filter clean when they sign up by December 31, 2026. Full pool winterization is $${WINTERIZATION_PRICE} + tax.`,
   ctaClosing:
-    "Bring your pool back to life with Hydra's bead blasting service. Our friendly and experienced technicians deliver professional pool care that restores surfaces, removes calcium, and leaves your pool sparkling. Serving North DFW, Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
+    "To book pool winterization, call (214) 233-6803 or send us a message. Serving Frisco, Plano, McKinney, Allen, Murphy, Prosper, Parker, and The Colony, TX.",
+  ctaButtonLabel: "Book Winterization",
+  price: WINTERIZATION_PRICE,
 };
 
 /* ================================================================== */
@@ -860,7 +828,7 @@ export const services: Service[] = [
   residentialPoolMaintenance,
   commercialPoolMaintenance,
   poolRepairServices,
-  beadBlasting,
+  poolWinterization,
   poolSchool,
   chemicalOnlyService,
 ];
