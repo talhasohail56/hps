@@ -76,6 +76,6 @@ export const faqs: FAQ[] = [
     id: "9",
     question: "Do you have a new-customer offer?",
     answer:
-      "Yes. New customers on any plan get a free winterization check-up when they sign up by December 31, 2026. There are no hidden fees. No contracts, cancel anytime before your next billing date.",
+      "Yes. New customers on any plan get a free winterization check-up plus a free filter clean when they sign up by December 31, 2026. There are no hidden fees. No contracts, cancel anytime before your next billing date.",
   },
 ];

@@ -129,7 +129,15 @@ const nextConfig: NextConfig = {
     ],
   },
   async redirects() {
-    return legacyBlogRedirects;
+    return [
+      ...legacyBlogRedirects,
+      // Bead blasting was retired; its page is now Pool Winterization.
+      {
+        source: "/services/bead-blasting",
+        destination: "/services/pool-winterization",
+        statusCode: 301 as const,
+      },
+    ];
   },
 };
 

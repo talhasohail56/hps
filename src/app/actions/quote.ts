@@ -158,7 +158,7 @@ async function sendCustomerConfirmation(record: QuoteRecord) {
         <div style="background: #f8fafc; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
           <p style="margin: 0; font-size: 13px; color: #475569;">
             <strong>What happens next?</strong><br/>
-            Our team will review your quote and reach out within 24 hours to finalize your service plan. New customers on any plan get a free winterization check-up when they sign up by December 31, 2026.
+            Our team will review your quote and reach out within 24 hours to finalize your service plan. New customers on any plan get a free winterization check-up plus a free filter clean when they sign up by December 31, 2026.
           </p>
         </div>
 

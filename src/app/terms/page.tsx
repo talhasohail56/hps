@@ -65,7 +65,7 @@ export default function TermsOfServicePage() {
             </h2>
             <p className="mt-3">
               Hydra Pool Services provides residential and commercial pool
-              maintenance, pool repair, bead blasting, chemical-only service,
+              maintenance, pool repair, pool winterization, chemical-only service,
               and pool education (Pool School) in the Dallas-Fort Worth area of
               Texas. Our services are available in Frisco, Plano, McKinney,
               Allen, Murphy, Prosper, Parker, The Colony, and surrounding
@@ -193,7 +193,7 @@ export default function TermsOfServicePage() {
                 refund the unused portion of that month.
               </li>
               <li>
-                One-time service fees (repairs, bead blasting, etc.) are
+                One-time service fees (repairs, etc.) are
                 non-refundable once the work has been performed.
               </li>
             </ul>

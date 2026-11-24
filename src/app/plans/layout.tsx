@@ -19,14 +19,14 @@ export const metadata: Metadata = {
       "biweekly"
     )}, Weekly $${planEntryPrice(
       "weekly"
-    )}, Premium Care $${PREMIUM_CARE_FLAT_PRICE}. All chemicals included, no contracts. Free winterization check-up on sign-up. Call (214) 233-6803.`,
+    )}, Premium Care $${PREMIUM_CARE_FLAT_PRICE}. All chemicals included, no contracts. Free winterization check-up + filter clean on sign-up. Call (214) 233-6803.`,
   alternates: {
     canonical: `${siteConfig.url}/plans`,
   },
   openGraph: {
     title: "Pool Service Plans & Pricing | Hydra Pool Services",
     description:
-      "Affordable pool service plans in Frisco, TX. All chemicals included. Free winterization check-up on sign-up.",
+      "Affordable pool service plans in Frisco, TX. All chemicals included. Free winterization check-up + filter clean on sign-up.",
     url: `${siteConfig.url}/plans`,
     images: [{ url: siteConfig.ogImage, width: 1290, height: 720, alt: siteConfig.ogImageAlt }],
   },

@@ -132,7 +132,7 @@ export function Hero() {
                   FREE winterization check-up
                 </p>
                 <p className="text-xs text-slate-light">
-                  When you sign up by Dec 31
+                  + filter clean · sign up by Dec 31
                 </p>
               </div>
             </motion.button>

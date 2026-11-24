@@ -39,7 +39,7 @@ const organizationJsonLd = {
     "Pool Chemical Management",
     "Saltwater Pool Service",
     "Commercial Pool Maintenance",
-    "Bead Blasting",
+    "Pool Winterization",
   ],
   sameAs: [
     siteConfig.socials.facebook,

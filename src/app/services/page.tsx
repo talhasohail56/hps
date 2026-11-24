@@ -5,6 +5,7 @@ import {
   Building2,
   Wrench,
   Sparkles,
+  Snowflake,
   GraduationCap,
   FlaskConical,
   HelpCircle,
@@ -17,7 +18,7 @@ import type { LucideProps } from "lucide-react";
 import type { ComponentType } from "react";
 
 import { cn } from "@/lib/utils";
-import { services } from "@/lib/data/services";
+import { services, WINTERIZATION_PRICE } from "@/lib/data/services";
 import { addOns, formatAddOnPrice } from "@/lib/data/plans";
 import { AuroraBackground } from "@/components/graphics/AuroraBackground";
 import { NoiseOverlay } from "@/components/graphics/NoiseOverlay";
@@ -33,6 +34,7 @@ const iconMap: Record<string, ComponentType<LucideProps>> = {
   Building2,
   Wrench,
   Sparkles,
+  Snowflake,
   GraduationCap,
   FlaskConical,
 };
@@ -82,11 +84,11 @@ const serviceSchemaJsonLd = {
     },
     {
       "@type": "Service",
-      name: "Bead Blasting",
-      description: "Professional bead blasting to remove calcium scale and restore pool tile to like-new condition.",
+      name: "Pool Winterization",
+      description: "Pool winterization to help get your pool ready for the colder months.",
       provider: { "@type": "LocalBusiness", name: "Hydra Pool Services" },
       areaServed,
-      priceRange: "$$",
+      offers: { "@type": "Offer", price: WINTERIZATION_PRICE, priceCurrency: "USD" },
     },
     {
       "@type": "Service",

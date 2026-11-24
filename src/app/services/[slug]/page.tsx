@@ -12,6 +12,7 @@ import {
   Building2,
   Wrench,
   Sparkles,
+  Snowflake,
   GraduationCap,
   FlaskConical,
   HelpCircle,
@@ -41,6 +42,7 @@ const iconMap: Record<string, ComponentType<LucideProps>> = {
   Building2,
   Wrench,
   Sparkles,
+  Snowflake,
   GraduationCap,
   FlaskConical,
 };
@@ -209,6 +211,13 @@ export default async function ServiceDetailPage({
       { "@type": "City", name: "The Colony, TX" },
     ],
     serviceType: service.title,
+    ...(service.price !== undefined && {
+      offers: {
+        "@type": "Offer",
+        price: service.price,
+        priceCurrency: "USD",
+      },
+    }),
   };
 
   /* ── JSON-LD: FAQPage schema ── */
@@ -398,7 +407,11 @@ export default async function ServiceDetailPage({
 
             <div className="mt-8 flex flex-col gap-4">
               {service.faqs.map((faq, i) => (
-                <FAQItem key={i} question={faq.question} answer={faq.answer} />
+                <FAQItem
+                  key={i}
+                  question={faq.question}
+                  answer={faq.displayAnswer ?? faq.answer}
+                />
               ))}
             </div>
           </div>
@@ -462,7 +475,7 @@ export default async function ServiceDetailPage({
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-hydra-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-hydra-500/25 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-xl hover:shadow-hydra-500/30 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-hydra-500 focus-visible:ring-offset-2"
               >
-                Schedule a Free Visit
+                {service.ctaButtonLabel ?? "Schedule a Free Visit"}
                 <ArrowRight className="h-4 w-4" />
               </Link>
 

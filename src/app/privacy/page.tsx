@@ -130,8 +130,8 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul className="mt-2 list-disc space-y-1 pl-5">
               <li>
-                Provide, schedule, and manage pool maintenance, repair, bead
-                blasting, chemical service, and pool school services.
+                Provide, schedule, and manage pool maintenance, repair,
+                winterization, chemical service, and pool school services.
               </li>
               <li>
                 Respond to your inquiries and send service quotes.

@@ -17,14 +17,14 @@ const WEEKLY_FROM = planEntryPrice("weekly");
 export const metadata: Metadata = {
   title: "Pool Services — Weekly Cleaning, Repairs & More",
   description:
-    `Pool cleaning, maintenance, repairs, bead blasting & more in Frisco, TX. Residential & commercial pool care from $${ENTRY_PRICE}/mo. All chemicals included. Free winterization check-up on sign-up. Call (214) 233-6803.`,
+    `Pool cleaning, maintenance, repairs, winterization & more in Frisco, TX. Residential & commercial pool care from $${ENTRY_PRICE}/mo. All chemicals included. Free winterization check-up + filter clean on sign-up. Call (214) 233-6803.`,
   alternates: {
     canonical: `${siteConfig.url}/services`,
   },
   openGraph: {
     title: "Pool Services — Weekly Cleaning, Repairs & More | Hydra Pool Services",
     description:
-      `Weekly cleaning from $${WEEKLY_FROM}/mo, all chemicals included. Plus repairs, filter service, bead blasting, and salt cell maintenance. Serving Frisco, Plano, McKinney, Allen & North DFW.`,
+      `Weekly cleaning from $${WEEKLY_FROM}/mo, all chemicals included. Plus repairs, filter service, winterization, and salt cell maintenance. Serving Frisco, Plano, McKinney, Allen & North DFW.`,
     url: `${siteConfig.url}/services`,
     images: [{ url: siteConfig.ogImage, width: 1290, height: 720, alt: siteConfig.ogImageAlt }],
   },
